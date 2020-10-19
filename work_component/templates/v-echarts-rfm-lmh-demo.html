@@ -1,0 +1,125 @@
+{% extends "layout_mini_daniel.html" %}
+{% block title %}標題 | 首頁 - EagleEye CDP 顧客數據雲{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/style/morris/0.5.1/morris.css" />
+
+<style type="text/css">
+  /*修複sparkline tooltips樣式跑版*/
+  .jqstooltip {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+  }
+
+  .el-range-separator {
+    /* 修正”至”樣式錯誤 */
+    width: 27px !important;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- 頁面標題-右側-無功能 start -->
+<el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
+    <el-col :span="24">
+    <div class="grid-content">
+        <h1>v-echarts-rfm-chart.js 使用方式</h1>  
+    </div>
+    </el-col>
+</el-row>
+<!-- 頁面標題-右側-無功能 end -->
+<!-- 1欄 start -->
+
+<el-row :gutter="25" class="mb-4">
+  <el-col :span="24">
+        <div class="grid-content">
+            <el-card shadow="never" class="box-card wrap-card"  >
+<pre>
+<h3><font color="#4c769a" font-size="13px">
+描述:
+    RFM-自訂圖
+html:
+    id:必填，元件id，要有唯一性
+屬性:
+    data : {"rl":28653,"rm":142495,"rh":235679,"fl":334191,"fm":70355,"fh":2281,"ml":221935,"mm":128669,"mh":56223}
+    ytext : 須為object， ex:[ [60,200],[20,140],[3000,10000] ]
+    [    R[0~a天，a~b天]    F[0~a次，a~b次]    M[0~a元，a~b元]    ]
+參考:
+    https://echarts.apache.org/examples/zh/editor.html?c=bar-y-category
+
+</font></h3>
+</pre>
+            </el-card>
+        </div>
+    </el-col>
+</el-row>
+
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+        <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Source Code</h2>
+            <h3><pre>
+                <code class="html">
+                &lt;v-echarts-rfm-lmh
+                    id="rfmchart"
+                    :data='datalist'
+                    :ytext="[ [60,200],[20,140],[3000,10000] ]"&gt;
+                &lt;/v-echarts-rfm-lmh&gt;
+                </code>
+            </pre></h3>
+        </el-card>
+        </div>
+    </el-col>
+
+</el-row>
+
+ 
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+            <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Example</h2>
+            <v-echarts-rfm-lmh
+                id="rfmchart"
+                :data="datalist"
+                :ytext="[[60,200],[20,140],[3000,10000]]">
+            </v-echarts-rfm-lmh>
+            </el-card>
+        </div>
+    </el-col>
+</el-row>
+
+<!-- 1欄 end -->
+
+{% endblock %} 
+
+{% block js %}
+<script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
+<script src="/static/style/lodash/4.16.0/lodash.js"></script>
+<script src="/static/js/v-echarts-rfm-lmh.js"></script>
+
+
+<script>
+
+    var obj = new Vue({
+        el: '#app',
+        mixins: [layoutVue],
+        data:  {
+            breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
+            datalist: {"rl":28653,"rm":142495,"rh":235679,"fl":334191,"fm":70355,"fh":2281,"ml":221935,"mm":128669,"mh":56223},
+
+        },
+    });
+
+    
+</script>
+
+
+{% endblock %}
+
+
+

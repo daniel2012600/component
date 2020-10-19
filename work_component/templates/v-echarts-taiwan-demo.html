@@ -1,0 +1,149 @@
+{% extends "layout_mini_daniel.html" %}
+{% block title %}標題 | 首頁 - EagleEye CDP 顧客數據雲{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/style/morris/0.5.1/morris.css" />
+
+<style type="text/css">
+  /*修複sparkline tooltips樣式跑版*/
+  .jqstooltip {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+  }
+
+  .el-range-separator {
+    /* 修正”至”樣式錯誤 */
+    width: 27px !important;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- 頁面標題-右側-無功能 start -->
+<el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
+    <el-col :span="24">
+    <div class="grid-content">
+        <h1>v-echarts-scatter-life-dt.js 使用方式</h1>  
+    </div>
+    </el-col>
+</el-row>
+<!-- 頁面標題-右側-無功能 end -->
+<!-- 1欄 start -->
+
+<el-row :gutter="25" class="mb-4">
+  <el-col :span="24">
+        <div class="grid-content">
+            <el-card shadow="never" class="box-card wrap-card"  >
+<pre>
+<h3><font color="#4c769a" font-size="13px">
+描述：
+    台灣地圖
+html:
+    id : 注意，不是屬性，元性的id，同一個頁面要有唯一性，裏面會用到，一定要設
+屬性：
+    data : [  {name:'台灣縣市', value:數值 },....], name跟value都是保留字
+    plotheight:圖型的高度，一定要設，預設300
+-限制：
+    name跟value都是保留字
+參考:
+    https://echarts.apache.org/examples/zh/editor.html?c=map-usa
+
+</font></h3>
+</pre>
+            </el-card>
+        </div>
+    </el-col>
+</el-row>
+
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+        <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Source Code</h2>
+            <h3><pre>
+                <code class="html">
+                &lt;v-echarts-rfm-lmh
+                    id="scat2"
+                    :data="datalist"
+                    :plotheight="300"&gt;
+                &lt;/v-echarts-rfm-lmh&gt;
+                </code>
+            </pre></h3>
+        </el-card>
+        </div>
+    </el-col>
+
+</el-row>
+
+ 
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+            <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Example</h2>
+            <v-echarts-taiwan 
+                id="scat2"
+                :data="datalist"
+                :plotheight="500">
+            </v-echarts-taiwan>
+            </el-card>
+        </div>
+    </el-col>
+</el-row>
+
+<!-- 1欄 end -->
+
+{% endblock %} 
+
+{% block js %}
+<script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
+<script src="/static/style/lodash/4.16.0/lodash.js"></script>
+<script src="/static/js/v-echarts-taiwan.js"></script>
+
+
+<script>
+
+    var obj = new Vue({
+        el: '#app',
+        mixins: [layoutVue],
+        data:  {
+            breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
+            datalist: [  
+            {'name':'台北市', 'value':38000000},
+            {'name':'新北市', 'value':10000},
+            {'name':'基隆市', 'value':10000},
+            {'name':'桃園縣', 'value':3000},
+            {'name':'新竹縣', 'value':3000},
+            {'name':'新竹市', 'value':20000000},
+            {'name':'苗栗縣', 'value':3000},
+            {'name':'台中市', 'value':3000},
+            {'name':'南投縣', 'value':300000},
+            {'name':'彰化縣', 'value':3000},
+            {'name':'雲林縣', 'value':3000},
+            {'name':'嘉義縣', 'value':50000000},
+            {'name':'嘉義市', 'value':3000},
+            {'name':'台南市', 'value':50000},
+            {'name':'高雄市', 'value':3000},
+            {'name':'屏東縣', 'value':3000},
+            {'name':'宜蘭縣', 'value':3000},
+            {'name':'花蓮縣', 'value':3000},
+            {'name':'台東縣', 'value':30000000},
+            {'name':'澎湖縣', 'value':3000},
+            {'name':'金門縣', 'value':3000},
+            {'name':'連江縣','value':5000}
+            ],
+
+        },
+    });
+
+    
+</script>
+
+
+{% endblock %}
+
+
+

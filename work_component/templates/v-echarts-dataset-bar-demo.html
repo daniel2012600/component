@@ -1,0 +1,139 @@
+{% extends "layout_mini_daniel.html" %}
+{% block title %}標題 | 首頁 - EagleEye CDP 顧客數據雲{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/style/morris/0.5.1/morris.css" />
+
+<style type="text/css">
+  /*修複sparkline tooltips樣式跑版*/
+  .jqstooltip {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+  }
+
+  .el-range-separator {
+    /* 修正”至”樣式錯誤 */
+    width: 27px !important;
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+<!-- 頁面標題-右側-無功能 start -->
+<el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
+    <el-col :span="24">
+    <div class="grid-content">
+        <h1>v-echarts-dataset-bar.js 使用方式</h1>  
+    </div>
+    </el-col>
+</el-row>
+<!-- 頁面標題-右側-無功能 end -->
+<!-- 1欄 start -->
+
+<el-row :gutter="25" class="mb-4">
+  <el-col :span="24">
+        <div class="grid-content">
+            <el-card shadow="never" class="box-card wrap-card"  >
+                <span>
+                    <h3><font color="#4c769a" font-size="13px">
+                    描述:</br>
+                    <P style="margin-left:20px" >
+                        柱狀圖</br>
+                    </P>
+                    限制:</br>
+                    <P style="margin-left:20px" >
+                        資料一定是name, value</br>
+                    </P>
+                    html:</br>
+                    <P style="margin-left:20px" >
+                        id:必填，元件id，要有唯一性</br>
+                    </P>
+                    屬性:</br>
+                    <P style="margin-left:20px" >
+                        data : [{name:'abc', value:44},....]</br>
+                    </P>
+                    參考:</br>
+                        https://echarts.apache.org/examples/zh/editor.html?c=dataset-simple1
+                    </font></h3>                
+                </span>
+            </el-card>
+        </div>
+    </el-col>
+</el-row>
+
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+        <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Source Code</h2>
+            <h3><pre>
+                <code class="html">
+                &lt;v-echarts-barstack-dt   
+                    id="bsrebuyer"
+                    class="mb-2"
+                    :data="datalist" 
+                    :meskeys="rebuyarr"&gt; 
+                &lt;/v-echarts-barstack-dt  &gt;
+            </code>
+            </pre></h3>
+        </el-card>
+        </div>
+    </el-col>
+</el-row>
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+            <v-echarts-dataset-bar
+            id="plot2" 
+            :datalist="datalist" 
+            :dkey="['type', 'dt', ['年度首購客', '年度持續消費會員', '年度復活會員', '未購會員']]">
+            </v-echarts-dataset-bar>
+        </div>
+    </el-col>
+</el-row>
+
+<!-- 1欄 end -->
+
+{% endblock %} 
+
+{% block js %}
+<script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
+<script src="/static/style/lodash/4.16.0/lodash.js"></script>
+<script src="/static/js/v-echarts-dataset-bar.js"></script>
+<script>
+    var obj = new Vue({
+        el: '#app',
+        mixins: [layoutVue],
+        data:  {
+            breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
+            datalist: [{"dt":"2020","store_id":"FAKE","store_name":"北港店#341","store_area":"未分區","year_label":"Firstime","rev":4929839,"usr_cnt":2189,"ord_cnt":7965,"avg_rev":618.9377275580665,"total_rev":13219698366,"total_usr_cnt":2939221,"total_ord_cnt":8287406,"total_avg_rev":1595.1551505983898},{"dt":"2020","store_id":"FAKE","store_name":"北港店#341","store_area":"未分區","year_label":0,"rev":24649195,"usr_cnt":2189,"ord_cnt":7965,"avg_rev":3094.688637790333,"total_rev":13219698366,"total_usr_cnt":2939221,"total_ord_cnt":8287406,"total_avg_rev":1595.1551505983898},{"dt":"2020","store_id":"FAKE","store_name":"北港店#385","store_area":"未分區","year_label":0,"rev":1306850,"usr_cnt":647,"ord_cnt":1989,"avg_rev":657.0387129210659,"total_rev":13219698366,"total_usr_cnt":2939221,"total_ord_cnt":8287406,"total_avg_rev":1595.1551505983898},{"dt":"2020","store_id":"FAKE","store_name":"北港店#385","store_area":"未分區","year_label":"Firstime","rev":261370,"usr_cnt":647,"ord_cnt":1989,"avg_rev":131.40774258421317,"total_rev":13219698366,"total_usr_cnt":2939221,"total_ord_cnt":8287406,"total_avg_rev":1595.1551505983898}],
+            type: "usr_cnt",
+            label_text: {
+                "Continuously": "年度持續消費會員",
+                "Firstime": "年度首購客",
+                "Rivived": "年度復活會員",
+                "Notconsumed": "未購會員"
+            },
+        },
+        computed: {
+
+            },
+        mounted(){
+        },
+    });
+
+
+
+
+</script>
+
+
+{% endblock %}
+
+
+
+

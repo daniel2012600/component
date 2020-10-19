@@ -1,0 +1,124 @@
+{% extends "layout_mini_daniel.html" %}
+{% block title %}標題 | 首頁 - EagleEye CDP 顧客數據雲{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/style/morris/0.5.1/morris.css" />
+
+<style type="text/css">
+  /*修複sparkline tooltips樣式跑版*/
+  .jqstooltip {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+  }
+
+  .el-range-separator {
+    /* 修正”至”樣式錯誤 */
+    width: 27px !important;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- 頁面標題-右側-無功能 start -->
+<el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
+    <el-col :span="24">
+    <div class="grid-content">
+        <h1>v-echarts-scatter-life-dt.js 使用方式</h1>  
+    </div>
+    </el-col>
+</el-row>
+<!-- 頁面標題-右側-無功能 end -->
+<!-- 1欄 start -->
+
+<el-row :gutter="25" class="mb-4">
+  <el-col :span="24">
+        <div class="grid-content">
+            <el-card shadow="never" class="box-card wrap-card"  >
+<pre>
+<h3><font color="#4c769a" font-size="13px">
+描述：
+    瀑布圖
+html:
+    id : 注意，不是屬性，元性的id，同一個頁面要有唯一性，裏面會用到，一定要設
+屬性：
+    data : [{g:'abc', x:44 , y:44},....]
+    colcnt : 每列有多少欄
+    plotheight : 圖型的高度，一定要設，預設值300
+維度量值:
+    g, x, y
+參考:
+    http://echarts.baidu.com/examples/editor.html?c=bubble-gradient
+
+</font></h3>
+</pre>
+            </el-card>
+        </div>
+    </el-col>
+</el-row>
+
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+        <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Source Code</h2>
+            <h3><pre>
+                <code class="html">
+                &lt;v-echarts-rfm-lmh
+                    id="bb1"
+                    xkey="品名"
+                    ykey="銷售額"
+                    :data="datalist"
+                    :plotheight="300"&gt;
+                &lt;/v-echarts-rfm-lmh&gt;
+                </code>
+            </pre></h3>
+        </el-card>
+        </div>
+    </el-col>
+
+</el-row>
+
+ 
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+            <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Example</h2>
+
+            </el-card>
+        </div>
+    </el-col>
+</el-row>
+
+<!-- 1欄 end -->
+
+{% endblock %} 
+
+{% block js %}
+<script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
+<script src="/static/style/lodash/4.16.0/lodash.js"></script>
+<script src="/static/js/v-echarts-waterfall.js"></script>
+
+
+<script>
+
+    var obj = new Vue({
+        el: '#app',
+        mixins: [layoutVue],
+        data:  {
+            breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
+            datalist: [{"品名":"功能慢跑踝襪","銷售額":13463130},{"品名":"運動背心-男版","銷售額":6537058},{"品名":"五趾功能慢跑襪","銷售額":4115183},{"品名":"自行車襪 Race","銷售額":3860098},{"品名":"專業籃球襪-Light","銷售額":3352643},{"品名":"專業運動酵素洗衣精","銷售額":3167003},{"品名":"其他","銷售額":2950947},{"品名":"壓力小腿套","銷售額":2579673},{"品名":"球類襪款，任選3雙790元","銷售額":2549502},{"品名":"全方位球類運動襪","銷售額":2102797},{"品名":"側向運動襪-Elite","銷售額":1683654}],
+        },
+    });
+
+    
+</script>
+
+
+{% endblock %}
+
+
+

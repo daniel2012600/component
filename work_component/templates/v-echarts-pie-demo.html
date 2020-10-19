@@ -1,0 +1,135 @@
+{% extends "layout_mini_daniel.html" %}
+{% block title %}標題 | 首頁 - EagleEye CDP 顧客數據雲{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/style/morris/0.5.1/morris.css" />
+
+<style type="text/css">
+  /*修複sparkline tooltips樣式跑版*/
+  .jqstooltip {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+  }
+
+  .el-range-separator {
+    /* 修正”至”樣式錯誤 */
+    width: 27px !important;
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+<!-- 頁面標題-右側-無功能 start -->
+<el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
+    <el-col :span="24">
+    <div class="grid-content">
+        <h1>v-echarts-pie.js 使用方式</h1>  
+    </div>
+    </el-col>
+</el-row>
+<!-- 頁面標題-右側-無功能 end -->
+<!-- 1欄 start -->
+
+<el-row :gutter="25" class="mb-4">
+  <el-col :span="24">
+        <div class="grid-content">
+            <el-card shadow="never" class="box-card wrap-card"  >
+<pre>
+<h3><font color="#4c769a" font-size="13px">
+描述:
+    圓餅圖
+維度量值:
+    維度1個，量值1個；dt維度是分顏色，量值決定大小
+html:
+    id:必填，元件id，要有唯一性
+屬性:
+    data : [{name:'abc', value:44},....]
+    colors : 色碼["#xxxxx","#xxxxx"]
+    showlabel : 字串"true", 預設"false", 設true的話會顯示label
+    hiddenarr : array，將要隱藏的name放在array內
+參考:
+    https://echarts.apache.org/examples/zh/editor.html?c=pie-legend
+</font></h3>
+</pre>
+            </el-card>
+        </div>
+    </el-col>
+</el-row>
+
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+        <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Source Code</h2>
+            <h3><pre>
+                <code class="html">
+                &lt;v-echarts-pie 
+                    id="gender_chart" 
+                    showtext='元'
+                    :data="datalist"
+                    :colors= "['#8469b3','#31bdba','#c0d95f','#42bd56']"
+                    :hiddenarr="['小新']"
+                    :plotheight="500"
+                    valuelabelunit="%"&gt;
+                &lt;/v-echarts-pie&gt
+            </code>
+            </pre></h3>
+        </el-card>
+        </div>
+    </el-col>
+
+</el-row>
+
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content" >
+        <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Example</h2>
+            <v-echarts-pie 
+                id="gender_chart" 
+                showtext='元'
+                :data="datalist"
+                :colors= "['#8469b3','#31bdba','#c0d95f','#42bd56']"
+                :hiddenarr="['小新']"
+                :plotheight="500"
+                valuelabelunit="%">
+            </v-echarts-pie>
+        </el-card>
+    </div>
+</el-col>
+</el-row>
+
+
+<!-- 1欄 end -->
+
+{% endblock %} 
+
+{% block js %}
+<script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
+<script src="/static/style/lodash/4.16.0/lodash.js"></script>
+<script src="/static/js/v-echarts-pie.js"></script>
+
+
+
+<script>
+
+    var obj = new Vue({
+        el: '#app',
+        mixins: [layoutVue],
+        data:  {
+            breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
+            datalist: [{"name":"小新","value":32837},{"name":"小月","value":32195},{"name":"小明","value":36665},{"name":"小華","value":9999}],
+        },
+    });
+
+</script>
+
+
+{% endblock %}
+
+
+

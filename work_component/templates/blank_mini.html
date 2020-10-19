@@ -1,0 +1,132 @@
+{% extends "layout_mini.html" %}
+{% block title %}標題 | 首頁 - EagleEye CDP 顧客數據雲{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/style/morris/0.5.1/morris.css">
+
+<style type="text/css">
+        /*修複sparkline tooltips樣式跑版*/
+        .jqstooltip {
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+        }
+
+        .el-range-separator
+        {
+            /* 修正”至”樣式錯誤 */
+            width:27px !important;
+        }
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<!-- 頁面標題-右側-無功能 start -->
+<el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+            <span class="h1">Component Demo</span>
+        </div>
+    </el-col>
+</el-row>
+<!-- 頁面標題-右側-無功能 end -->
+<!-- 1欄 start -->
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+            <el-card shadow="never" class="box-card">
+                <div slot="header" >
+                    <el-row type="flex" justify="space-between" :gutter="25">
+                        <el-col :span="24">
+                            <div class="grid-content d-flex align-items-center">
+                                <span class="h2">One、v-blank.js</span>
+                                <div id='app'>
+                                    <v-blank ></v-blank>
+
+
+                                </div>
+
+
+                                
+                            </div>
+                        </el-col>
+                    </el-row>
+                </div>
+                
+            </el-card>
+
+        </div>
+
+        <div class="grid-content">
+            <el-card shadow="never" class="box-card">
+                <div slot="header" >
+                    <el-row type="flex" justify="space-between" :gutter="25">
+                        <el-col :span="24">
+                            <div class="grid-content d-flex align-items-center">
+                                <div class="grid-content" id='app'>
+                                    <div class="boardlist__item" >
+                                        <div class="boardlist__heading">
+                                            <div class="boardlist__title">[[title]]</div>
+                                            <span class="h2">Two、v-board-item.js</span>
+                                        </div>
+                                        <div class="boardlist__imgbox">
+                                            <a class="boardlist__link"  title="詳情">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </el-col>
+                    </el-row>
+                </div>
+                
+            </el-card>
+
+        </div>
+
+    </el-col>
+</el-row>
+
+
+  <!-- 1欄 end -->
+  
+{% endblock %}
+
+
+
+{% block js %}
+
+<script src="/static/style/lodash/4.16.0/lodash.js"></script>
+<script src="/static/js/v-blank.js"></script>
+<script src="/static/js/v-board-item.js"></script>
+<script>
+        var obj = new Vue({
+            el: '#app',
+            mixins: [layoutVue],
+            data:  {
+                breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
+                datalist: [],
+                title:'sss'
+            },
+            computed: {
+
+                },
+            mounted(){
+            },
+
+        });
+
+
+
+
+</script>
+
+
+{% endblock %}
+
+

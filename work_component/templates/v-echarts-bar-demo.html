@@ -1,0 +1,163 @@
+{% extends "layout_mini_daniel.html" %}
+{% block title %}標題 | 首頁 - EagleEye CDP 顧客數據雲{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/style/morris/0.5.1/morris.css" />
+
+<style type="text/css">
+  /*修複sparkline tooltips樣式跑版*/
+  .jqstooltip {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+  }
+
+  .el-range-separator {
+    /* 修正”至”樣式錯誤 */
+    width: 27px !important;
+  }
+</style>
+
+{% endblock %} {% block content %}
+
+<!-- 頁面標題-右側-無功能 start -->
+<el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
+  <el-col :span="24">
+    <div class="grid-content">
+    	<h1>v-echarts-bar.js 使用方式</h1>
+    </div>
+  </el-col>
+</el-row>
+<!-- 頁面標題-右側-無功能 end -->
+<!-- 1欄 start -->
+
+<el-row :gutter="25" class="mb-4">
+  <el-col :span="24">
+        <div class="grid-content">
+            <el-card shadow="never" class="box-card wrap-card"  >
+                <span>
+                    <h3><font color="#4c769a" font-size="13px">
+                    描述:</br>
+                    <P style="margin-left:20px" >
+                        呈顯畫面為直立柱狀圖，最高的值為資料最大值</br>
+                    </P>
+                    維度量值:</br>
+                    <P style="margin-left:20px" >
+                        維度1個，量值n個；維度是x軸，量值分顏色</br>
+                    </P>
+                    html:</br>
+                    <P style="margin-left:20px" >
+                        id:必填，元件id，要有唯一性</br>
+                    </P>
+                    屬性:</br>
+                    <P style="margin-left:20px" >
+                        data : [{x軸維度:'abc', 量值1:44 , 量值2:44 , 量值3:44},....]</br>
+                        meskeys : 陣列，列舉要顯示的量值</br>
+                    </P>
+                    參考:</br>
+                        https://echarts.apache.org/examples/zh/editor.html?c=bar1
+                    </font></h3>                
+                </span>
+            </el-card>
+        </div>
+    </el-col>
+
+
+</el-row>
+<el-row :gutter="25" class="mb-4"></el-row>
+    <el-col :span="24">
+        <div class="grid-content">
+        <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Source Code</h2>
+            <h3><pre>
+            <code class="html">
+            &lt;v-echarts-bar 
+                id="click1" 
+                :data="datalist[0].timeseries"
+                :meskeys="['點擊數']" 
+                xaxis_location="'start'" 
+                :gird_bottom="30"&gt; 
+            &lt;/v-echarts-bar&gt;
+            </code>
+            </pre></h3>
+        </el-card>
+        </div>
+    </el-col>
+</el-row>
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+        <el-card shadow="never" class="box-card wrap-card">
+            <h2 class="card__title">Example</h2>
+            <v-echarts-bar
+            id="click1"
+            :data="datalist[0].timeseries"
+            :meskeys="['點擊數']"
+            xaxis_location="'start'"
+            :gird_bottom="30">
+            </v-echarts-bar>
+        </el-card>
+        </div>
+    </el-col>
+</el-row>
+
+
+<!-- 1欄 end -->
+
+{% endblock %} {% block js %}
+<script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
+<script src="/static/js/v-el-card.js"></script>
+<script src="/static/js/v-echarts-bar.js"></script>
+<script src="/static/style/lodash/4.16.0/lodash.js"></script>
+<script>
+  var obj = new Vue({
+    el: "#app",
+    mixins: [layoutVue],
+    data: {
+      breadpath: [
+        { key: "首頁", path: "/" },
+        { key: "標題", path: "" },
+      ],
+      datalist: [
+        {
+          timeseries: [
+            { 時間: "2020-07-13 17:00", 點擊數: 0 },
+            { 時間: "2020-07-13 18:00", 點擊數: 9 },
+            { 時間: "2020-07-13 19:00", 點擊數: 20 },
+            { 時間: "2020-07-13 20:00", 點擊數: 9 },
+            { 時間: "2020-07-13 21:00", 點擊數: 9 },
+            { 時間: "2020-07-13 22:00", 點擊數: 6 },
+            { 時間: "2020-07-13 23:00", 點擊數: 6 },
+            { 時間: "2020-07-14 00:00", 點擊數: 6 },
+            { 時間: "2020-07-14 01:00", 點擊數: 6 },
+            { 時間: "2020-07-14 02:00", 點擊數: 6 },
+            { 時間: "2020-07-14 03:00", 點擊數: 9 },
+            { 時間: "2020-07-14 04:00", 點擊數: 9 },
+            { 時間: "2020-07-14 05:00", 點擊數: 9 },
+            { 時間: "2020-07-14 06:00", 點擊數: 9 },
+            { 時間: "2020-07-14 07:00", 點擊數: 9 },
+            { 時間: "2020-07-14 08:00", 點擊數: 9 },
+            { 時間: "2020-07-14 09:00", 點擊數: 9 },
+            { 時間: "2020-07-14 10:00", 點擊數: 3 },
+            { 時間: "2020-07-14 11:00", 點擊數: 3 },
+            { 時間: "2020-07-14 12:00", 點擊數: 3 },
+            { 時間: "2020-07-14 13:00", 點擊數: 3 },
+            { 時間: "2020-07-14 14:00", 點擊數: 9 },
+            { 時間: "2020-07-14 15:00", 點擊數: 0 },
+            { 時間: "2020-07-14 16:00", 點擊數: 0 }
+          ]
+        }
+      ],
+      sel_opt: "07/13 MailChimp",
+      loading: true,
+      code: '<el-card shadow="never" class="box-card wrap-card" >',
+    },
+    computed: {
+      sel_data() {
+        return _.find(this.datalist, { name: this.sel_opt });
+      },
+    },
+    mounted() {},
+  });
+</script>
+{% endblock %}

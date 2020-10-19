@@ -1,0 +1,141 @@
+{% extends "layout_mini_daniel.html" %}
+{% block title %}標題 | 首頁 - EagleEye CDP 顧客數據雲{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/style/morris/0.5.1/morris.css" />
+
+<style type="text/css">
+    /*修複sparkline tooltips樣式跑版*/
+    .jqstooltip {
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+    }
+
+    .el-range-separator
+    {
+        /* 修正”至”樣式錯誤 */
+        width:27px !important;
+    }
+
+</style>
+
+{% endblock %} 
+
+
+{% block content %}
+
+
+<!-- 頁面標題-右側-無功能 start -->
+<el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
+    <el-col :span="24">
+    <div class="grid-content">
+        <h1>v-echarts-areastack.js 使用方式</h1>
+        
+    </div>
+    </el-col>
+</el-row>
+<!-- 頁面標題-右側-無功能 end -->
+<!-- 1欄 start -->
+
+<el-row :gutter="25" class="mb-4">
+  <el-col :span="24">
+        <div class="grid-content">
+            <el-card shadow="never" class="box-card wrap-card"  >
+                <span>
+                    <h3><font color="#4c769a" font-size="13px">
+                    描述:</br>
+                    <P style="margin-left:20px" >
+                        堆疊區域圖</br>
+                    </P>
+                    維度量值:</br>
+                    <P style="margin-left:20px" >
+                        維度1個，量值n個；維度是x軸，量值分顏色</br>
+                    </P>
+                    html:</br>
+                    <P style="margin-left:20px" >
+                        id:必填，元件id，要有唯一性</br>
+                    </P>
+                    屬性:</br>
+                    <P style="margin-left:20px" >
+                        data : [{y軸維度:'abc', 量值1:44 , 量值2:44 , 量值3:44},....]</br>
+                    </P>
+                    參考:</br>
+                        https://echarts.apache.org/examples/zh/editor.html?c=area-stack
+                    </font></h3>                
+                </span>
+            </el-card>
+        </div>
+    </el-col>
+
+
+</el-row>
+
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+        <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Source Code</h2>
+            <h3><pre>
+                <code class="html">
+    &lt;v-echarts-areastack  
+        id="nesl_chart" 
+        :data="datalist"
+        :colors="['#6574BB','#62CACA','#E1CCFA','#D58B23','#EED431','#999999','#253E9F','#82AF36','#6858A4','#91B6E6']"&gt; 
+    &lt;/v-echarts-areastack &gt;
+            </code>
+            </pre></h3>
+        </el-card>
+        </div>
+    </el-col>
+</el-row>
+
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+        <el-card shadow="never" class="box-card wrap-card">
+            <h2 class="card__title">Example</h2>
+			<v-echarts-areastack 
+			id="nesl_chart" 
+			:data="datalist"
+			:colors="['#6574BB','#62CACA','#E1CCFA','#D58B23','#EED431','#999999','#253E9F','#82AF36','#6858A4','#91B6E6']">
+			</v-echarts-areastack>
+		</el-card>
+		</div>
+	</el-col>
+</el-row>
+
+
+
+    
+
+<!-- 1欄 end -->
+
+{% endblock %} 
+
+{% block js %}
+
+<script src="/static/js/v-echarts-areastack.js"></script>
+<script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
+<script src="/static/style/lodash/4.16.0/lodash.js"></script>
+<script>
+  var obj = new Vue({
+    el: "#app",
+    mixins: [layoutVue],
+    data: {
+      breadpath: [
+        { key: "首頁", path: "/" },
+        { key: "標題", path: "" },
+      ],
+
+      datalist:[{"dt":"2020-10-01","未購會員":4914,"流失會員":1684,"沉睡會員":2461,"瞌睡會員":1449,"主力會員":1338,"新會員":350},{"dt":"2020-10-02","未購會員":4917,"流失會員":1785,"沉睡會員":2387,"瞌睡會員":1521,"主力會員":1298,"新會員":337},{"dt":"2020-10-03","未購會員":4929,"流失會員":1822,"沉睡會員":2422,"瞌睡會員":1554,"主力會員":1248,"新會員":333},{"dt":"2020-10-04","未購會員":4937,"流失會員":1866,"沉睡會員":2423,"瞌睡會員":1594,"主力會員":1196,"新會員":366},{"dt":"2020-10-05","未購會員":5000,"流失會員":1933,"沉睡會員":2445,"瞌睡會員":1617,"主力會員":1133,"新會員":353},{"dt":"2020-10-06","未購會員":5065,"流失會員":1991,"沉睡會員":2492,"瞌睡會員":1550,"主力會員":1158,"新會員":349},{"dt":"2020-10-07","未購會員":5085,"流失會員":2059,"沉睡會員":2503,"瞌睡會員":1498,"主力會員":1222,"新會員":323}]
+    },
+    computed: {
+
+    },
+    mounted() {},
+  });
+</script>
+{% endblock %}

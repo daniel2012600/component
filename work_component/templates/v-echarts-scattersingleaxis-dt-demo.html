@@ -1,0 +1,141 @@
+{% extends "layout_mini_daniel.html" %}
+{% block title %}標題 | 首頁 - EagleEye CDP 顧客數據雲{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/style/morris/0.5.1/morris.css" />
+
+<style type="text/css">
+  /*修複sparkline tooltips樣式跑版*/
+  .jqstooltip {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+  }
+
+  .el-range-separator {
+    /* 修正”至”樣式錯誤 */
+    width: 27px !important;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- 頁面標題-右側-無功能 start -->
+<el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
+    <el-col :span="24">
+    <div class="grid-content">
+        <h1>v-echarts-scatter-life-dt.js 使用方式</h1>  
+    </div>
+    </el-col>
+</el-row>
+<!-- 頁面標題-右側-無功能 end -->
+<!-- 1欄 start -->
+
+<el-row :gutter="25" class="mb-4">
+  <el-col :span="24">
+        <div class="grid-content">
+            <el-card shadow="never" class="box-card wrap-card"  >
+<pre>
+<h3><font color="#4c769a" font-size="13px">
+描述：
+    y軸表格式散點圖
+html:
+    id : 注意，不是屬性，元性的id，同一個頁面要有唯一性，裏面會用到，一定要設
+屬性：
+    data : [  {dim:'yyyy-mm-dd', 量值１:22, 量值2:44 },....],
+            這裏的量值的名稱會放y軸，x軸放維度
+            xlabeltype :x軸顯示的時間，一樣必須設，可能以下幾字串
+            y :代表只顯示年份, ex 2017
+            m :代表只顯示月份, ex 一月
+            ym :代表只顯示年月, ex 2017-11
+            d:　代表只顯示日期, ex 2017-1-1
+    maxsymbolsize:數值裏面最大的那個圓圈的大小要多少px，預設48
+    plotheight:圖型的高度，一定要設，300
+-限制：
+    只支援一個dt, 一個維度，三個量值
+參考:
+    https://echarts.apache.org/examples/zh/editor.html?c=scatter-single-axis
+
+</font></h3>
+</pre>
+            </el-card>
+        </div>
+    </el-col>
+</el-row>
+
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+        <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Source Code</h2>
+            <h3><pre>
+                <code class="html">
+                &lt;v-echarts-rfm-lmh
+                    id="scat2"
+                    :maxsymbolsize="50"
+                    :data="datalist"
+                    :plotheight="300"&gt;
+                &lt;/v-echarts-rfm-lmh&gt;
+                </code>
+            </pre></h3>
+        </el-card>
+        </div>
+    </el-col>
+
+</el-row>
+
+ 
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+            <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Example</h2>
+            <v-echarts-scattersingleaxis-dt 
+                id="scat2"
+                :maxsymbolsize='"50"'
+                xlabeltype='y'
+                :data="datalist"
+                :plotheight="300">
+            </v-echarts-scattersingleaxis-dt>
+            </el-card>
+        </div>
+    </el-col>
+</el-row>
+
+<!-- 1欄 end -->
+
+{% endblock %} 
+
+{% block js %}
+<script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
+<script src="/static/style/lodash/4.16.0/lodash.js"></script>
+<script src="/static/js/v-echarts-scattersingleaxis-dt.js"></script>
+
+
+<script>
+
+    var obj = new Vue({
+        el: '#app',
+        mixins: [layoutVue],
+        data:  {
+            breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
+            datalist: [  
+            {'dt':'2015-07-03', '收入':10000, '人口':10,   },
+            {'dt':'2017-09-03', '收入':10000, '人口':20,   },
+            {'dt':'2020-09-03', '收入':10000, '人口':30,   }
+        
+        ],
+
+        },
+    });
+
+    
+</script>
+
+
+{% endblock %}
+
+
+

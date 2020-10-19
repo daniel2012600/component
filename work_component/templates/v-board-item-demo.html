@@ -1,0 +1,103 @@
+{% extends "layout_mini_daniel.html" %}
+{% block title %}標題 | 首頁 - EagleEye CDP 顧客數據雲{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/style/morris/0.5.1/morris.css" />
+
+<style type="text/css">
+  /*修複sparkline tooltips樣式跑版*/
+  .jqstooltip {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+  }
+
+  .el-range-separator {
+    /* 修正”至”樣式錯誤 */
+    width: 27px !important;
+  }
+</style>
+
+{% endblock %} 
+
+{% block content %}
+
+<!-- 頁面標題-右側-無功能 start -->
+<el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
+  <el-col :span="24">
+    <div class="grid-content">
+		<span class="h1">v-board-item.js 使用方式</span>
+    </div>
+  </el-col>
+</el-row>
+<!-- 頁面標題-右側-無功能 end -->
+<!-- 1欄 start -->
+
+<el-row :gutter="25" class="mb-4">
+  <el-col :span="24">
+    <div class="grid-content">
+      <el-card shadow="never" class="box-card wrap-card">
+        <span>
+          <h3>
+            <font color="#4c769a" font-size="13px">
+              描述:</br>
+              <P style="margin-left:20px">
+                滑鼠過去會有邊框的，圖文框</br>
+              </P>
+              屬性:</br>
+              <P style="margin-left:20px">
+                title:標題文字</br>
+                fontaws_class:font aws 的圖標</br>
+                active:背景變成高亮</br>
+              </P>
+              事件:</br>
+              <P style="margin-left:20px">
+                click:按鈕觸發事件</br>
+              </P>
+              插槽:
+              <P style="margin-left:20px">
+                slot1:xxxx</br>
+                slot2:xxx</br>
+              </P>
+              相依:</br>
+              <P style="margin-left:20px">
+                script1:xxx</br>
+                script2:xxx</br>
+              </P>
+            </font>
+          </h3>
+        </span>
+      </el-card>
+    </div>
+  </el-col>
+</el-row>
+
+
+
+
+
+<!-- 1欄 end -->
+
+{% endblock %}
+
+{% block js %}
+
+<script src="/static/style/lodash/4.16.0/lodash.js"></script>
+<script src="/static/js/v-board-item.js"></script>
+<script>
+  var obj = new Vue({
+    el: "#app",
+    mixins: [layoutVue],
+    data: {
+      breadpath: [
+        { key: "首頁", path: "/" },
+        { key: "標題", path: "" },
+      ],
+      datalist: [],
+    },
+    computed: {},
+    mounted() { },
+  });
+</script>
+
+{% endblock %}
