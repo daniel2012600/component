@@ -65,13 +65,8 @@ html:
             <h2 class="card__title">Source Code</h2>
             <h3><pre>
                 <code class="html">
-                &lt;v-echarts-rfm-lmh
-                    id="bb1"
-                    xkey="品名"
-                    ykey="銷售額"
-                    :data="datalist"
-                    :plotheight="300"&gt;
-                &lt;/v-echarts-rfm-lmh&gt;
+                &lt;v-el-cascader-store&gt;
+                &lt;/v-el-cascader-store&gt;
                 </code>
             </pre></h3>
         </el-card>
@@ -87,7 +82,7 @@ html:
         <div class="grid-content">
             <el-card shadow="never" class="box-card wrap-card" >
             <h2 class="card__title">Example</h2>
-
+            <v-el-cascader-store></v-el-cascader-store>
             </el-card>
         </div>
     </el-col>
@@ -100,7 +95,7 @@ html:
 {% block js %}
 <script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
 <script src="/static/style/lodash/4.16.0/lodash.js"></script>
-<script src="/static/js/v-echarts-waterfall.js"></script>
+<script src="/static/js/v-el-cascader-store.js"></script>
 
 
 <script>

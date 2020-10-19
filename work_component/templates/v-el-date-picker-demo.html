@@ -24,7 +24,7 @@
 <el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
     <el-col :span="24">
     <div class="grid-content">
-        <h1>v-el-card.js 使用方式</h1>  
+        <h1>v-echarts-scatter-life-dt.js 使用方式</h1>  
     </div>
     </el-col>
 </el-row>
@@ -38,18 +38,15 @@
 <pre>
 <h3><font color="#4c769a" font-size="13px">
 描述：
-    卡片
+    瀑布圖
 html:
     id : 注意，不是屬性，元性的id，同一個頁面要有唯一性，裏面會用到，一定要設
 屬性：
-    title:這是標題
-    tooltip:這是提醒
-    isempty：是否顯示沒有資料，若true, body就不顯示
-    height:card高度
-    loading：載入中
-插槽:
-    body:內容
-    right:右上
+    data : [{g:'abc', x:44 , y:44},....]
+    colcnt : 每列有多少欄
+    plotheight : 圖型的高度，一定要設，預設值300
+維度量值:
+    g, x, y
 參考:
     http://echarts.baidu.com/examples/editor.html?c=bubble-gradient
 
@@ -68,12 +65,8 @@ html:
             <h2 class="card__title">Source Code</h2>
             <h3><pre>
                 <code class="html">
-                &lt;v-el-card
-                    title="Example"
-                    tooltip="若未設置會顯示這是提醒"
-                    :show_tooltip="true"
-                    :isempty="true"&gt;
-                &lt;/v-el-card&gt;
+                &lt;v-el-cascader-store&gt;
+                &lt;/v-el-cascader-store&gt;
                 </code>
             </pre></h3>
         </el-card>
@@ -88,12 +81,8 @@ html:
     <el-col :span="24">
         <div class="grid-content">
             <el-card shadow="never" class="box-card wrap-card" >
-            <v-el-card
-            title="Example"
-            tooltip="若未設置會顯示這是提醒"
-            :show_tooltip="true"
-            :isempty="true">
-            </v-el-card>
+            <h2 class="card__title">Example</h2>
+            <v-el-cascader-store></v-el-cascader-store>
             </el-card>
         </div>
     </el-col>
@@ -106,7 +95,7 @@ html:
 {% block js %}
 <script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
 <script src="/static/style/lodash/4.16.0/lodash.js"></script>
-<script src="/static/js/v-el-card.js"></script>
+<script src="/static/js/v-el-date-picker.js"></script>
 
 
 <script>
@@ -117,7 +106,6 @@ html:
         data:  {
             breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
             datalist: [{"品名":"功能慢跑踝襪","銷售額":13463130},{"品名":"運動背心-男版","銷售額":6537058},{"品名":"五趾功能慢跑襪","銷售額":4115183},{"品名":"自行車襪 Race","銷售額":3860098},{"品名":"專業籃球襪-Light","銷售額":3352643},{"品名":"專業運動酵素洗衣精","銷售額":3167003},{"品名":"其他","銷售額":2950947},{"品名":"壓力小腿套","銷售額":2579673},{"品名":"球類襪款，任選3雙790元","銷售額":2549502},{"品名":"全方位球類運動襪","銷售額":2102797},{"品名":"側向運動襪-Elite","銷售額":1683654}],
-
         },
     });
 
