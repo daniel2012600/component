@@ -113,6 +113,25 @@ def el_card():
 def el_cascader():
     return render_template('v-el-cascader-store-demo.html')
 
+@app.route('/el-date-picker') #確認說明是否需修正
+def el_date_picker():
+    return render_template('v-el-date-picker-demo.html')
+
+@app.route('/el-select-area') #未完成，
+def el_select_area():
+    return render_template('v-el-select-area-demo.html')
+
+@app.route('/el-select-dr') #未完成，
+def el_select_dr():
+    return render_template('v-el-select-dr-demo.html')
+
+@app.route('/el-select-multi') #確認說明是否需修正
+def el_select_multi():
+    return render_template('v-el-select-multi-demo.html')
+
+@app.route('/leaflet') #確認說明是否需修正
+def leaflet():
+    return render_template('v-leaflet-demo.html')
 
 
 if __name__ == '__main__':

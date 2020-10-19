@@ -24,7 +24,7 @@
 <el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
     <el-col :span="24">
     <div class="grid-content">
-        <h1>v-el-cascader-store.js 使用方式</h1>  
+        <h1>v-el-select-dr.js 使用方式</h1>  
     </div>
     </el-col>
 </el-row>
@@ -38,18 +38,21 @@
 <pre>
 <h3><font color="#4c769a" font-size="13px">
 描述：
-    下拉式選單
-html:
-    id : 注意，不是屬性，元性的id，同一個頁面要有唯一性，裏面會用到，一定要設
+    擴展element 的select 元件，
+    預設為多選，
+    有輸入區可輸入搜尋
+    最上方有一個工具列，內有一個按鈕「選擇全部」，「清除全部」
+    並預設支援搜尋功能
+    資料有限制，只支援字串陣列，不支援json obj
 屬性：
-    data : [{g:'abc', x:44 , y:44},....]
-    colcnt : 每列有多少欄
-    plotheight : 圖型的高度，一定要設，預設值300
-維度量值:
-    g, x, y
-參考:
-    http://echarts.baidu.com/examples/editor.html?c=bubble-gradient
-
+    placeholder :　空值的背景文字
+    opts : ['初','始','選項']
+    name : 此下拉單的名稱，最好有唯一性
+    valuelabelunit : 字串，預設空值。有設定時，會加在值的最後面
+事件：
+　　onchange(name,val)　：　當回傳值發生改變時觸發
+        - name :屬性name
+        - val :目前選單的選擇
 </font></h3>
 </pre>
             </el-card>
@@ -65,8 +68,8 @@ html:
             <h2 class="card__title">Source Code</h2>
             <h3><pre>
                 <code class="html">
-                &lt;v-el-cascader-store&gt;
-                &lt;/v-el-cascader-store&gt;
+                &lt;v-el-select-dr&gt;
+                &lt;/v-el-select-dr&gt;
                 </code>
             </pre></h3>
         </el-card>
@@ -82,7 +85,11 @@ html:
         <div class="grid-content">
             <el-card shadow="never" class="box-card wrap-card" >
             <h2 class="card__title">Example</h2>
-            <v-el-cascader-store></v-el-cascader-store>
+            <v-el-select-multi
+                name ="paytype"
+                placeholder="付費方式"
+                >
+            </v-el-select-multi>
             </el-card>
         </div>
     </el-col>
@@ -93,19 +100,19 @@ html:
 {% endblock %} 
 
 {% block js %}
+
 <script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
 <script src="/static/style/lodash/4.16.0/lodash.js"></script>
-<script src="/static/js/v-el-cascader-store.js"></script>
+<script src="/static/js/v-el-select-multi.js"></script>
+
 
 
 <script>
-
     var obj = new Vue({
         el: '#app',
         mixins: [layoutVue],
         data:  {
             breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
-            
         },
     });
 
