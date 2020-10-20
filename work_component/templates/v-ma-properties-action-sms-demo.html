@@ -39,7 +39,7 @@
 <pre>
 <h3><font color="#4c769a" font-size="13px">
 描述:
-    線性迴歸分析圖
+    設定簡訊發送
 維度量值:
     維度1個，量值1個
 限制:
@@ -90,14 +90,9 @@ html:
         <div class="grid-content">
             <el-card shadow="never" class="box-card wrap-card" >
             <h2 class="card__title">Example</h2>
-            <v-linear-regression 
-                id="plot2"
-                :data='datalist'
-                :y_label_format="(val, key) => {
-                    if (key=='總銷售額') return '$' + val
-                    else return val
-                }">
-            </v-linear-regression>
+            <v-ma-properties-action-sms 
+                id="plot2">
+            </v-ma-properties-action-sms>
             </el-card>
         </div>
     </el-col>
@@ -110,8 +105,7 @@ html:
 {% block js %}
 <script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
 <script src="/static/style/lodash/4.16.0/lodash.js"></script>
-<script src="/static/js/v-linear-regression.js"></script>
-<script src="/static/style/echarts/4.8.0/ecStat.js"></script>
+<script src="/static/js/v-ma-properties-action-sms.js"></script>
 
 
 

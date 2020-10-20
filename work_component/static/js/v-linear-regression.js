@@ -111,6 +111,10 @@ Vue.component("v-linear-regression", {
                                 }).join('</br>');
                                 return my_format }
                 },
+                grid:{
+                    bottom: '10',
+                    containLabel: true
+                },
 
                 xAxis: {
                     type: 'category',
@@ -120,6 +124,7 @@ Vue.component("v-linear-regression", {
                         }
                     },
                     axisLabel: {
+                        rotate:45,
                         formatter: params => {
                             var index = this.x_label_format(params)-1
                             return e_date[index]

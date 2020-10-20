@@ -39,7 +39,7 @@
 <pre>
 <h3><font color="#4c769a" font-size="13px">
 描述:
-    線性迴歸分析圖
+    繪出橫軸為時間，蹤軸為任意量值的走勢圖
 維度量值:
     維度1個，量值1個
 限制:
@@ -47,7 +47,12 @@
 html:
     id:必填，元件id，要有唯一性
 屬性:
-    data : [{dt:'2020-10-01', 總銷售額:44},....]
+    xlabeltype : x軸顯示的時間，一樣必須設，可能以下幾字
+    y :代表只顯示年份, ex 2017
+    m :代表只顯示月份, ex 一月
+    ym :代表只顯示年月, ex 2017-11
+    d:　代表只顯示日期, ex 2017-1-1
+    data :[ {dt:'yyyy-mm-dd', 量值１:22, 量值2:44 }], 注意，dt為保留字，限制為橫軸的鍵名，但方便編程，其他的都是量值
 參考:
     https://echarts.apache.org/examples/zh/editor.html?c=scatter-linear-regression
 依賴:
@@ -90,14 +95,11 @@ html:
         <div class="grid-content">
             <el-card shadow="never" class="box-card wrap-card" >
             <h2 class="card__title">Example</h2>
-            <v-linear-regression 
+            <v-morris-area 
                 id="plot2"
-                :data='datalist'
-                :y_label_format="(val, key) => {
-                    if (key=='總銷售額') return '$' + val
-                    else return val
-                }">
-            </v-linear-regression>
+                :data="datalist"
+                xlabeltype="d">
+            </v-morris-area>
             </el-card>
         </div>
     </el-col>
@@ -110,10 +112,12 @@ html:
 {% block js %}
 <script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
 <script src="/static/style/lodash/4.16.0/lodash.js"></script>
-<script src="/static/js/v-linear-regression.js"></script>
-<script src="/static/style/echarts/4.8.0/ecStat.js"></script>
+<script src="/static/js/v-morris-area.js"></script>
 
 
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 
 <script>
 
