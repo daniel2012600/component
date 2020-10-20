@@ -25,7 +25,7 @@
 <el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
     <el-col :span="24">
     <div class="grid-content">
-        <h1>v-linear-regression.js 使用方式</h1>  
+        <h1>v-value-card-subtext.js 使用方式</h1>  
     </div>
     </el-col>
 </el-row>
@@ -39,7 +39,7 @@
 <pre>
 <h3><font color="#4c769a" font-size="13px">
 描述:
-    線性迴歸分析圖
+    比較資訊，可顯示上升及下降符號
 維度量值:
     維度1個，量值1個
 限制:
@@ -47,7 +47,11 @@
 html:
     id:必填，元件id，要有唯一性
 屬性:
-    data : [{dt:'2020-10-01', 總銷售額:44},....]
+    txt1 : 比較區間定義，預設為"同比"，ex:與前期
+    val : 比較變數，預設為"1999"
+    txt2 : val後的文字，預設為"相比"
+    up : 大於則為 true 可用於顯示大小，若未設置則無上升下降符號
+    perc : 上升(下降)百分比設置，預設為20
 參考:
     https://echarts.apache.org/examples/zh/editor.html?c=scatter-linear-regression
 依賴:
@@ -67,14 +71,12 @@ html:
             <h2 class="card__title">Source Code</h2>
             <h3><pre>
                 <code class="html">
-                &lt;v-linear-regression 
-                    id="plot2"
-                    :data='datalist'
-                    :y_label_format="(val, key) => {
-                        if (key=='總銷售額') return '$' + val
-                        else return val
-                    }"&gt;
-                &lt;/v-linear-regression&gt;
+                &lt;v-value-card-subtext 
+                    :txt1="`與前期`" 
+                    val="$123" 
+                    :up="true" 
+                    :perc="30"&gt;
+                &lt;/v-value-card-subtext&gt;
             </code>
             </pre></h3>
         </el-card>
@@ -90,14 +92,12 @@ html:
         <div class="grid-content">
             <el-card shadow="never" class="box-card wrap-card" >
             <h2 class="card__title">Example</h2>
-            <v-linear-regression 
-                id="plot2"
-                :data='datalist'
-                :y_label_format="(val, key) => {
-                    if (key=='總銷售額') return '$' + val
-                    else return val
-                }">
-            </v-linear-regression>
+            <v-value-card-subtext 
+                :txt1="`與前期`" 
+                val="$123"
+                :up="true" 
+                :perc="30">
+            </v-value-card-subtext>
             </el-card>
         </div>
     </el-col>
@@ -110,9 +110,7 @@ html:
 {% block js %}
 <script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
 <script src="/static/style/lodash/4.16.0/lodash.js"></script>
-<script src="/static/js/v-linear-regression.js"></script>
-<script src="/static/style/echarts/4.8.0/ecStat.js"></script>
-
+<script src="/static/js/v-value-card-subtext.js"></script>
 
 
 <script>

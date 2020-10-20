@@ -25,7 +25,7 @@
 <el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
     <el-col :span="24">
     <div class="grid-content">
-        <h1>v-linear-regression.js 使用方式</h1>  
+        <h1>v-updownrow.js 使用方式</h1>  
     </div>
     </el-col>
 </el-row>
@@ -67,14 +67,14 @@ html:
             <h2 class="card__title">Source Code</h2>
             <h3><pre>
                 <code class="html">
-                &lt;v-linear-regression 
+                &lt;v-updownrow 
                     id="plot2"
                     :data='datalist'
                     :y_label_format="(val, key) => {
                         if (key=='總銷售額') return '$' + val
                         else return val
                     }"&gt;
-                &lt;/v-linear-regression&gt;
+                &lt;/v-updownrow&gt;
             </code>
             </pre></h3>
         </el-card>
@@ -90,14 +90,10 @@ html:
         <div class="grid-content">
             <el-card shadow="never" class="box-card wrap-card" >
             <h2 class="card__title">Example</h2>
-            <v-linear-regression 
+            <v-updownrow 
                 id="plot2"
-                :data='datalist'
-                :y_label_format="(val, key) => {
-                    if (key=='總銷售額') return '$' + val
-                    else return val
-                }">
-            </v-linear-regression>
+                :middle="datalist">
+            </v-updownrow>
             </el-card>
         </div>
     </el-col>
@@ -110,8 +106,7 @@ html:
 {% block js %}
 <script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
 <script src="/static/style/lodash/4.16.0/lodash.js"></script>
-<script src="/static/js/v-linear-regression.js"></script>
-<script src="/static/style/echarts/4.8.0/ecStat.js"></script>
+<script src="/static/js/v-updownrow.js"></script>
 
 
 

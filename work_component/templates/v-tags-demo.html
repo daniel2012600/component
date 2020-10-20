@@ -25,7 +25,7 @@
 <el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
     <el-col :span="24">
     <div class="grid-content">
-        <h1>v-linear-regression.js 使用方式</h1>  
+        <h1>v-tags.js 使用方式</h1>  
     </div>
     </el-col>
 </el-row>
@@ -39,19 +39,23 @@
 <pre>
 <h3><font color="#4c769a" font-size="13px">
 描述:
-    線性迴歸分析圖
+    標籤編輯器，預設呼叫遠端的api來取得標籤內容
 維度量值:
     維度1個，量值1個
 限制:
     data裏面一定要有dt, dt格式一定'yyyy-mm-dd'
 html:
-    id:必填，元件id，要有唯一性
+    attr必要屬性
 屬性:
-    data : [{dt:'2020-10-01', 總銷售額:44},....]
-參考:
-    https://echarts.apache.org/examples/zh/editor.html?c=scatter-linear-regression
+    tags:[{'id':'xxxx', tag:'xxxxx'}]
+    remotemethod：掛載你自已的查詢method (query) => {}
+事件：
+    ＠change(id, tags) : tag的內容有變時觸發
 依賴:
-    https://github.com/ecomfe/echarts-stat/blob/master/dist/ecStat.js
+<code>
+    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">&lt;/script&gt;
+    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"&gt;&lt;/script&gt;
+</code>
 </font></h3>
 </pre>
             </el-card>
@@ -67,14 +71,9 @@ html:
             <h2 class="card__title">Source Code</h2>
             <h3><pre>
                 <code class="html">
-                &lt;v-linear-regression 
-                    id="plot2"
-                    :data='datalist'
-                    :y_label_format="(val, key) => {
-                        if (key=='總銷售額') return '$' + val
-                        else return val
-                    }"&gt;
-                &lt;/v-linear-regression&gt;
+                &lt;v-tags 
+                    id="plot2"&gt;
+                &lt;/v-tags&gt;
             </code>
             </pre></h3>
         </el-card>
@@ -90,14 +89,9 @@ html:
         <div class="grid-content">
             <el-card shadow="never" class="box-card wrap-card" >
             <h2 class="card__title">Example</h2>
-            <v-linear-regression 
-                id="plot2"
-                :data='datalist'
-                :y_label_format="(val, key) => {
-                    if (key=='總銷售額') return '$' + val
-                    else return val
-                }">
-            </v-linear-regression>
+            <v-tags 
+                id="plot2">
+            </v-tags>
             </el-card>
         </div>
     </el-col>
@@ -110,10 +104,10 @@ html:
 {% block js %}
 <script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
 <script src="/static/style/lodash/4.16.0/lodash.js"></script>
-<script src="/static/js/v-linear-regression.js"></script>
-<script src="/static/style/echarts/4.8.0/ecStat.js"></script>
+<script src="/static/js/v-tags.js"></script>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
 
 <script>
 
@@ -122,7 +116,7 @@ html:
         mixins: [layoutVue],
         data:  {
             breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
-            datalist: [{'dt':'2020-10-01', '總銷售額':48624},{'dt':'2020-10-02', '總銷售額':52947},{'dt':'2020-10-03', '總銷售額':59345},{'dt':'2020-10-04', '總銷售額':71710},{'dt':'2020-10-05', '總銷售額':89644},{'dt':'2020-10-06', '總銷售額':102022},{'dt':'2020-10-07', '總銷售額':119625},{'dt':'2020-10-08', '總銷售額':149283},{'dt':'2020-10-09', '總銷售額':169092},{'dt':'2020-10-10', '總銷售額':185479}],
+            
         },
     });
 

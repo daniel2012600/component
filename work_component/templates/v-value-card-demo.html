@@ -25,7 +25,7 @@
 <el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
     <el-col :span="24">
     <div class="grid-content">
-        <h1>v-linear-regression.js 使用方式</h1>  
+        <h1>v-value-card.js 使用方式</h1>  
     </div>
     </el-col>
 </el-row>
@@ -39,19 +39,19 @@
 <pre>
 <h3><font color="#4c769a" font-size="13px">
 描述:
-    線性迴歸分析圖
-維度量值:
-    維度1個，量值1個
-限制:
-    data裏面一定要有dt, dt格式一定'yyyy-mm-dd'
+    小資料圖型，由多個元素組成
 html:
     id:必填，元件id，要有唯一性
 屬性:
-    data : [{dt:'2020-10-01', 總銷售額:44},....]
-參考:
-    https://echarts.apache.org/examples/zh/editor.html?c=scatter-linear-regression
+    數值(val)
+    小標題(text)
+    sparkline(chartdata)
+    tooltip(包住slot)
+    slot
 依賴:
-    https://github.com/ecomfe/echarts-stat/blob/master/dist/ecStat.js
+<code>
+    &lt;script src="/static/style/jquery-sparklines/2.1.2/jquery.sparkline.min.js"&gt;&lt;/script&gt;
+</code>
 </font></h3>
 </pre>
             </el-card>
@@ -67,14 +67,23 @@ html:
             <h2 class="card__title">Source Code</h2>
             <h3><pre>
                 <code class="html">
-                &lt;v-linear-regression 
-                    id="plot2"
-                    :data='datalist'
+                &lt;v-value-card 
+                    id="sp1"
+                    txt='銷售額'
+                    charttype="line"
+                    val="$simple string  or  method"
+                    icon="attach_money"
+                    :chartdata="chartdata"
+                    chartcolor="rgba(15,219,183,0.4)"
+                    linecolor="rgba(15,219,183,1)"
+                    emptystyle="height: 171px"
+                    :meskey="['時段', '銷售額']"
                     :y_label_format="(val, key) => {
-                        if (key=='總銷售額') return '$' + val
-                        else return val
+                        if (['銷售額'].includes(key)) return '$' + val.toLocaleString()
+                        else if (['時段'].includes(key)) return `${val}:00 ~ ${val}:59` 
+                        else return val.toLocaleString()
                     }"&gt;
-                &lt;/v-linear-regression&gt;
+                &lt;/v-value-card&gt;
             </code>
             </pre></h3>
         </el-card>
@@ -90,14 +99,23 @@ html:
         <div class="grid-content">
             <el-card shadow="never" class="box-card wrap-card" >
             <h2 class="card__title">Example</h2>
-            <v-linear-regression 
-                id="plot2"
-                :data='datalist'
+            <v-value-card
+                id="sp1"
+                txt='銷售額'
+                charttype="line"
+                val="$simple string  or  method"
+                icon="attach_money"
+                :chartdata="chartdata"
+                chartcolor="rgba(15,219,183,0.4)"
+                linecolor="rgba(15,219,183,1)"
+                emptystyle="height: 171px"
+                :meskey="['時段', '銷售額']"
                 :y_label_format="(val, key) => {
-                    if (key=='總銷售額') return '$' + val
-                    else return val
+                    if (['銷售額'].includes(key)) return '$' + val.toLocaleString()
+                    else if (['時段'].includes(key)) return `${val}:00 ~ ${val}:59` 
+                    else return val.toLocaleString()
                 }">
-            </v-linear-regression>
+            </v-value-card>
             </el-card>
         </div>
     </el-col>
@@ -110,19 +128,19 @@ html:
 {% block js %}
 <script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
 <script src="/static/style/lodash/4.16.0/lodash.js"></script>
-<script src="/static/js/v-linear-regression.js"></script>
-<script src="/static/style/echarts/4.8.0/ecStat.js"></script>
-
-
+<script src="/static/js/v-value-card.js"></script>
+<script src="/static/js/v-sparkline-dt.js"></script>
+<script src="/static/style/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
 
 <script>
-
     var obj = new Vue({
         el: '#app',
         mixins: [layoutVue],
         data:  {
             breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
-            datalist: [{'dt':'2020-10-01', '總銷售額':48624},{'dt':'2020-10-02', '總銷售額':52947},{'dt':'2020-10-03', '總銷售額':59345},{'dt':'2020-10-04', '總銷售額':71710},{'dt':'2020-10-05', '總銷售額':89644},{'dt':'2020-10-06', '總銷售額':102022},{'dt':'2020-10-07', '總銷售額':119625},{'dt':'2020-10-08', '總銷售額':149283},{'dt':'2020-10-09', '總銷售額':169092},{'dt':'2020-10-10', '總銷售額':185479}],
+
+            chartdata:[{"時段":"0","銷售額":4180},{"時段":"1","銷售額":1},{"時段":"7","銷售額":6703},{"時段":"8","銷售額":39483},{"時段":"9","銷售額":176099},{"時段":"10","銷售額":958994},{"時段":"11","銷售額":1663095},{"時段":"12","銷售額":2201773},{"時段":"13","銷售額":2083088},{"時段":"14","銷售額":1673811},{"時段":"15","銷售額":1474046},{"時段":"16","銷售額":1392726},{"時段":"17","銷售額":1472481},{"時段":"18","銷售額":1646716},{"時段":"19","銷售額":1695520},{"時段":"20","銷售額":1547136},{"時段":"21","銷售額":1234791},{"時段":"22","銷售額":141908},{"時段":"23","銷售額":10656}],
+            total_data:[{"交易數":74288,"客單價":261.46,"銷售額":19423207}]
         },
     });
 

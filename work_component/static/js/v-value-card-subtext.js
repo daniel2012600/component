@@ -1,16 +1,22 @@
-/*由多個元素組成，由左而右為:
-  txt1 - val - txt2 - up - perc
-
-Note:
-    
-
-Props:
-    
-
-Event:
-    
-
-Example:
+/*
+描述:
+    比較資訊，可顯示上升及下降符號
+維度量值:
+    維度1個，量值1個
+限制:
+    data裏面一定要有dt, dt格式一定'yyyy-mm-dd'
+html:
+    id:必填，元件id，要有唯一性
+屬性:
+    txt1 : 比較區間定義，預設為"同比"，ex:與前期
+    val : 比較變數，預設為"1999"
+    txt2 : val後的文字，預設為"相比"
+    up : 大於則為 true 可用於顯示大小，若未設置則無上升下降符號
+    perc : 上升(下降)百分比設置，預設為20
+參考:
+    https://echarts.apache.org/examples/zh/editor.html?c=scatter-linear-regression
+依賴:
+    https://github.com/ecomfe/echarts-stat/blob/master/dist/ecStat.js
 
 
 */

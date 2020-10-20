@@ -25,7 +25,7 @@
 <el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
     <el-col :span="24">
     <div class="grid-content">
-        <h1>v-linear-regression.js 使用方式</h1>  
+        <h1>v-morris-area.js 使用方式</h1>  
     </div>
     </el-col>
 </el-row>
@@ -72,14 +72,11 @@ html:
             <h2 class="card__title">Source Code</h2>
             <h3><pre>
                 <code class="html">
-                &lt;v-linear-regression 
+                &lt;v-morris-area 
                     id="plot2"
-                    :data='datalist'
-                    :y_label_format="(val, key) => {
-                        if (key=='總銷售額') return '$' + val
-                        else return val
-                    }"&gt;
-                &lt;/v-linear-regression&gt;
+                    :data="datalist"
+                    xlabeltype="d"&gt;
+                &lt;/v-morris-area&gt;
             </code>
             </pre></h3>
         </el-card>
