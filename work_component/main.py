@@ -180,10 +180,6 @@ def value_card_subtext():
 def value_card():
     return render_template('v-value-card-demo.html')
 
-@app.route('/widget')
-def widget():
-    return render_template('v-widget-demo.html')
-
 
 if __name__ == '__main__':
     app.jinja_env.auto_reload = True
