@@ -36,28 +36,20 @@
   <el-col :span="24">
         <div class="grid-content">
             <el-card shadow="never" class="box-card wrap-card"  >
-                <span>
-                    <h3><font color="#4c769a" font-size="13px">
-                    描述:</br>
-                    <P style="margin-left:20px" >
-                        柱狀圖</br>
-                    </P>
-                    限制:</br>
-                    <P style="margin-left:20px" >
-                        資料一定是name, value</br>
-                    </P>
-                    html:</br>
-                    <P style="margin-left:20px" >
-                        id:必填，元件id，要有唯一性</br>
-                    </P>
-                    屬性:</br>
-                    <P style="margin-left:20px" >
-                        data : [{name:'abc', value:44},....]</br>
-                    </P>
-                    參考:</br>
-                        https://echarts.apache.org/examples/zh/editor.html?c=dataset-simple1
-                    </font></h3>                
-                </span>
+<pre>
+<h3><font color="#4c769a" font-size="13px">
+描述:
+    柱狀圖
+限制:
+    資料一定是name, value
+html:
+    id:必填，元件id，要有唯一性
+屬性:
+    data : [{name:'abc', value:44},....]
+參考:
+    https://echarts.apache.org/examples/zh/editor.html?c=dataset-simple1
+</font></h3>                
+</pre>
             </el-card>
         </div>
     </el-col>
@@ -71,12 +63,12 @@
             <h2 class="card__title">Source Code</h2>
             <h3><pre>
                 <code class="html">
-                &lt;v-echarts-barstack-dt   
+                &lt;v-echarts-dataset-bar   
                     id="bsrebuyer"
                     class="mb-2"
                     :data="datalist" 
                     :meskeys="rebuyarr"&gt; 
-                &lt;/v-echarts-barstack-dt  &gt;
+                &lt;/v-echarts-dataset-bar  &gt;
             </code>
             </pre></h3>
         </el-card>

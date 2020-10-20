@@ -14,7 +14,7 @@
 - 作者:
        Steven
 - 展示:
-       http://www.echartsjs.com/examples/editor.html?c=area-stack
+       https://echarts.apache.org/examples/zh/editor.html?c=area-stack
 - 使用範例:
        <v-echarts-areastack id="bs3" :data="curr_data" :isneslcolor="false"></v-echarts-areastack>
 - 日期:

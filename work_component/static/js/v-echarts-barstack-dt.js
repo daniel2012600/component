@@ -16,7 +16,7 @@
 - 作者:
        Rolence
 - 展示:
-       http://echarts.baidu.com/examples/editor.html?c=bar-y-category-stack
+       https://echarts.apache.org/examples/zh/editor.html?c=bar-y-category-stack
 - 使用範例:
        <v-echarts-barstack-dt id="bs" :data="area_data" :ylabeltype="dtype" :meskeys="['僅購買1次', '複購2次', '複購3次', '複購大於3次']"></v-echarts-barstack-dt>
 - 日期:
