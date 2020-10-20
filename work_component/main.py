@@ -133,57 +133,6 @@ def el_select_multi():
 def leaflet():
     return render_template('v-leaflet-demo.html')
 
-@app.route('/ma-properties-action-sms')
-def ma_properties_action_sms():
-    return render_template('v-ma-properties-action-sms-demo.html')
-
-@app.route('/ma-properties-birthday-after')
-def ma_properties_birthday_after():
-    return render_template('v-ma-properties-birthday-after-demo.html')
-
-@app.route('/ma-properties-buy-name')
-def ma_properties_buy_name():
-    return render_template('v-ma-properties-buy-name-demo.html')
-
-@app.route('/ma-properties-card')
-def ma_properties_card():
-    return render_template('v-ma-properties-card-demo.html')
-
-@app.route('/ma-properties-click-link')
-def ma_properties_click_link():
-    return render_template('v-ma-properties-click-link-demo.html')
-
-@app.route('/ma-properties-coupon')
-def ma_properties_coupon():
-    return render_template('v-ma-properties-coupon-demo.html')
-
-@app.route('/ma-properties-example')
-def ma_properties_example():
-    return render_template('v-ma-properties-example-demo.html')
-
-@app.route('/ma-properties-line')
-def ma_properties_line():
-    return render_template('v-ma-properties-line-demo.html')
-@app.route('/ma-properties-no-buy-name')
-def ma_properties_no_buy_name():
-    return render_template('v-ma-properties-no-buy-name-demo.html')
-
-@app.route('/ma-properties-no-click-link')
-def ma_properties_no_click_link():
-    return render_template('v-ma-properties-no-click-link-demo.html')
-
-@app.route('/ma-properties-target-custom')
-def ma_properties_target_custom():
-    return render_template('v-ma-properties-target-custom-demo.html')
-
-@app.route('/ma-properties-wait')
-def ma_properties_wait():
-    return render_template('v-ma-properties-wait-demo.html')
-
-@app.route('/ma-task-card')
-def ma_task_card():
-    return render_template('v-ma-task-card-demo.html')
-
 @app.route('/morris-area')
 def morris_area():
     return render_template('v-morris-area-demo.html')
@@ -196,9 +145,9 @@ def orderfilter():
 def page_title():
     return render_template('v-page-title-demo.html')
 
-@app.route('/selectpage')
-def selectpage():
-    return render_template('v-selectpage-demo.html')
+# @app.route('/selectpage')
+# def selectpage():
+#     return render_template('v-selectpage-demo.html') edit.html
 
 @app.route('/sparkline-dt')
 def sparkline_dt():

@@ -39,19 +39,17 @@
 <pre>
 <h3><font color="#4c769a" font-size="13px">
 描述:
-    線性迴歸分析圖
+    標題元件
 維度量值:
     維度1個，量值1個
 限制:
     data裏面一定要有dt, dt格式一定'yyyy-mm-dd'
-html:
-    id:必填，元件id，要有唯一性
 屬性:
-    data : [{dt:'2020-10-01', 總銷售額:44},....]
-參考:
-    https://echarts.apache.org/examples/zh/editor.html?c=scatter-linear-regression
-依賴:
-    https://github.com/ecomfe/echarts-stat/blob/master/dist/ecStat.js
+    id: 預測為id, 可自行設定
+    title: 預測為"標題", 可自行設定
+    size: 預測為"h1", 可自行設定
+    backcolor: 預測為"#eee", 可自行設定
+
 </font></h3>
 </pre>
             </el-card>
@@ -68,12 +66,8 @@ html:
             <h3><pre>
                 <code class="html">
                 &lt;v-linear-regression 
-                    id="plot2"
-                    :data='datalist'
-                    :y_label_format="(val, key) => {
-                        if (key=='總銷售額') return '$' + val
-                        else return val
-                    }"&gt;
+                    title="範例標題"
+                    backcolor="#fa8072"&gt;
                 &lt;/v-linear-regression&gt;
             </code>
             </pre></h3>
@@ -90,14 +84,10 @@ html:
         <div class="grid-content">
             <el-card shadow="never" class="box-card wrap-card" >
             <h2 class="card__title">Example</h2>
-            <v-linear-regression 
-                id="plot2"
-                :data='datalist'
-                :y_label_format="(val, key) => {
-                    if (key=='總銷售額') return '$' + val
-                    else return val
-                }">
-            </v-linear-regression>
+            <v-page-title
+                title="範例標題"
+                backcolor="#fa8072">
+            </v-page-title>
             </el-card>
         </div>
     </el-col>
@@ -110,9 +100,7 @@ html:
 {% block js %}
 <script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
 <script src="/static/style/lodash/4.16.0/lodash.js"></script>
-<script src="/static/js/v-linear-regression.js"></script>
-<script src="/static/style/echarts/4.8.0/ecStat.js"></script>
-
+<script src="/static/js/v-page-title.js"></script>
 
 
 <script>
@@ -122,7 +110,6 @@ html:
         mixins: [layoutVue],
         data:  {
             breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
-            datalist: [{'dt':'2020-10-01', '總銷售額':48624},{'dt':'2020-10-02', '總銷售額':52947},{'dt':'2020-10-03', '總銷售額':59345},{'dt':'2020-10-04', '總銷售額':71710},{'dt':'2020-10-05', '總銷售額':89644},{'dt':'2020-10-06', '總銷售額':102022},{'dt':'2020-10-07', '總銷售額':119625},{'dt':'2020-10-08', '總銷售額':149283},{'dt':'2020-10-09', '總銷售額':169092},{'dt':'2020-10-10', '總銷售額':185479}],
         },
     });
 

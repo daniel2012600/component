@@ -90,14 +90,11 @@ html:
         <div class="grid-content">
             <el-card shadow="never" class="box-card wrap-card" >
             <h2 class="card__title">Example</h2>
-            <v-linear-regression 
-                id="plot2"
-                :data='datalist'
-                :y_label_format="(val, key) => {
-                    if (key=='總銷售額') return '$' + val
-                    else return val
-                }">
-            </v-linear-regression>
+            <v-tafilter 
+                v-model="ta_filter"
+                :ta_list="ta_list"
+                @oncommit="tafilter_search">
+            </v-tafilter>
             </el-card>
         </div>
     </el-col>
@@ -110,8 +107,7 @@ html:
 {% block js %}
 <script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
 <script src="/static/style/lodash/4.16.0/lodash.js"></script>
-<script src="/static/js/v-linear-regression.js"></script>
-<script src="/static/style/echarts/4.8.0/ecStat.js"></script>
+<script src="/static/js/v-tafilter.js"></script>
 
 
 
@@ -123,10 +119,37 @@ html:
         data:  {
             breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
             datalist: [{'dt':'2020-10-01', '總銷售額':48624},{'dt':'2020-10-02', '總銷售額':52947},{'dt':'2020-10-03', '總銷售額':59345},{'dt':'2020-10-04', '總銷售額':71710},{'dt':'2020-10-05', '總銷售額':89644},{'dt':'2020-10-06', '總銷售額':102022},{'dt':'2020-10-07', '總銷售額':119625},{'dt':'2020-10-08', '總銷售額':149283},{'dt':'2020-10-09', '總銷售額':169092},{'dt':'2020-10-10', '總銷售額':185479}],
-        },
-    });
+            ta_filter: {
+                ta: "",
+                dr: [],
+                compare_dr: []
+            },
+            loading: {
+                ta_filter: true,
+                chart_data1: true,
+                chart_data2: true,
+            },
+            ta_filter: {
+                ta: "",
+                dr: [],
+                compare_dr: []
+            },
 
-    
+        },
+
+
+        methods: {
+                tafilter_search() {
+                    // Loading!
+                    _.forEach(this.loading, (v,k) => this.loading[k] = true);
+                    this.datalist1 = [];
+                    this.datalist2 = [];
+                    // 拿第一組比較資料
+                    this.get_ta_order();
+                }
+            },
+
+        });
 </script>
 
 

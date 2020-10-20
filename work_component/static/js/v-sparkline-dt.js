@@ -87,9 +87,11 @@ Vue.component("v-sparkline-dt", {
                         return `${this.y_label_format(item[xkey], xkey)}: ${this.y_label_format(item[ykey], ykey)}`;
                     } else if (this.type == 'bar') {
                         var item = sparkline_data[fields[0].offset];
+
                     } else {
                         var item = sparkline_data[fields.x];
                     }
+                    console.log(`${xkey}: ${this.y_label_format(item[xkey], xkey)}<br>${ykey}: ${this.y_label_format(item[ykey], ykey)}`)
                     return `${xkey}: ${this.y_label_format(item[xkey], xkey)}<br>${ykey}: ${this.y_label_format(item[ykey], ykey)}`;
                 } ,
                 // map value

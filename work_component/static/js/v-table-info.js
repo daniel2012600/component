@@ -13,7 +13,7 @@ Event:
     
 
 Example:
-   <v-el-card title="title" tooltip="說明" :height="800"　:isempty="true"></v-el-card>
+   <v-table-info title="title" tooltip="說明" :height="800"　:isempty="true"></v-table-info>
 
 */
 Vue.component("v-table-info", {
