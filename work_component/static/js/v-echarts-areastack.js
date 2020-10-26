@@ -82,7 +82,6 @@ Vue.component("v-echarts-areastack", {
                     data: this.data.map(d => d[meskeys])
                 };
             });
-            console.log(series)
             return series;
         },
         render() {

@@ -1,22 +1,30 @@
 # -*- coding: utf-8 -*-
 # ==============================[引用]==============================
-from library.main_global import *
-from library.main_help import *
+import os
+import sys
+import datetime
+import pandas as pd
+import re
+
+from flask import Flask
+from flask import render_template
+from flask import session
 
 
 
+app = Flask(__name__, template_folder = './templates', static_folder = './static')
+app.secret_key = pd.util.testing.rands(24)  # 使用session必要初始值
 
 @app.before_request
 def before_request():
     session.permanent = True
     app.permanent_session_lifetime = datetime.timedelta(days=1)
 
-
-# Daniel 測試
-# ========== Component Demo頁 ==========
+# # ========== Component Demo頁 ==========
 @app.route('/')
 def layout():
     return render_template('component-layout.html')
+
 @app.route('/board-item') #未完成
 def board_item():
     return render_template('v-board-item-demo.html')
@@ -181,10 +189,8 @@ def value_card():
     return render_template('v-value-card-demo.html')
 
 
+
 if __name__ == '__main__':
     app.jinja_env.auto_reload = True
-    app.config["TEMPLATES_AUTO_RELOAD"] = True
-    socketio.run(app)
-    # app.run()
-
+    app.run()
 

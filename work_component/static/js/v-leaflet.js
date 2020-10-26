@@ -193,7 +193,6 @@ Vue.component("v-leaflet", {
                 };
                 legend2.addTo(this.map);
             }
-            
             this.map.on('click', function(m) { m.sourceTarget.scrollWheelZoom.enable(); });
             this.map.on('mouseout', function(m) { m.sourceTarget.scrollWheelZoom.disable(); });
             // console.log(this.map)
@@ -231,7 +230,6 @@ Vue.component("v-leaflet", {
                         });
                     });
                 };
-
                 geo_data = this.geo_data
                 L.geoJSON(geo_data,{
                     onEachFeature: onEachFeature
