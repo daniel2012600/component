@@ -70,7 +70,7 @@ html:
                     id="gender_chart" 
                     showtext='元'
                     :data="datalist"
-                    :colors= "['#8469b3','#31bdba','#c0d95f','#42bd56']"
+                    :colors= '{"item1": "#8469b3", "item2": "#31bdba","item3": "#c0d95f", "item4": "#42bd56"}'
                     :hiddenarr="['小新']"
                     :plotheight="500"
                     valuelabelunit="%"&gt;
@@ -92,9 +92,9 @@ html:
             <v-echarts-pie 
                 id="gender_chart" 
                 showtext='元'
-                :data="datalist"
-                :colors= "['#8469b3','#31bdba','#c0d95f','#42bd56']"
+                :colors= '{"item1": "#8469b3", "item2": "#31bdba","item3": "#c0d95f", "item4": "#42bd56"}'
                 :hiddenarr="['小新']"
+                :data="datalist"
                 :plotheight="500"
                 valuelabelunit="%">
             </v-echarts-pie>

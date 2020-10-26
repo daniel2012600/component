@@ -39,6 +39,10 @@ Vue.component("v-linear-regression", {
         predict_count:{
             type: Number,
             default: 0
+        },
+        dt_interval:{
+            type: String,
+            default: 'day'
         }
     },
     watch: {
@@ -55,55 +59,51 @@ Vue.component("v-linear-regression", {
         };
     },
     methods: {
-        format_dt(x, type) {
+        format_dt(val, type){
             switch (type) {
                 case 'year':
-                    return new Date(x).getFullYear().toString();
-                    break;
-                case 'm':
-                    var month = this.months[new Date(x).getMonth()];
-                    return month.toString();
-                    break;
+                     return moment(val).format('YYYY');
                 case 'month':
-                    dt = new Date(x)
-                    return dt.getFullYear() + "/" + (dt.getMonth() + 1);
-                    break;
-                case 'day':
+                    return moment(val).format('YYYY-MM');
                 case 'week':
-                    return new Date(x).toISOString().slice(0, 10);
-                    break;
+                    return moment(val).format('YYYY-MM-DD');
+                case 'day':
+                    return moment(val).format('YYYY-MM-DD');
                 default:
-                    return 'labeltype屬性沒設值出錯了'
+                    return val;
             }
         },
-        fKNum(strNum) {
-            if (strNum.length <= 3) {
-                return strNum;
-            }
-            if (!RegExp('^(\\+|-)?(\\d+)(\\.\\d+)?$').test(strNum)) {
-                return strNum;
-            }
-            var a = RegExp.$1,
-                b = RegExp.$2,
-                c = RegExp.$3;
-            var re = new RegExp();
-            re.compile("(\\d)(\\d{3})(,|$)");
-            while (re.test(b)) {
-                b = b.replace(re, "$1,$2$3");
-            }
+        get_x_label() {
+            var date_list = this.data.map(item => {
+                return this.format_dt(item['dt'], this.dt_interval);
+            })
 
-            return a + "" + b + "" + c;
-        },
-        get_tooltip(param){
-            var label = param.name.split("\n")[param.seriesIndex]
-            return [
-                '區間 ' + label + ': ' + '<br />',
-                '- 最大值: ' + param.data[5],
-                '- Q3: ' + param.data[4],
-                '- 中位數: ' + param.data[3],
-                '- Q1: ' + param.data[2],
-                '- 最小值: ' + param.data[1]
-            ].join('<br/>');
+            var my_day = new Date(date_list[date_list.length-1])
+            if(this.dt_interval == 'day'){
+                for(i=1;i<=this.predict_count;i++){
+                    var add_day = my_day.setDate(my_day.getDate() + 1)
+                    var tomorrow_date = moment(add_day).format("YYYY-MM-DD")
+                    date_list.push(tomorrow_date)};
+                }
+                else if(this.dt_interval == 'week'){
+                    for(i=1;i<=this.predict_count;i++){
+                        var add_day = my_day.setDate(my_day.getDate() + 7)
+                        var next_week = moment(add_day).format("YYYY-MM-DD")
+                        date_list.push(next_week)};
+                    }
+                else if(this.dt_interval == 'month'){
+                for(i=1;i<=this.predict_count;i++){
+                    var add_month = my_day.setMonth(my_day.getMonth() + 1)
+                    var next_month  = moment(add_month).format("YYYY-MM")
+                    date_list.push(next_month)};
+                }
+                else if(this.dt_interval == 'year'){
+                for(i=1;i<=this.predict_count;i++){
+                    var add_year = my_day.setYear(my_day.getFullYear() + 1)
+                    var next_year  = moment(add_year).format("YYYY")
+                    date_list.push(next_year)};
+                }
+            return date_list
         },
         render() {
 
@@ -112,57 +112,51 @@ Vue.component("v-linear-regression", {
             elobj = document.getElementById(this.$attrs['id']);
             elobj.innerHTML = "";
             elobj.removeAttribute("_echarts_instance_");
-            // 基于准备好的dom，初始化echarts实例
             var myChart = echarts.init(document.getElementById(this.$attrs['id']));
-            
-            // if 預測數增加 1 日期便增加 1 ---------> if pre = 1  this.data.dt +1   dt+1 送去x  變成points 自然會出現y =>  [11,y]
-            // console.log(this.data[this.data.length-1])
-            // 一、尋找日期轉換!!! ok   注意: 日期計算有誤
-            
+
             
             var c_data = _.map(this.data,(v,k) =>{ 
                 var c_data = [k+1,v.總銷售額]
                 return c_data})
             var myRegression = ecStat.regression('linear', c_data);
-            var line_data = myRegression.points.sort(function(a, b) {
+            
+            var reg_data = _.map(myRegression.points,d=>{ 
+                    d[1] = Math.floor(d[1] * 100) / 100
+                    return d 
+                })
+
+
+            var pre_data = _.cloneDeep(reg_data).sort(function(a, b) {
                 result = a[0] - b[0]
                 return  result;
             });
-            // 塞 x  return y
+
+
             var a = myRegression.parameter.gradient
             var b = myRegression.parameter.intercept
-            var new_list = []
             
             var data_count = this.data.length
-
+            var origin_date = this.get_x_label()
             
-            // 二、預測數有幾個 就要出現幾個x  ,  pre = 3  => x1,x2,x3   再由一個 []包住  => [ [x1,y1],[x2,y2],[x3,y3] ]  ok
-            // new_list.push(x)
-            // new_list.push(y)
-            // console.log(new_list)
-            // var linedata = c_data.push(new_list)
-            // console.log(c_data)
-            // 三、將舊的趨勢線資料更改成加上預測數及y    ok
 
+            var weekdays = "星期日,星期一,星期二,星期三,星期四,星期五,星期六".split(",");
+            var e_date = _.map(origin_date,d=>{ 
+                if (this.dt_interval == 'day' || this.dt_interval == 'week'){
+                    var week = weekdays[new Date(d).getDay()].split('星期')[1]
+                    var date_edition = d + ' '+'('+week+')'+ ' '
+                            return date_edition
+                }else{
+                    return d
+                }})
 
-
-            // 四、找尋預測數的趨勢線資料可否為虛線
-            var origin_date =  _.map(this.data,d=>{ return d.dt})
 
             for(i=1;i<=this.predict_count;i++){
                 var x = data_count + i
                 var y = a * x + b
-                myRegression.points.push([x,y])
-                var my_day = new Date(this.data[this.data.length-1].dt)
-                
-                var tomorrow_date =    my_day.getFullYear() + "-" + (my_day.getMonth()+1) + "-" + (my_day.getDate()+i)
-                origin_date.push(tomorrow_date)
+                var round_y = Math.floor(y * 100) / 100
+                pre_data.push([x,round_y])
             }
-            var weekdays = "星期日,星期一,星期二,星期三,星期四,星期五,星期六".split(",");
-            var e_date = _.map(origin_date,d=>{ 
-                var week = weekdays[new Date(d).getDay()].split('星期')[1]
-                var date_edition = d + ' '+'('+week+')'+ ' '
-                        return date_edition  })
+
             var option = {
                 title: {
                     text: '線性迴歸分析',
@@ -174,9 +168,9 @@ Vue.component("v-linear-regression", {
                         type: 'cross'
                     },
                     formatter: params => { 
-                                var a = params[0]
                                 var dt = origin_date[params[0].axisValueLabel-1]
-                                console.log(dt)
+                                // 如果 params  內有 '趨勢線' 資料 則刪除預測線資料
+                                params.splice(1, 1)
                                 var my_format = `${dt}<br/>` +params.map(d => {
                                     var value = this.y_label_format(d.data[1]||0, d.seriesName);
                                     return `${d.marker}${d.seriesName}: ${value}`
@@ -224,20 +218,52 @@ Vue.component("v-linear-regression", {
                         }
                     },
                     data: c_data
-                }, {
-                    name: '趨勢線',
+                },
+                {
+                    name: '預測線',
                     type: 'line',
                     showSymbol: false,
-                    data: myRegression.points,
+                    data: pre_data,
+
+                    lineStyle: {
+                        type: "dashed",
+                        color:  "rgba(17, 17, 17, 1)",
+                        opacity: 0.6
+                    },
                     markPoint: {
                         itemStyle: {
                             color: 'transparent'
                         },
                         data: [{
-                            coord: myRegression.points[myRegression.points.length - 1]
+                            coord: pre_data[pre_data.length - 1]
                         }]
                     }
-                }]
+                },
+                {
+                    name: '趨勢線',
+                    type: 'line',
+                    showSymbol: false,
+                    data: reg_data,
+                    color:"rgba(17, 17, 17, 1)",
+                    lineStyle: {
+                        type: "solid",
+                        color:  "rgba(17, 17, 17, 1)",
+                        opacity: 1
+                    },
+
+                    markPoint: {
+                        itemStyle: {
+                            color: 'transparent'
+                        },
+                        data: [{
+                            coord: reg_data[reg_data.length - 1]
+                        }]
+                    }
+                },
+            
+            
+            
+                ]
             };
             
 
