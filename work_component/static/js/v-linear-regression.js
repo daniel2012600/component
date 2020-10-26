@@ -11,7 +11,8 @@
         data裏面一定要有dt, dt格式一定'yyyy-mm-dd'
 - 屬性:
         data : [{dt:'2020-10-01', 總銷售額:44},....]
-        predict :   預測數(想預測的日期)    ex:  公式為 y = 18715.99x + -3023.27  x為預測數(日期判定)
+        predict_count : 可選擇想預測的次數(想預測的日期)  ex:  公式為 y = 18715.99x + -3023.27  x為預測數(日期判定)
+        dt_interval : 日期間隔，預設為 day 
 - 依賴:
         <script src="/static/style/echarts/4.8.0/ecStat.js"></script>
 - 作者:
