@@ -31,31 +31,26 @@
 </el-row>
 <!-- 頁面標題-右側-無功能 end -->
 <!-- 1欄 start -->
-
 <el-row :gutter="25" class="mb-4">
-  <el-col :span="24">
-        <div class="grid-content">
-            <el-card shadow="never" class="box-card wrap-card"  >
-<pre>
-<h3><font color="#4c769a" font-size="13px">
-描述:
-    小資料圖型，由多個元素組成
-html:
-    id:必填，元件id，要有唯一性
-屬性:
-    數值(val)
-    小標題(text)
-    sparkline(chartdata)
-    tooltip(包住slot)
-    slot
-依賴:
-<code>
-    &lt;script src="/static/style/jquery-sparklines/2.1.2/jquery.sparkline.min.js"&gt;&lt;/script&gt;
-</code>
-</font></h3>
-</pre>
-            </el-card>
-        </div>
+    <el-col :span="24">
+        <el-table
+            :data="tableData"
+            border
+            :show-header=false
+            style="width: 100%">
+            <el-table-column
+                prop="name"
+                width="180">
+            </el-table-column>
+            
+            <el-table-column 
+                prop="value">
+                <!-- <template slot-scope="scope">
+
+                </template> -->
+            </el-table-column>
+
+        </el-table>
     </el-col>
 </el-row>
 
@@ -89,7 +84,6 @@ html:
         </el-card>
         </div>
     </el-col>
-
 </el-row>
 
  
@@ -138,9 +132,31 @@ html:
         mixins: [layoutVue],
         data:  {
             breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
-
             chartdata:[{"時段":"0","銷售額":4180},{"時段":"1","銷售額":1},{"時段":"7","銷售額":6703},{"時段":"8","銷售額":39483},{"時段":"9","銷售額":176099},{"時段":"10","銷售額":958994},{"時段":"11","銷售額":1663095},{"時段":"12","銷售額":2201773},{"時段":"13","銷售額":2083088},{"時段":"14","銷售額":1673811},{"時段":"15","銷售額":1474046},{"時段":"16","銷售額":1392726},{"時段":"17","銷售額":1472481},{"時段":"18","銷售額":1646716},{"時段":"19","銷售額":1695520},{"時段":"20","銷售額":1547136},{"時段":"21","銷售額":1234791},{"時段":"22","銷售額":141908},{"時段":"23","銷售額":10656}],
-            total_data:[{"交易數":74288,"客單價":261.46,"銷售額":19423207}]
+            tableData:[{
+                name: '描述',
+                value: '小資料圖型，由多個元素組成'
+            },{
+                name: '維度量值',
+                value: '維度1個，量值1個,data裏面一定要有dt, dt格式一定"yyyy-mm-dd"'
+            },{
+                name: 'html',
+                value: 'id:必填，元件id，要有唯一性'
+            },{
+                name: '屬性',
+                value: `數值(val)`
+            },{
+                value: `小標題(text)`
+            },{
+                value: `sparkline(chartdata)`
+            },{
+                value: `tooltip(包住slot)`
+            },{
+                value: `slot`
+            },{
+                name:'依賴',
+                value: `https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js`
+            }],
         },
     });
 
@@ -149,6 +165,7 @@ html:
 
 
 {% endblock %}
+
 
 
 

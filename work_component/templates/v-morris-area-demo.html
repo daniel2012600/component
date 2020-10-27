@@ -31,38 +31,30 @@
 </el-row>
 <!-- 頁面標題-右側-無功能 end -->
 <!-- 1欄 start -->
-
 <el-row :gutter="25" class="mb-4">
-  <el-col :span="24">
-        <div class="grid-content">
-            <el-card shadow="never" class="box-card wrap-card"  >
-<pre>
-<h3><font color="#4c769a" font-size="13px">
-描述:
-    繪出橫軸為時間，蹤軸為任意量值的走勢圖
-維度量值:
-    維度1個，量值1個
-限制:
-    data裏面一定要有dt, dt格式一定'yyyy-mm-dd'
-html:
-    id:必填，元件id，要有唯一性
-屬性:
-    xlabeltype : x軸顯示的時間，一樣必須設，可能以下幾字
-    y :代表只顯示年份, ex 2017
-    m :代表只顯示月份, ex 一月
-    ym :代表只顯示年月, ex 2017-11
-    d:　代表只顯示日期, ex 2017-1-1
-    data :[ {dt:'yyyy-mm-dd', 量值１:22, 量值2:44 }], 注意，dt為保留字，限制為橫軸的鍵名，但方便編程，其他的都是量值
-參考:
-    https://echarts.apache.org/examples/zh/editor.html?c=scatter-linear-regression
-依賴:
-    https://github.com/ecomfe/echarts-stat/blob/master/dist/ecStat.js
-</font></h3>
-</pre>
-            </el-card>
-        </div>
+    <el-col :span="24">
+        <el-table
+            :data="tableData"
+            border
+            :show-header=false
+            style="width: 100%">
+            <el-table-column
+                prop="name"
+                width="180">
+            </el-table-column>
+            
+            <el-table-column 
+                prop="value">
+                <!-- <template slot-scope="scope">
+
+                </template> -->
+            </el-table-column>
+
+        </el-table>
     </el-col>
 </el-row>
+
+
 
 
 <el-row :gutter="25" class="mb-4">
@@ -124,6 +116,29 @@ html:
         data:  {
             breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
             datalist: [{'dt':'2020-10-01', '總銷售額':48624},{'dt':'2020-10-02', '總銷售額':52947},{'dt':'2020-10-03', '總銷售額':59345},{'dt':'2020-10-04', '總銷售額':71710},{'dt':'2020-10-05', '總銷售額':89644},{'dt':'2020-10-06', '總銷售額':102022},{'dt':'2020-10-07', '總銷售額':119625},{'dt':'2020-10-08', '總銷售額':149283},{'dt':'2020-10-09', '總銷售額':169092},{'dt':'2020-10-10', '總銷售額':185479}],
+            tableData:[{
+                name: '描述',
+                value: '繪出橫軸為時間，蹤軸為任意量值的走勢圖'
+            },{
+                name: '維度量值',
+                value: '維度1個，量值1個,data裏面一定要有dt, dt格式一定"yyyy-mm-dd"'
+            },{
+                name: 'html',
+                value: 'id:必填，元件id，要有唯一性'
+            },{
+                name: '屬性',
+                value: `xlabeltype : x軸顯示的時間，一樣必須設，可能以下幾字`
+            },{
+                value: `y :代表只顯示年份, ex 2017`
+            },{
+                value: `m :代表只顯示月份, ex 一月`
+            },{
+                value: `ym :代表只顯示年月, ex 2017-11`
+            },{
+                value: `d:　代表只顯示日期, ex 2017-1-1`
+            },{
+                value: `data :[ {dt:'yyyy-mm-dd', 量值１:22, 量值2:44 }], 注意，dt為保留字，限制為橫軸的鍵名，但方便編程，其他的都是量值`
+            }],
         },
     });
 
@@ -132,6 +147,5 @@ html:
 
 
 {% endblock %}
-
 
 

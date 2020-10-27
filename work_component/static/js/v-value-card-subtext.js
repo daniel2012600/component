@@ -13,11 +13,6 @@ html:
     txt2 : val後的文字，預設為"相比"
     up : 大於則為 true 可用於顯示大小，若未設置則無上升下降符號
     perc : 上升(下降)百分比設置，預設為20
-參考:
-    https://echarts.apache.org/examples/zh/editor.html?c=scatter-linear-regression
-依賴:
-    https://github.com/ecomfe/echarts-stat/blob/master/dist/ecStat.js
-
 
 */
 Vue.component("v-value-card-subtext", {

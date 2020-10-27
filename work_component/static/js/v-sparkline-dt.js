@@ -91,7 +91,6 @@ Vue.component("v-sparkline-dt", {
                     } else {
                         var item = sparkline_data[fields.x];
                     }
-                    console.log(`${xkey}: ${this.y_label_format(item[xkey], xkey)}<br>${ykey}: ${this.y_label_format(item[ykey], ykey)}`)
                     return `${xkey}: ${this.y_label_format(item[xkey], xkey)}<br>${ykey}: ${this.y_label_format(item[ykey], ykey)}`;
                 } ,
                 // map value
