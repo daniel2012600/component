@@ -31,29 +31,25 @@
 </el-row>
 <!-- 頁面標題-右側-無功能 end -->
 <!-- 1欄 start -->
-
 <el-row :gutter="25" class="mb-4">
-  <el-col :span="24">
-        <div class="grid-content">
-            <el-card shadow="never" class="box-card wrap-card"  >
-<pre>
-<h3><font color="#4c769a" font-size="13px">
-描述:
-    橫向顯示的柱狀圖
-維度量值:
-    維度1個，量值n個；維度是y軸，量值分顏色
-html:
-    id:必填，元件id，要有唯一性
-屬性:
-    data : [{y軸維度:'abc', 量值1:44 , 量值2:44 , 量值3:44},....]
-參考:
-    https://echarts.apache.org/examples/zh/editor.html?c=bar-y-category
-</font></h3>                
-</pre>
-            </el-card>
-        </div>
+    <el-col :span="24">
+        <el-table
+            :data="tableData"
+            border
+            :show-header=false
+            style="width: 100%">
+                <el-table-column
+                prop="name"
+                width="180">
+                </el-table-column>
+                <el-table-column
+                prop="value"
+                >
+                </el-table-column>
+        </el-table>
     </el-col>
 </el-row>
+
 
 
 <el-row :gutter="25" class="mb-4">
@@ -106,7 +102,23 @@ html:
         data:  {
             breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
             datalist: [{"label":"-89755~39153元","人數":747080},{"label":"39153~80041元","人數":92028},{"label":"80041~129555元","人數":45352},{"label":"129555~204129元","人數":26596},{"label":"204129~362112元","人數":15998},{"label":"362112~146874000元","人數":7701}],
-        },
+            tableData:[{
+                name: '描述',
+                value: '橫向顯示的柱狀圖'
+            },{
+                name: '維度量值',
+                value: '維度1個，量值n個；維度是x軸，量值分顏色'
+            },{
+                name: 'html',
+                value: 'id:必填，元件id，要有唯一性'
+            },{
+                name: '屬性',
+                value: 'data : [{y軸維度:"abc", 量值1:44 , 量值2:44 , 量值3:44},....]'
+            },{
+                name: '參考',
+                value: 'https://echarts.apache.org/examples/zh/editor.html?c=bar-y-category'
+            },
+        ]},
     });
 
 
@@ -116,5 +128,4 @@ html:
 
 
 {% endblock %}
-
 

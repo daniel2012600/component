@@ -32,27 +32,23 @@
 <!-- 1欄 start -->
 
 <el-row :gutter="25" class="mb-4">
-  <el-col :span="24">
-        <div class="grid-content">
-            <el-card shadow="never" class="box-card wrap-card"  >
-<pre>
-<h3><font color="#4c769a" font-size="13px">
-描述:
-    呈顯畫面為直立柱狀圖，最高的值為資料最大值
-維度量值:
-    維度1個，量值n個；維度是x軸，量值分顏色
-html:
-    id:必填，元件id，要有唯一性
-屬性:
-    data : [{x軸維度:'abc', 量值1:44 , 量值2:44 , 量值3:44},....]
-    meskeys : 陣列，列舉要顯示的量值
-參考:
-    https://echarts.apache.org/examples/zh/editor.html?c=bar1
-</font></h3>                
-</pre>
-            </el-card>
-        </div>
+    <el-col :span="24">
+        <el-table
+            :data="tableData"
+            border
+            :show-header=false
+            style="width: 100%">
+                <el-table-column
+                prop="name"
+                width="180">
+                </el-table-column>
+                <el-table-column
+                prop="value"
+                >
+                </el-table-column>
+        </el-table>
     </el-col>
+</el-row>
 
 
 </el-row>
@@ -135,7 +131,27 @@ html:
                 { 時間: "2020-07-14 15:00", 點擊數: 0 },
                 { 時間: "2020-07-14 16:00", 點擊數: 0 }
             ],
-        }
+            tableData:[{
+                name: '描述',
+                value: '呈顯畫面為直立柱狀圖，最高的值為資料最大值'
+            },{
+                name: '維度量值',
+                value: '維度1個，量值n個；維度是x軸，量值分顏色'
+            },{
+                name: 'html',
+                value: 'id:必填，元件id，要有唯一性'
+            },{
+                name: '屬性',
+                value: 'data : [{y軸維度:"abc", 量值1:44 , 量值2:44 , 量值3:44},....]',
+                
+            },{
+                value: 'meskeys : 陣列，列舉要顯示的量值'
+            
+            },{
+                name: '參考',
+                value: 'https://echarts.apache.org/examples/zh/editor.html?c=bar1'
+            },
+        ]},
     });
 </script>
 {% endblock %}
