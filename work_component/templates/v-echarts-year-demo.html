@@ -30,33 +30,30 @@
 </el-row>
 <!-- 頁面標題-右側-無功能 end -->
 <!-- 1欄 start -->
-
 <el-row :gutter="25" class="mb-4">
-  <el-col :span="24">
-        <div class="grid-content">
-            <el-card shadow="never" class="box-card wrap-card"  >
-<pre>
-<h3><font color="#4c769a" font-size="13px">
-描述：
-    年度月曆圖
-html:
-    id : 注意，不是屬性，元性的id，同一個頁面要有唯一性，裏面會用到，一定要設
-屬性：
-    data : [{dt:'abc', y軸維度11:44 , y軸維度2:44 , y軸維度3:44},....]
-    fromcolor : 最小量值的顏色
-    tocolor : 最大量值的顏色
-    plotheight : 圖型的高度，一定要設，預設值300
-    valuelabelunit : 字串，預設空值。有設定時，會加在值的最後面
-    year=選擇比較年限，ex: "2020" => 2019~2020
-參考:
-    https://echarts.apache.org/examples/zh/editor.html?c=heatmap-cartesian 
+    <el-col :span="24">
+        <el-table
+            :data="tableData"
+            border
+            :show-header=false
+            style="width: 100%">
+            <el-table-column
+                prop="name"
+                width="180">
+            </el-table-column>
+            
+            <el-table-column 
+                prop="value">
+                <!-- <template slot-scope="scope">
 
-</font></h3>
-</pre>
-            </el-card>
-        </div>
+                </template> -->
+            </el-table-column>
+
+        </el-table>
     </el-col>
 </el-row>
+
+
 
 
 <el-row :gutter="25" class="mb-4">
@@ -120,7 +117,32 @@ html:
         data:  {
             breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
             datalist: [{"dt":"2019-07-16","revenue":0},{"dt":"2019-07-17","revenue":0},{"dt":"2019-07-19","revenue":0},{"dt":"2019-07-20","revenue":0},{"dt":"2019-07-18","revenue":0},{"dt":"2019-07-15","revenue":0},{"dt":"2018-03-04","revenue":7156480},{"dt":"2020-03-25","revenue":4543744},{"dt":"2018-10-10","revenue":6333440},{"dt":"2018-10-01","revenue":5295360},{"dt":"2019-11-18","revenue":6094849},{"dt":"2020-05-09","revenue":5795073},{"dt":"2020-07-23","revenue":7707137},{"dt":"2019-11-19","revenue":6135297},{"dt":"2018-09-16","revenue":6522882},{"dt":"2018-09-11","revenue":5350914},{"dt":"2020-04-01","revenue":5371650},{"dt":"2018-06-06","revenue":7098883},{"dt":"2019-09-15","revenue":7739141},{"dt":"2018-08-12","revenue":7545606},{"dt":"2020-04-11","revenue":3490566},{"dt":"2020-07-28","revenue":4146950},{"dt":"2018-09-14","revenue":6638854},{"dt":"2019-11-05","revenue":4609286},{"dt":"2019-09-23","revenue":5599494},{"dt":"2020-02-25","revenue":7706374},{"dt":"2020-04-06","revenue":4291335},{"dt":"2020-10-16","revenue":4591624},{"dt":"2018-03-30","revenue":6431752},{"dt":"2018-05-06","revenue":8186376},{"dt":"2020-03-15","revenue":3101961},{"dt":"2020-08-29","revenue":4361737},{"dt":"2020-05-23","revenue":5089289},{"dt":"2018-04-07","revenue":4741386},{"dt":"2020-07-02","revenue":5003530},{"dt":"2020-05-01","revenue":4036106},{"dt":"2018-07-06","revenue":7489292},{"dt":"2020-06-14","revenue":3107340},{"dt":"2019-12-12","revenue":3472652},{"dt":"2019-12-02","revenue":5314830},{"dt":"2020-01-23","revenue":6902030},{"dt":"2020-10-15","revenue":3437070},{"dt":"2019-10-18","revenue":6278926},{"dt":"2020-08-19","revenue":3868431},{"dt":"2020-01-11","revenue":6627599},{"dt":"2020-10-05","revenue":6308623},{"dt":"2018-11-07","revenue":6135311},{"dt":"2020-07-17","revenue":7772688},{"dt":"2018-07-04","revenue":5436176},{"dt":"2020-04-18","revenue":7338768},{"dt":"2018-08-17","revenue":7277841},{"dt":"2018-08-23","revenue":4395537},{"dt":"2020-02-03","revenue":3612689},{"dt":"2020-03-12","revenue":4145937},{"dt":"2020-10-06","revenue":4084241},{"dt":"2020-08-20","revenue":6476049},{"dt":"2018-03-09","revenue":5166353},{"dt":"2020-08-07","revenue":7877906},{"dt":"2018-06-10","revenue":8820754},{"dt":"2018-08-30","revenue":4305682},{"dt":"2018-03-20","revenue":4316946},{"dt":"2018-08-09","revenue":6966035},{"dt":"2019-11-11","revenue":6971667},{"dt":"2020-07-18","revenue":6650899},{"dt":"2020-04-17","revenue":3285780},{"dt":"2020-05-11","revenue":5083668},{"dt":"2020-08-09","revenue":4208149},{"dt":"2020-04-03","revenue":4932630},{"dt":"2018-04-09","revenue":4780054},{"dt":"2020-01-29","revenue":7877912},{"dt":"2018-09-07","revenue":6227993},{"dt":"2020-08-05","revenue":7569177},{"dt":"2020-01-31","revenue":6848793},{"dt":"2018-03-01","revenue":5807129},{"dt":"2020-01-14","revenue":3187737},{"dt":"2019-12-30","revenue":5570842},{"dt":"2020-05-10","revenue":4057114},{"dt":"2020-03-07","revenue":7572251},{"dt":"2020-08-10","revenue":5964572},{"dt":"2018-07-20","revenue":7277852},{"dt":"2018-07-14","revenue":8271388},{"dt":"2019-12-10","revenue":5007645},{"dt":"2020-01-24","revenue":6526237},{"dt":"2020-04-16","revenue":5171485},{"dt":"2020-01-10","revenue":7760414},{"dt":"2019-12-03","revenue":5994270},{"dt":"2018-09-03","revenue":5372446},{"dt":"2018-03-18","revenue":6882591},{"dt":"2020-05-03","revenue":5405983},{"dt":"2019-09-24","revenue":3441439},{"dt":"2020-08-13","revenue":5674271},{"dt":"2020-06-23","revenue":3647007},{"dt":"2020-04-23","revenue":5713184},{"dt":"2019-12-26","revenue":3494688},{"dt":"2018-06-26","revenue":7498528},{"dt":"2019-09-19","revenue":6768417},{"dt":"2018-09-17","revenue":5415457},{"dt":"2020-07-27","revenue":7058209},{"dt":"2019-12-15","revenue":6618402},{"dt":"2020-10-13","revenue":7097891},{"dt":"2019-10-31","revenue":7115299},{"dt":"2020-03-20","revenue":7381027},{"dt":"2020-09-25","revenue":6107173},{"dt":"2020-09-11","revenue":3487013},{"dt":"2020-10-03","revenue":6542629}],
-
+            tableData:[{
+                name: '描述',
+                value: '年度月曆圖'
+            },{
+                name: '維度量值',
+                value: 'g, x, y'
+            },{
+                name: 'html',
+                value: 'id:必填，元件id，要有唯一性'
+            },{
+                name: '屬性',
+                value: `data : [{dt:'abc', y軸維度11:44 , y軸維度2:44 , y軸維度3:44},....]`
+            },{
+                value: `fromcolor : 最小量值的顏色`
+            },{
+                value: `tocolor : 最大量值的顏色`
+            },{
+                value: `plotheight : 圖型的高度，一定要設，預設值300`
+            },{
+                value: `valuelabelunit : 字串，預設空值。有設定時，會加在值的最後面`
+            },{
+                value: `year=選擇比較年限，ex: "2020" => 2019~2020`
+            },{
+                name: '參考',
+                value: 'https://echarts.apache.org/examples/zh/editor.html?c=heatmap-cartesian'
+            }],
         },
     });
 
@@ -132,3 +154,17 @@ html:
 
 
 
+
+<!-- 描述：
+    年度月曆圖
+html:
+    id : 注意，不是屬性，元性的id，同一個頁面要有唯一性，裏面會用到，一定要設
+屬性：
+    data : [{dt:'abc', y軸維度11:44 , y軸維度2:44 , y軸維度3:44},....]
+    fromcolor : 最小量值的顏色
+    tocolor : 最大量值的顏色
+    plotheight : 圖型的高度，一定要設，預設值300
+    valuelabelunit : 字串，預設空值。有設定時，會加在值的最後面
+    year=選擇比較年限，ex: "2020" => 2019~2020
+參考:
+    https://echarts.apache.org/examples/zh/editor.html?c=heatmap-cartesian  -->

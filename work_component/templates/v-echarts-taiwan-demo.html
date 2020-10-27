@@ -24,35 +24,32 @@
 <el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
     <el-col :span="24">
     <div class="grid-content">
-        <h1>v-echarts-scatter-life-dt.js 使用方式</h1>  
+        <h1>v-echarts-taiwan.js 使用方式</h1>  
     </div>
     </el-col>
 </el-row>
 <!-- 頁面標題-右側-無功能 end -->
 <!-- 1欄 start -->
-
 <el-row :gutter="25" class="mb-4">
-  <el-col :span="24">
-        <div class="grid-content">
-            <el-card shadow="never" class="box-card wrap-card"  >
-<pre>
-<h3><font color="#4c769a" font-size="13px">
-描述：
-    台灣地圖
-html:
-    id : 注意，不是屬性，元性的id，同一個頁面要有唯一性，裏面會用到，一定要設
-屬性：
-    data : [  {name:'台灣縣市', value:數值 },....], name跟value都是保留字
-    plotheight:圖型的高度，一定要設，預設300
--限制：
-    name跟value都是保留字
-參考:
-    https://echarts.apache.org/examples/zh/editor.html?c=map-usa
+    <el-col :span="24">
+        <el-table
+            :data="tableData"
+            border
+            :show-header=false
+            style="width: 100%">
+            <el-table-column
+                prop="name"
+                width="180">
+            </el-table-column>
+            
+            <el-table-column 
+                prop="value">
+                <!-- <template slot-scope="scope">
 
-</font></h3>
-</pre>
-            </el-card>
-        </div>
+                </template> -->
+            </el-table-column>
+
+        </el-table>
     </el-col>
 </el-row>
 
@@ -135,7 +132,24 @@ html:
             {'name':'金門縣', 'value':3000},
             {'name':'連江縣','value':5000}
             ],
-
+            tableData:[{
+                name: '描述',
+                value: '台灣地圖'
+            },{
+                name: '限制',
+                value: 'name跟value都是保留字'
+            },{
+                name: 'html',
+                value: 'id:必填，元件id，要有唯一性'
+            },{
+                name: '屬性',
+                value: `data : [  {name:'台灣縣市', value:數值 },....], name跟value都是保留字`
+            },{
+                value: `plotheight:圖型的高度，一定要設，預設300`
+            },{
+                name: '參考',
+                value: 'https://echarts.apache.org/examples/zh/editor.html?c=map-usa'
+            }],
         },
     });
 
@@ -144,6 +158,5 @@ html:
 
 
 {% endblock %}
-
 
 

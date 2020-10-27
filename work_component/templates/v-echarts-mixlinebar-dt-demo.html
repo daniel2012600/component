@@ -11,9 +11,6 @@
     -moz-box-sizing: content-box;
     box-sizing: content-box;
     }
-    .el-table .cell {
-　　white-space: pre-line;
-    }
 
     .el-range-separator {
     /* 修正”至”樣式錯誤 */
@@ -34,7 +31,6 @@
 </el-row>
 <!-- 頁面標題-右側-無功能 end -->
 <!-- 1欄 start -->
-
 <el-row :gutter="25" class="mb-4">
     <el-col :span="24">
         <el-table
@@ -47,15 +43,10 @@
                 width="180">
             </el-table-column>
             
-            <template>
-                <el-table-column
-                    prop="value"
-                    :label="value">
-                
-                <!-- <span v-html="name2"></span> -->
+            <el-table-column
+                prop="value">
+            </el-table-column>
 
-                </el-table-column>
-            </template>
         </el-table>
     </el-col>
 </el-row>
@@ -138,16 +129,16 @@
                 value: '長條圖+折線圖(單)'
             },{
                 name: '維度量值',
-                value: 'dt'
+                value: 'dt,  data裏面一定要有dt, dt格式一定"yyyy-mm-dd"'
             },{
                 name: 'html',
                 value: 'id:必填，元件id，要有唯一性'
             },{
                 name: '屬性',
-                value: `dt_interval : x軸顯示的時間，必須為以下字串:
-                        year :代表只顯示年份, ex 2017`,
-                // name2: `dt_interval : x軸顯示的時間，必須為以下字串:\n
-                //         year :代表只顯示年份, ex 2017`,
+                value: `dt_interval : x軸顯示的時間，必須為以下字串:\0\0
+                        year\0:\0代表只顯示年份, ex 2017\n
+                        month\0:\0代表只顯示月份, ex 一月\0\0
+                        day\0:\0代表只顯示日期, ex 2017-1-1`,
             },{
                 value: `data :[ {dt:'yyyy-mm-dd', 量值１:22, 量值2:44 },....], 注意，dt為保留字，限制為橫軸的鍵名，但方便編程，其他的都是量值`
             },{

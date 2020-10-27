@@ -31,32 +31,27 @@
 </el-row>
 <!-- 頁面標題-右側-無功能 end -->
 <!-- 1欄 start -->
-
 <el-row :gutter="25" class="mb-4">
-  <el-col :span="24">
-        <div class="grid-content">
-            <el-card shadow="never" class="box-card wrap-card"  >
-<pre>
-<h3><font color="#4c769a" font-size="13px">
-描述:
-    圓餅圖
-維度量值:
-    維度1個，量值1個；dt維度是分顏色，量值決定大小
-html:
-    id:必填，元件id，要有唯一性
-屬性:
-    data : [{name:'abc', value:44},....]
-    colors : 色碼["#xxxxx","#xxxxx"]
-    showlabel : 字串"true", 預設"false", 設true的話會顯示label
-    hiddenarr : array，將要隱藏的name放在array內
-參考:
-    https://echarts.apache.org/examples/zh/editor.html?c=pie-legend
-</font></h3>
-</pre>
-            </el-card>
-        </div>
+    <el-col :span="24">
+        <el-table
+            :data="tableData"
+            border
+            :show-header=false
+            style="width: 100%">
+            <el-table-column
+                prop="name"
+                width="180">
+            </el-table-column>
+            
+            <el-table-column
+                prop="value">
+            </el-table-column>
+
+        </el-table>
     </el-col>
 </el-row>
+
+
 
 
 <el-row :gutter="25" class="mb-4">
@@ -123,6 +118,29 @@ html:
         data:  {
             breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
             datalist: [{"name":"小新","value":32837},{"name":"小月","value":32195},{"name":"小明","value":36665},{"name":"小華","value":9999}],
+            tableData:[{
+                name: '描述',
+                value: '圓餅圖'
+            },{
+                name: '維度量值',
+                value: '維度1個，量值1個；dt維度是分顏色，量值決定大小'
+            },{
+                name: 'html',
+                value: 'id:必填，元件id，要有唯一性'
+            },{
+                name: '屬性',
+                value: `data : [{name:'abc', value:44},....]`,
+            },{
+                value: `colors : 色碼["#xxxxx","#xxxxx"]`
+            },{
+                value: `showlabel : 字串"true", 預設"false", 設true的話會顯示label`
+            },{
+                value: `hiddenarr : array，將要隱藏的name放在array內`
+
+            },{
+                name: '參考',
+                value: 'https://echarts.apache.org/examples/zh/editor.html?c=pie-legend'
+            }],
         },
     });
 
