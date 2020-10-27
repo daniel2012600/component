@@ -32,12 +32,115 @@
 </el-row>
 <!-- 頁面標題-右側-無功能 end -->
 <!-- 1欄 start -->
-
 <el-row :gutter="25" class="mb-4">
   <el-col :span="24">
-    <div class="grid-content">
-      <el-card shadow="never" class="box-card wrap-card">
-        <span>
+      <el-table
+          :data="tableData"
+          border
+          :show-header=false
+          style="width: 100%">
+          <el-table-column
+              prop="name"
+              width="180">
+          </el-table-column>
+          
+          <el-table-column 
+              prop="value">
+              <!-- <template slot-scope="scope">
+
+              </template> -->
+          </el-table-column>
+
+      </el-table>
+  </el-col>
+</el-row>
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+        <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Source Code</h2>
+            <h3><pre>
+                <code class="html">
+                &lt;v-echarts-barstack   
+                    title= 'demo'
+                    fontaws_class= 'test'            
+                    :active ="true"
+                    :disabled ="true"&gt; 
+                &lt;/v-echarts-barstack  &gt;
+            </code>
+            </pre></h3>
+        </el-card>
+        </div>
+
+    </el-col>
+</el-row>
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+
+        <v-board-item
+            title= 'demo'
+            fontaws_class= 'test'            
+            :active ="true"
+            :disabled ="true">
+        </v-board-item>
+    </el-col>
+</el-row>
+
+<!-- 1欄 end -->
+
+{% endblock %}
+
+{% block js %}
+
+<script src="/static/style/lodash/4.16.0/lodash.js"></script>
+<script src="/static/js/v-board-item.js"></script>
+<script>
+  var obj = new Vue({
+    el: "#app",
+    mixins: [layoutVue],
+    data: {
+      breadpath: [
+        { key: "首頁", path: "/" },
+        { key: "標題", path: "" },
+      ],
+      datalist: [],
+      tableData:[{
+                name: '描述',
+                value: '滑鼠過去會有邊框的，圖文框'
+            },{
+                name: '維度量值',
+                value: '維度1個，量值1個,data裏面一定要有dt, dt格式一定"yyyy-mm-dd"'
+            },{
+                name: 'html',
+                value: 'id:必填，元件id，要有唯一性'
+            },{
+                name: '屬性',
+                value: `title:標題文字`
+            },{
+                value: `fontaws_class:font aws 的圖標`
+            },{
+                value: `active:背景變成高亮`
+            },{
+                name: '事件',
+                value: `click:按鈕觸發事件`
+            },{
+                name: '插槽',
+                value: `slot1:xxxx`
+            },{
+                value: `slot2:xxx`
+            },{
+                name:'相依',
+                value: `script1:xxx`
+            },{
+                value: `script2:xxx`
+            }]
+    },
+  });
+</script>
+
+{% endblock %}
           <h3>
             <font color="#4c769a" font-size="13px">
               描述:</br>
@@ -64,40 +167,3 @@
                 script1:xxx</br>
                 script2:xxx</br>
               </P>
-            </font>
-          </h3>
-        </span>
-      </el-card>
-    </div>
-  </el-col>
-</el-row>
-
-
-
-
-
-<!-- 1欄 end -->
-
-{% endblock %}
-
-{% block js %}
-
-<script src="/static/style/lodash/4.16.0/lodash.js"></script>
-<script src="/static/js/v-board-item.js"></script>
-<script>
-  var obj = new Vue({
-    el: "#app",
-    mixins: [layoutVue],
-    data: {
-      breadpath: [
-        { key: "首頁", path: "/" },
-        { key: "標題", path: "" },
-      ],
-      datalist: [],
-    },
-    computed: {},
-    mounted() { },
-  });
-</script>
-
-{% endblock %}
