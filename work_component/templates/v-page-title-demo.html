@@ -25,7 +25,7 @@
 <el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
     <el-col :span="24">
     <div class="grid-content">
-        <h1>v-linear-regression.js 使用方式</h1>  
+        <h1>v-page-title.js 使用方式</h1>  
     </div>
     </el-col>
 </el-row>
@@ -33,27 +33,25 @@
 <!-- 1欄 start -->
 
 <el-row :gutter="25" class="mb-4">
-  <el-col :span="24">
-        <div class="grid-content">
-            <el-card shadow="never" class="box-card wrap-card"  >
-<pre>
-<h3><font color="#4c769a" font-size="13px">
-描述:
-    標題元件
-維度量值:
-    維度1個，量值1個
-限制:
-    data裏面一定要有dt, dt格式一定'yyyy-mm-dd'
-屬性:
-    id: 預測為id, 可自行設定
-    title: 預測為"標題", 可自行設定
-    size: 預測為"h1", 可自行設定
-    backcolor: 預測為"#eee", 可自行設定
+    <el-col :span="24">
+        <el-table
+            :data="tableData"
+            border
+            :show-header=false
+            style="width: 100%">
+            <el-table-column
+                prop="name"
+                width="180">
+            </el-table-column>
+            
+            <el-table-column 
+                prop="value">
+                <!-- <template slot-scope="scope">
 
-</font></h3>
-</pre>
-            </el-card>
-        </div>
+                </template> -->
+            </el-table-column>
+
+        </el-table>
     </el-col>
 </el-row>
 
@@ -110,6 +108,23 @@
         mixins: [layoutVue],
         data:  {
             breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
+            tableData:[{
+                name: '描述',
+                value: '標題元件'
+            },{
+                name: '維度量值',
+                value: '維度1個，量值1個'
+            },{
+                name: 'html',
+                value: 'id:必填，元件id，要有唯一性'
+            },{
+                name: '屬性',
+                value: `id: 預測為id, 可自行設定`
+            },{
+                value: `title: 預測為"標題", 可自行設定`
+            },{
+                value: `size: 預測為"h1", 可自行設定`
+            }],
         },
     });
 
@@ -118,6 +133,5 @@
 
 
 {% endblock %}
-
 
 

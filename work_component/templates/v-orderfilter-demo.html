@@ -25,58 +25,38 @@
 <el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
     <el-col :span="24">
     <div class="grid-content">
-        <h1>v-linear-regression.js 使用方式</h1>  
+        <h1>v-orderfilter.js 使用方式</h1>  
     </div>
     </el-col>
 </el-row>
 <!-- 頁面標題-右側-無功能 end -->
 <!-- 1欄 start -->
-
 <el-row :gutter="25" class="mb-4">
-  <el-col :span="24">
-        <div class="grid-content">
-            <el-card shadow="never" class="box-card wrap-card"  >
-<pre>
-<h3><font color="#4c769a" font-size="13px">
-描述:
-    包含「付費方式」、「購買方式」、「門店」、「日期區間」的複合元件
-    會自動儲存「付費方式」、「購買方式」、「門店」的值
-    「日期區間」自動選擇過去七天
-維度量值:
-    維度1個，量值1個
-html:
-    id:必填，元件id，要有唯一性
-屬性:
-    opts : 預設下拉單的內容
-    {
-        ord_paytype:[]
-        buytype:[]
-        store:[]
-    }
-
-事件：
-　　onchange(val)當回傳值發生改變時觸發
-        - val :目前選單的選擇
-        {
-            ord_paytype:[],付費類型
-            buytype:[],購買方式
-            store:[],門店
-            dr:"" 區間
-        }
-    oncommit()使用者按下搜尋計算按鈕時觸發
+    <el-col :span="24">
+        <el-table
+            :data="tableData"
+            border
+            :show-header=false
+            style="width: 100%">
+            <el-table-column
+                prop="name"
+                width="180">
+            </el-table-column>
             
-參考:
-    https://codertw.com/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/197439/
-依賴:
-    vue element
-    vue materaial
-    v-el-select-multi元件
-</font></h3>
-</pre>
-            </el-card>
-        </div>
+            <el-table-column 
+                prop="value">
+                <!-- <template slot-scope="scope">
+
+                </template> -->
+            </el-table-column>
+
+        </el-table>
     </el-col>
 </el-row>
+
+
+
+
 
 
 <el-row :gutter="25" class="mb-4">
@@ -133,6 +113,33 @@ html:
         data:  {
             breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
             filter_data: {"dr":["2020-10-13","2020-10-19"]},
+            tableData:[{
+                name: '描述',
+                value: `包含「付費方式」、「購買方式」、「門店」、「日期區間」的複合元件
+                        會自動儲存「付費方式」、「購買方式」、「門店」的值
+                        「日期區間」自動選擇過去七天`
+            },{
+                name: '維度量值',
+                value: '維度1個，量值1個'
+            },{
+                name: 'html',
+                value: 'id:必填，元件id，要有唯一性'
+            },{
+                name: '屬性',
+                value: `opts : 預設下拉單的內容, {ord_paytype:[]\0, buytype:[]\0,store:[]}`
+            },{
+                name: '事件',
+                value: `onchange(val)當回傳值發生改變時觸發 , oncommit()使用者按下搜尋計算按鈕時觸發`
+            },{
+                name: 'val',
+                value: `{ord_paytype:[]\0 付費類型 \0 , buytype:[]\0 購買方式\0,store:[]\0 門店 \0, dr:"" \0 區間}`
+            },{
+                name: '參考',
+                value: `https://codertw.com/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/197439/`
+            },{
+                name: '依賴',
+                value: `vue element ,vue materaial ,v-el-select-multi元件`
+            }],
         },
     });
 
@@ -141,6 +148,5 @@ html:
 
 
 {% endblock %}
-
 
 

@@ -25,51 +25,36 @@
 <el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
     <el-col :span="24">
     <div class="grid-content">
-        <h1>v-linear-regression.js 使用方式</h1>  
+        <h1>v-sparkline-dt.js 使用方式</h1>  
     </div>
     </el-col>
 </el-row>
 <!-- 頁面標題-右側-無功能 end -->
 <!-- 1欄 start -->
-
 <el-row :gutter="25" class="mb-4">
-  <el-col :span="24">
-        <div class="grid-content">
-            <el-card shadow="never" class="box-card wrap-card"  >
-<pre>
-<h3><font color="#4c769a" font-size="13px">
-描述:
-    小的圖表
-維度量值:
-    維度1個，量值1個
-限制:
-    data:裏面一定要有dt, dt格式一定'yyyy-mm-dd', 一定要放第一個
+    <el-col :span="24">
+        <el-table
+            :data="tableData"
+            border
+            :show-header=false
+            style="width: 100%">
+            <el-table-column
+                prop="name"
+                width="180">
+            </el-table-column>
+            
+            <el-table-column 
+                prop="value">
+                <!-- <template slot-scope="scope">
 
-    量值:只支援一個
+                </template> -->
+            </el-table-column>
 
-    注意：與bootstrap合用，tooltip樣式跑版解決方法，加入以下樣式
-        .jqstooltip {
-            -webkit-box-sizing: content-box;
-            -moz-box-sizing: content-box;
-            box-sizing: content-box;
-        }
-html:
-    id:必填，元件id，要有唯一性
-屬性:
-    data :[ {dt:'yyyy-mm-dd', 量值１:22 },....], 注意，dt為保留字，限制為橫軸的鍵名，但方便編程，其他的都是量值
-    type :  'line' , 'bar', 'tristate', 'discrete', 'bullet', 'pie'  'box'
-    meskey:data可能有很多量值，這裏指定要用哪一個，沒指定的話就取第一個捉到的量值
-
-參考:
-    https://echarts.apache.org/examples/zh/editor.html?c=scatter-linear-regression
-依賴:
-    https://github.com/ecomfe/echarts-stat/blob/master/dist/ecStat.js
-</font></h3>
-</pre>
-            </el-card>
-        </div>
+        </el-table>
     </el-col>
 </el-row>
+
+
 
 
 <el-row :gutter="25" class="mb-4">
@@ -138,7 +123,29 @@ html:
         data:  {
             breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
             spot_data: [{"dt":"2020-10-19","銷售額":19423207}],
-            d:"dt"
+            d:"dt",
+            tableData:[{
+                name: '描述',
+                value: '小的圖表'
+            },{
+                name: '維度量值',
+                value: '維度1個，量值1個,data:裏面一定要有dt, dt格式一定"yyyy-mm-dd", 一定要放第一個'
+            },{
+                name: 'html',
+                value: 'id:必填，元件id，要有唯一性'
+            },{
+                name: '屬性',
+                value: `data :[ {dt:'yyyy-mm-dd', 量值１:22 },....], 注意，dt為保留字，限制為橫軸的鍵名，但方便編程，其他的都是量值`
+            },{
+                value: `type :  'line' , 'bar', 'tristate', 'discrete', 'bullet', 'pie'  'box'`
+            },{
+                value: `meskey:data可能有很多量值，這裏指定要用哪一個，沒指定的話就取第一個捉到的量值`
+            },{
+                name: '參考',
+                value: `https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js`
+            },{
+                value: `https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js`
+            }],
         },
     });
 
@@ -147,6 +154,7 @@ html:
 
 
 {% endblock %}
+
 
 
 
