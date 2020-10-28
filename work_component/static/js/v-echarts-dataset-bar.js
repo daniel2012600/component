@@ -71,9 +71,9 @@ Vue.component("v-echarts-dataset-bar", {
                 _.forEach(dt_list, subdt => {
                     temp[subdt] = _.find(this.datalist, [this.dkey[1], subdt])[item]
                 })
+                
                 return temp
             })
-
             var option = {
                 legend: {},
                 tooltip: {},

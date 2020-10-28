@@ -31,27 +31,22 @@
 </el-row>
 <!-- 頁面標題-右側-無功能 end -->
 <!-- 1欄 start -->
-
 <el-row :gutter="25" class="mb-4">
-  <el-col :span="24">
-        <div class="grid-content">
-            <el-card shadow="never" class="box-card wrap-card"  >
-<pre>
-<h3><font color="#4c769a" font-size="13px">
-描述:
-    柱狀圖
-限制:
-    資料一定是name, value
-html:
-    id:必填，元件id，要有唯一性
-屬性:
-    data : [{name:'abc', value:44},....]
-參考:
-    https://echarts.apache.org/examples/zh/editor.html?c=dataset-simple1
-</font></h3>                
-</pre>
-            </el-card>
-        </div>
+    <el-col :span="24">
+        <el-table
+            :data="tableData"
+            border
+            :show-header=false
+            style="width: 100%">
+                <el-table-column
+                prop="name"
+                width="180">
+                </el-table-column>
+                <el-table-column
+                prop="value"
+                >
+                </el-table-column>
+        </el-table>
     </el-col>
 </el-row>
 
@@ -64,10 +59,9 @@ html:
             <h3><pre>
                 <code class="html">
                 &lt;v-echarts-dataset-bar   
-                    id="bsrebuyer"
-                    class="mb-2"
-                    :data="datalist" 
-                    :meskeys="rebuyarr"&gt; 
+                    id="plot2" 
+                    :datalist="datalist" 
+                    :dkey="['key', 'dt', ['demo','demo1','demo2']]"&gt; 
                 &lt;/v-echarts-dataset-bar  &gt;
             </code>
             </pre></h3>
@@ -82,7 +76,7 @@ html:
             <v-echarts-dataset-bar
             id="plot2" 
             :datalist="datalist" 
-            :dkey="['type', 'dt', ['年度首購客', '年度持續消費會員', '年度復活會員', '未購會員']]">
+            :dkey="['key', 'dt', ['demo','demo1','demo2']]">
             </v-echarts-dataset-bar>
         </div>
     </el-col>
@@ -102,21 +96,28 @@ html:
         mixins: [layoutVue],
         data:  {
             breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
-            datalist: [{"dt":"2020","store_id":"FAKE","store_name":"北港店#341","store_area":"未分區","year_label":"Firstime","rev":4929839,"usr_cnt":2189,"ord_cnt":7965,"avg_rev":618.9377275580665,"total_rev":13219698366,"total_usr_cnt":2939221,"total_ord_cnt":8287406,"total_avg_rev":1595.1551505983898},{"dt":"2020","store_id":"FAKE","store_name":"北港店#341","store_area":"未分區","year_label":0,"rev":24649195,"usr_cnt":2189,"ord_cnt":7965,"avg_rev":3094.688637790333,"total_rev":13219698366,"total_usr_cnt":2939221,"total_ord_cnt":8287406,"total_avg_rev":1595.1551505983898},{"dt":"2020","store_id":"FAKE","store_name":"北港店#385","store_area":"未分區","year_label":0,"rev":1306850,"usr_cnt":647,"ord_cnt":1989,"avg_rev":657.0387129210659,"total_rev":13219698366,"total_usr_cnt":2939221,"total_ord_cnt":8287406,"total_avg_rev":1595.1551505983898},{"dt":"2020","store_id":"FAKE","store_name":"北港店#385","store_area":"未分區","year_label":"Firstime","rev":261370,"usr_cnt":647,"ord_cnt":1989,"avg_rev":131.40774258421317,"total_rev":13219698366,"total_usr_cnt":2939221,"total_ord_cnt":8287406,"total_avg_rev":1595.1551505983898}],
-            type: "usr_cnt",
-            label_text: {
-                "Continuously": "年度持續消費會員",
-                "Firstime": "年度首購客",
-                "Rivived": "年度復活會員",
-                "Notconsumed": "未購會員"
-            },
-        },
-        computed: {
-
-            },
-        mounted(){
+            datalist: [{"dt":"2020","demo":32166999,'demo1':123123132,'demo2':66499789},{"dt":"2021","demo":505983898,'demo1':8888888,'demo2':36499789},{"dt":"2022","demo":505983898,'demo1':223123132,'demo2':96499789}],
+            tableData:[{
+                name: '描述',
+                value: '柱狀圖'
+            },{
+                name: '維度量值',
+                value: '維度1個，量值n個，資料一定是name, value'
+            },{
+                name: 'html',
+                value: 'id:必填，元件id，要有唯一性'
+            },{
+                name: '屬性',
+                value: 'data : [{name:"abc", value:44},....]'
+            },{
+                value: 'dkey : 需先設置["值的index","比較的維度",["x軸名稱"]] ex: ["key", "dt", ["demo","demo1","demo2"]]'
+            },{
+                name: '參考',
+                value: 'https://echarts.apache.org/examples/zh/editor.html?c=dataset-simple1'
+            }],
         },
     });
+
 
 
 
@@ -129,3 +130,13 @@ html:
 
 
 
+描述:
+    柱狀圖
+限制:
+    
+html:
+    id:必填，元件id，要有唯一性
+屬性:
+    data : [{name:'abc', value:44},....]
+參考:
+    https://echarts.apache.org/examples/zh/editor.html?c=dataset-simple1

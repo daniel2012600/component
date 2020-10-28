@@ -32,33 +32,25 @@
 <!-- 1欄 start -->
 
 <el-row :gutter="25" class="mb-4">
-  <el-col :span="24">
-        <div class="grid-content">
-            <el-card shadow="never" class="box-card wrap-card"  >
-<pre>
-<h3><font color="#4c769a" font-size="13px">
-描述：
-    擴展element 的select 元件，
-    預設為多選，
-    有輸入區可輸入搜尋
-    最上方有一個工具列，內有一個按鈕「選擇全部」，「清除全部」
-    並預設支援搜尋功能
-    資料有限制，只支援字串陣列，不支援json obj
-屬性：
-    placeholder :　空值的背景文字
-    opts : ['初','始','選項']
-    name : 此下拉單的名稱，最好有唯一性
-    valuelabelunit : 字串，預設空值。有設定時，會加在值的最後面
-事件：
-　　onchange(name,val)　：　當回傳值發生改變時觸發
-        - name :屬性name
-        - val :目前選單的選擇
-</font></h3>
-</pre>
-            </el-card>
-        </div>
+    <el-col :span="24">
+        <el-table
+            :data="tableData"
+            border
+            :show-header=false
+            style="width: 100%">
+                <el-table-column
+                prop="name"
+                width="180">
+                </el-table-column>
+                <el-table-column
+                prop="value"
+                >
+                </el-table-column>
+        </el-table>
     </el-col>
 </el-row>
+
+
 
 
 <el-row :gutter="25" class="mb-4">
@@ -68,7 +60,11 @@
             <h2 class="card__title">Source Code</h2>
             <h3><pre>
                 <code class="html">
-                &lt;v-el-select-dr&gt;
+                &lt;v-el-select-dr
+                    name ="paytype"
+                    placeholder="付費方式"
+                    value='sdsdsd'
+                    :opts = '["demo","demo2","demo3"]'&gt;
                 &lt;/v-el-select-dr&gt;
                 </code>
             </pre></h3>
@@ -88,7 +84,8 @@
             <v-el-select-multi
                 name ="paytype"
                 placeholder="付費方式"
-                >
+                value='sdsdsd'
+                :opts = '["demo","demo2","demo3"]'>
             </v-el-select-multi>
             </el-card>
         </div>
@@ -113,7 +110,30 @@
         mixins: [layoutVue],
         data:  {
             breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
+            tableData:[{
+                name: '描述',
+                value: '多項式選單，資料有限制，只支援字串陣列，不支援json obj'
+            },{
+                name: 'html',
+                value: 'id:必填，元件id，要有唯一性'
+            },{
+                name: '屬性',
+                value: 'placeholder :　空值的背景文字',
+                
+            },{
+                value: 'opts : ["初","始","選項"]'
+            
+            },{
+                value: 'name : 此下拉單的名稱，最好有唯一性'
+            
+            },{
+                value: 'valuelabelunit : 字串，預設空值。有設定時，會加在值的最後面'           
+            },{
+                name: '事件',
+                value: 'onchange(name,val)　：　當回傳值發生改變時觸發，name :屬性name， val :目前選單的選擇'
+            }]
         },
+
     });
 
     

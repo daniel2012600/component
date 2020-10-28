@@ -64,20 +64,21 @@
             <h2 class="card__title">Source Code</h2>
             <h3><pre>
                 <code class="html">
-                &lt;v-linear-regression 
-                    id="plot2"
+                &lt;v-sparkline-dt  
+                    id="sp1" 
+                    class="m-b-10 text-center" 
                     :data='datalist'
-                    :y_label_format="(val, key) => {
-                        if (key=='總銷售額') return '$' + val
-                        else return val
-                    }"&gt;
-                &lt;/v-linear-regression&gt;
+                    :type="'bar'" or "'pie'"
+                    :color=" 'rgba(15, 219, 183, 1)' " 
+                    :meskey='["dt","總銷售額"]'
+                    :y_label_format="(val, key) => {return val}"
+                    height="200px"&gt;
+                &lt;/v-sparkline-dt &gt;
             </code>
             </pre></h3>
         </el-card>
         </div>
     </el-col>
-
 </el-row>
 
  
@@ -86,22 +87,40 @@
     <el-col :span="24">
         <div class="grid-content">
             <el-card shadow="never" class="box-card wrap-card" >
-            <h2 class="card__title">Example</h2>
+            <h2 class="card__title">Example_bar</h2>
             <v-sparkline-dt 
                 id="sp1" 
                 class="m-b-10 text-center" 
-                :data="spot_data" 
+                :data="datalist" 
                 :type="'bar'"
                 :color=" 'rgba(15, 219, 183, 1)' " 
-                :meskey='["dt","銷售額"]'
-                y_label_format="d"
+                :meskey='["dt","總銷售額"]'
+                :y_label_format="(val, key) => { return val}"
                 height="200px">
             </v-sparkline-dt>
             </el-card>
         </div>
     </el-col>
 </el-row>
-
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+            <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Example_pie</h2>
+            <v-sparkline-dt 
+                id="sp2" 
+                class="m-b-10 text-center" 
+                :data="datalist" 
+                :type="'pie'"
+                :color=" 'rgba(15, 219, 183, 1)' " 
+                :meskey='["dt","總銷售額"]'
+                :y_label_format="(val, key) => { return val}"
+                height="200px">
+            </v-sparkline-dt>
+            </el-card>
+        </div>
+    </el-col>
+</el-row>
 <!-- 1欄 end -->
 
 {% endblock %} 
@@ -122,11 +141,10 @@
         mixins: [layoutVue],
         data:  {
             breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
-            spot_data: [{"dt":"2020-10-19","銷售額":19423207}],
-            d:"dt",
+            datalist: [{"dt":"2020-10-19","總銷售額":19423207},{"dt":"2020-10-20","總銷售額":10023207}],
             tableData:[{
                 name: '描述',
-                value: '小的圖表'
+                value: '小的圖表(柱狀+圓餅)'
             },{
                 name: '維度量值',
                 value: '維度1個，量值1個,data:裏面一定要有dt, dt格式一定"yyyy-mm-dd", 一定要放第一個'
@@ -137,7 +155,7 @@
                 name: '屬性',
                 value: `data :[ {dt:'yyyy-mm-dd', 量值１:22 },....], 注意，dt為保留字，限制為橫軸的鍵名，但方便編程，其他的都是量值`
             },{
-                value: `type :  'line' , 'bar', 'tristate', 'discrete', 'bullet', 'pie'  'box'`
+                value: `type :  'line' ， 'bar'， 'tristate'， 'discrete'， 'bullet'， 'pie'， 'box'`
             },{
                 value: `meskey:data可能有很多量值，這裏指定要用哪一個，沒指定的話就取第一個捉到的量值`
             },{
