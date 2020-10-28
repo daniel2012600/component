@@ -11,6 +11,9 @@
     -moz-box-sizing: content-box;
     box-sizing: content-box;
   }
+  .el-table .cell {
+        white-space: pre-line;
+    }
 
   .el-range-separator {
     /* 修正”至”樣式錯誤 */
@@ -87,12 +90,12 @@
             <el-card shadow="never" class="box-card wrap-card" >
             <h2 class="card__title">Example</h2>
             <v-echarts-year
-            id="plot"
-            :data="datalist"
-            :year="2020"
-            :fromcolor="'#C5E4FA'"
-            :tocolor="'#085A9B'"
-            :plotheight="500">
+                id="plot"
+                :data="datalist"
+                :year="2020"
+                :fromcolor="'#C5E4FA'"
+                :tocolor="'#085A9B'"
+                :plotheight="500">
         </v-echarts-year>
             </el-card>
         </div>
@@ -128,17 +131,12 @@
                 value: 'id:必填，元件id，要有唯一性'
             },{
                 name: '屬性',
-                value: `data : [{dt:'abc', y軸維度11:44 , y軸維度2:44 , y軸維度3:44},....]`
-            },{
-                value: `fromcolor : 最小量值的顏色`
-            },{
-                value: `tocolor : 最大量值的顏色`
-            },{
-                value: `plotheight : 圖型的高度，一定要設，預設值300`
-            },{
-                value: `valuelabelunit : 字串，預設空值。有設定時，會加在值的最後面`
-            },{
-                value: `year=選擇比較年限，ex: "2020" => 2019~2020`
+                value: `data : [{dt:'abc', y軸維度11:44 , y軸維度2:44 , y軸維度3:44},....]
+                        fromcolor : 最小量值的顏色
+                        tocolor : 最大量值的顏色
+                        plotheight : 圖型的高度，一定要設，預設值300
+                        valuelabelunit : 字串，預設空值。有設定時，會加在值的最後面
+                        year=選擇比較年限，ex: "2020" => 2019~2020`
             },{
                 name: '參考',
                 value: 'https://echarts.apache.org/examples/zh/editor.html?c=heatmap-cartesian'
@@ -155,16 +153,3 @@
 
 
 
-<!-- 描述：
-    年度月曆圖
-html:
-    id : 注意，不是屬性，元性的id，同一個頁面要有唯一性，裏面會用到，一定要設
-屬性：
-    data : [{dt:'abc', y軸維度11:44 , y軸維度2:44 , y軸維度3:44},....]
-    fromcolor : 最小量值的顏色
-    tocolor : 最大量值的顏色
-    plotheight : 圖型的高度，一定要設，預設值300
-    valuelabelunit : 字串，預設空值。有設定時，會加在值的最後面
-    year=選擇比較年限，ex: "2020" => 2019~2020
-參考:
-    https://echarts.apache.org/examples/zh/editor.html?c=heatmap-cartesian  -->

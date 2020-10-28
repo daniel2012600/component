@@ -12,6 +12,10 @@
     box-sizing: content-box;
   }
 
+  .el-table .cell {
+        white-space: pre-line;
+    }
+
   .el-range-separator {
     /* 修正”至”樣式錯誤 */
     width: 27px !important;
@@ -108,16 +112,14 @@
                 value: 'id:必填，元件id，要有唯一性'
             },{
                 name: '屬性',
-                value: 'data : [{name:"abc", value:44},....]'
-            },{
-                value: 'dkey : 需先設置["值的index","比較的維度",["x軸名稱"]] ex: ["key", "dt", ["demo","demo1","demo2"]]'
+                value: `data : [{name:"abc", value:44},....]
+                        dkey : 需先設置["值的index","比較的維度",["x軸名稱"]] ex: ["key", "dt", ["demo","demo1","demo2"]]`
             },{
                 name: '參考',
                 value: 'https://echarts.apache.org/examples/zh/editor.html?c=dataset-simple1'
             }],
         },
     });
-
 
 
 

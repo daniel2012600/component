@@ -11,6 +11,9 @@
     -moz-box-sizing: content-box;
     box-sizing: content-box;
   }
+  .el-table .cell {
+        white-space: pre-line;
+    }
 
   .el-range-separator {
     /* 修正”至”樣式錯誤 */
@@ -138,28 +141,21 @@
                 value: 'id:必填，元件id，要有唯一性'
             },{
                 name: '屬性',
-                value: `iconurl :可以到這裏https://loading.io/icon/, 選download，在右邊取預覽圖的svg下載來用`
-            },{
-                value: `data:陣列 每個元件為 {name:'xyz', let: 25.04, lng:121.57, sz: 'xs', cnt : 1200 }  上面的iconsize是字串，由大到小依序為  - xl, l , m, s, xs, xxs`
-            },{
-                value: `onrenderpop:傳入method`
-            },{
-                value: `item: 為的某一個item，回傳html字串`
-            },{
-                value: `isTop : true or undefind，是否為第一名`
-            },{
-                value: `color:設定比例尺由低至高顏色，格式為array ex: "['rgba(181,230,29,1)', 'rgba(6,200,300,1)'] "`
-            },{
-                value: `geo_data:可透過https://github.com/g0v/twgeojson/tree/master/json 獲得台灣地圖的GeoJSON檔案製作台灣地區的tooltip`
-            },{
-                value: `legend_key:右下方比例尺顯示名稱，格式為object ex:"{"size": "222", "color": "123"}" , size 為滲透圓點名稱，若為空字串則不顯示  color為比例尺名稱`
+                value: `iconurl :可以到這裏https://loading.io/icon/, 選download，在右邊取預覽圖的svg下載來用
+                        data:陣列 每個元件為 {name:'xyz', let: 25.04, lng:121.57, sz: 'xs', cnt : 1200 }  上面的iconsize是字串，由大到小依序為  - xl, l , m, s, xs, xxs
+                        onrenderpop:傳入method
+                        item: 為的某一個item，回傳html字串
+                        isTop : true or undefind，是否為第一名
+                        color:設定比例尺由低至高顏色，格式為array ex: "['rgba(181,230,29,1)', 'rgba(6,200,300,1)'] "
+                        geo_data:可透過https://github.com/g0v/twgeojson/tree/master/json 獲得台灣地圖的GeoJSON檔案製作台灣地區的tooltip
+                        legend_key:右下方比例尺顯示名稱，格式為object ex:"{"size": "222", "color": "123"}" , size 為滲透圓點名稱，若為空字串則不顯示  color為比例尺名稱
+                        `
             },{
                 name: '依賴',
-                value: 'https://unpkg.com/leaflet@1.3.4/dist/leaflet.css'
-            },{
-                value: `https://unpkg.com/leaflet@1.3.4/dist/leaflet.js`
-            },{
-                value: `https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js`
+                value: `https://unpkg.com/leaflet@1.3.4/dist/leaflet.css
+                        https://unpkg.com/leaflet@1.3.4/dist/leaflet.js        
+                        https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js
+                        `
             }],
 
 

@@ -11,6 +11,9 @@
     -moz-box-sizing: content-box;
     box-sizing: content-box;
   }
+  .el-table .cell {
+        white-space: pre-line;
+    }
 
   .el-range-separator {
     /* 修正”至”樣式錯誤 */
@@ -121,15 +124,11 @@
                 value: 'id:必填，元件id，要有唯一性'
             },{
                 name: '屬性',
-                value: `title:這是標題`
-            },{
-                value: `tooltip:這是提醒`
-            },{
-                value: `isempty：是否顯示沒有資料，若true, body就不顯示`
-            },{
-                value: `height:card高度`
-            },{
-                value: `loading：載入中`
+                value: `title:這是標題
+                        tooltip:這是提醒
+                        isempty：是否顯示沒有資料，若true, body就不顯示
+                        height:card高度
+                        loading：載入中`
             },{
                 name: '插槽',
                 value: `body:內容`

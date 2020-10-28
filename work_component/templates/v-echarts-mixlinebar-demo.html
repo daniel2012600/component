@@ -11,6 +11,9 @@
     -moz-box-sizing: content-box;
     box-sizing: content-box;
   }
+  .el-table .cell {
+        white-space: pre-line;
+    }
 
   .el-range-separator {
     /* 修正”至”樣式錯誤 */
@@ -132,14 +135,12 @@
                 value: 'id:必填，元件id，要有唯一性'
             },{
                 name: '屬性',
-                value: `dt_interval : x軸顯示的時間，必須為以下字串:\0\0
-                        year\0:\0代表只顯示年份, ex 2017\n
-                        month\0:\0代表只顯示月份, ex 一月\0\0
-                        day\0:\0代表只顯示日期, ex 2017-1-1`,
-            },{
-                value: `data :[ {dt:'yyyy-mm-dd', 量值１:22, 量值2:44 },....], 注意，dt為保留字，限制為橫軸的鍵名，但方便編程，其他的都是量值`
-            },{
-                value: `meskeys_type :傳入陣列["bar", "bar", "line"]，代表第一、二個量值是用bar, 第三用line這是預設值，可以改`
+                value: `dt_interval : x軸顯示的時間，必須為以下字串:
+                        \0\0\0\0year : 代表只顯示年份, ex 2017
+                        \0\0\0\0month : 代表只顯示月份, ex 一月
+                        \0\0\0\0day : 代表只顯示日期, ex 2017-1-1
+                        data :[ {dt:'yyyy-mm-dd', 量值１:22, 量值2:44 },....], 注意，dt為保留字，限制為橫軸的鍵名，但方便編程，其他的都是量值
+                        meskeys_type :傳入陣列["bar", "bar", "line"]，代表第一、二個量值是用bar, 第三用line這是預設值，可以改`,
             },{
                 name: '參考',
                 value: 'https://echarts.apache.org/examples/zh/editor.html?c=mix-line-bar'

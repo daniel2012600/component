@@ -11,6 +11,9 @@
         -moz-box-sizing: content-box;
         box-sizing: content-box;
     }
+    .el-table .cell {
+        white-space: pre-line;
+    }
 
     .el-range-separator {
     /* 修正”至”樣式錯誤 */
@@ -142,11 +145,9 @@
                 value: 'id:必填，元件id，要有唯一性'
             },{
                 name: '屬性',
-                value: 'data : [{y軸維度:"abc", 量值1:44 , 量值2:44 , 量值3:44},....]',
-                
-            },{
-                value: 'meskeys : 陣列，列舉要顯示的量值'
-            
+                value: `data : [{y軸維度:"abc", 量值1:44 , 量值2:44 , 量值3:44},....]
+                        meskeys : 陣列，列舉要顯示的量值`,
+
             },{
                 name: '參考',
                 value: 'https://echarts.apache.org/examples/zh/editor.html?c=bar1'

@@ -6,16 +6,19 @@
 
 <style type="text/css">
   /*修複sparkline tooltips樣式跑版*/
-  .jqstooltip {
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-  }
+    .jqstooltip {
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+    }
+    .el-table .cell {
+        white-space: pre-line;
+    }
 
-  .el-range-separator {
+    .el-range-separator {
     /* 修正”至”樣式錯誤 */
-    width: 27px !important;
-  }
+        width: 27px !important;
+    }
 </style>
 
 {% endblock %}

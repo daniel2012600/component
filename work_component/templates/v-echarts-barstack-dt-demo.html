@@ -12,6 +12,10 @@
     box-sizing: content-box;
   }
 
+  .el-table .cell {
+        white-space: pre-line;
+    }
+
   .el-range-separator {
     /* 修正”至”樣式錯誤 */
     width: 27px !important;
@@ -116,13 +120,10 @@
                 value: 'id:必填，元件id，要有唯一性'
             },{
                 name: '屬性',
-                value: 'data : [{y軸維度:"abc", 量值1:44 , 量值2:44 , 量值3:44},....]'
-            },{
-                value: 'ylabeltype : year, month, week, day'
-            
-            },{
-                value: 'meskeys : 陣列，可以不設，如果指定量值鍵，會決定量值出現在bar上的順序，由左到右'
-            
+                value: `data : [{y軸維度:"abc", 量值1:44 , 量值2:44 , 量值3:44},....]
+                        ylabeltype : year, month, week, day
+                        meskeys : 陣列，可以不設，如果指定量值鍵，會決定量值出現在bar上的順序，由左到右`
+
             },{
                 name: '參考',
                 value: 'https://echarts.apache.org/examples/zh/editor.html?c=bar-y-category-stack'

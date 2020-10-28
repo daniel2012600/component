@@ -11,6 +11,9 @@
     -moz-box-sizing: content-box;
     box-sizing: content-box;
   }
+  .el-table .cell {
+        white-space: pre-line;
+    }
 
   .el-range-separator {
     /* 修正”至”樣式錯誤 */
@@ -144,15 +147,11 @@
                 value: 'id:必填，元件id，要有唯一性'
             },{
                 name: '屬性',
-                value: `數值(val)`
-            },{
-                value: `小標題(text)`
-            },{
-                value: `sparkline(chartdata)`
-            },{
-                value: `tooltip(包住slot)`
-            },{
-                value: `slot`
+                value: `數值(val)
+                        小標題(text)
+                        sparkline(chartdata)
+                        tooltip(包住slot)
+                        slot`
             },{
                 name:'依賴',
                 value: `https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js`

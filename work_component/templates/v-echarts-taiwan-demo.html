@@ -11,6 +11,9 @@
     -moz-box-sizing: content-box;
     box-sizing: content-box;
   }
+  .el-table .cell {
+        white-space: pre-line;
+    }
 
   .el-range-separator {
     /* 修正”至”樣式錯誤 */
@@ -143,9 +146,8 @@
                 value: 'id:必填，元件id，要有唯一性'
             },{
                 name: '屬性',
-                value: `data : [  {name:'台灣縣市', value:數值 },....], name跟value都是保留字`
-            },{
-                value: `plotheight:圖型的高度，一定要設，預設300`
+                value: `data : [  {name:'台灣縣市', value:數值 },....], name跟value都是保留字
+                        plotheight:圖型的高度，一定要設，預設300`
             },{
                 name: '參考',
                 value: 'https://echarts.apache.org/examples/zh/editor.html?c=map-usa'

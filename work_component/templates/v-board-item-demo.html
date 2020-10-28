@@ -6,16 +6,19 @@
 
 <style type="text/css">
   /*修複sparkline tooltips樣式跑版*/
-  .jqstooltip {
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-  }
+    .jqstooltip {
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+    }
+    .el-table .cell {
+        white-space: pre-line;
+    }
 
-  .el-range-separator {
+    .el-range-separator {
     /* 修正”至”樣式錯誤 */
-    width: 27px !important;
-  }
+        width: 27px !important;
+    }
 </style>
 
 {% endblock %} 
@@ -24,35 +27,30 @@
 
 <!-- 頁面標題-右側-無功能 start -->
 <el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
-  <el-col :span="24">
-    <div class="grid-content">
-		<span class="h1">v-board-item.js 使用方式</span>
-    </div>
-  </el-col>
+    <el-col :span="24">
+        <div class="grid-content">
+            <span class="h1">v-board-item.js 使用方式</span>
+        </div>
+    </el-col>
 </el-row>
 <!-- 頁面標題-右側-無功能 end -->
 <!-- 1欄 start -->
 <el-row :gutter="25" class="mb-4">
-  <el-col :span="24">
-      <el-table
-          :data="tableData"
-          border
-          :show-header=false
-          style="width: 100%">
-          <el-table-column
-              prop="name"
-              width="180">
-          </el-table-column>
-          
-          <el-table-column 
-              prop="value">
-              <!-- <template slot-scope="scope">
-
-              </template> -->
-          </el-table-column>
-
-      </el-table>
-  </el-col>
+    <el-col :span="24">
+        <el-table
+            :data="tableData"
+            border
+            :show-header=false
+            style="width: 100%">
+            <el-table-column
+                prop="name"
+                width="180">
+            </el-table-column>
+            <el-table-column 
+                prop="value">
+            </el-table-column>
+        </el-table>
+    </el-col>
 </el-row>
 
 <el-row :gutter="25" class="mb-4">
@@ -72,13 +70,11 @@
             </pre></h3>
         </el-card>
         </div>
-
     </el-col>
 </el-row>
 
 <el-row :gutter="25" class="mb-4">
     <el-col :span="24">
-
         <v-board-item
             title= 'demo'
             fontaws_class= 'test'            
@@ -97,16 +93,16 @@
 <script src="/static/style/lodash/4.16.0/lodash.js"></script>
 <script src="/static/js/v-board-item.js"></script>
 <script>
-  var obj = new Vue({
+    var obj = new Vue({
     el: "#app",
     mixins: [layoutVue],
     data: {
-      breadpath: [
+        breadpath: [
         { key: "首頁", path: "/" },
         { key: "標題", path: "" },
-      ],
-      datalist: [],
-      tableData:[{
+        ],
+        datalist: [],
+        tableData:[{
                 name: '描述',
                 value: '滑鼠過去會有邊框的，圖文框'
             },{
@@ -117,53 +113,23 @@
                 value: 'id:必填，元件id，要有唯一性'
             },{
                 name: '屬性',
-                value: `title:標題文字`
-            },{
-                value: `fontaws_class:font aws 的圖標`
-            },{
-                value: `active:背景變成高亮`
+                value: `title:標題文字
+                        fontaws_class : font aws 的圖標
+                        active:背景變成高亮`
             },{
                 name: '事件',
                 value: `click:按鈕觸發事件`
             },{
                 name: '插槽',
-                value: `slot1:xxxx`
-            },{
-                value: `slot2:xxx`
+                value: `slot1:xxxx
+                        slot2:xxx`
             },{
                 name:'相依',
-                value: `script1:xxx`
-            },{
-                value: `script2:xxx`
-            }]
+                value: `script1:xxx
+                        script2:xxx`
+        }]
     },
-  });
+    });
 </script>
 
 {% endblock %}
-          <h3>
-            <font color="#4c769a" font-size="13px">
-              描述:</br>
-              <P style="margin-left:20px">
-                滑鼠過去會有邊框的，圖文框</br>
-              </P>
-              屬性:</br>
-              <P style="margin-left:20px">
-                title:標題文字</br>
-                fontaws_class:font aws 的圖標</br>
-                active:背景變成高亮</br>
-              </P>
-              事件:</br>
-              <P style="margin-left:20px">
-                click:按鈕觸發事件</br>
-              </P>
-              插槽:
-              <P style="margin-left:20px">
-                slot1:xxxx</br>
-                slot2:xxx</br>
-              </P>
-              相依:</br>
-              <P style="margin-left:20px">
-                script1:xxx</br>
-                script2:xxx</br>
-              </P>

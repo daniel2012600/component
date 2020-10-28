@@ -11,6 +11,9 @@
     -moz-box-sizing: content-box;
     box-sizing: content-box;
   }
+  .el-table .cell {
+        white-space: pre-line;
+    }
 
   .el-range-separator {
     /* 修正”至”樣式錯誤 */
@@ -124,11 +127,9 @@
                 value: 'id:必填，元件id，要有唯一性'
             },{
                 name: '屬性',
-                value: `data : [{g:'abc', x:44 , y:44},....]`
-            },{
-                value: `colcnt : 每列有多少欄`
-            },{
-                value: `plotheight : 圖型的高度，一定要設，預設值300`
+                value: `data : [{g:'abc', x:44 , y:44},....]
+                        colcnt : 每列有多少欄
+                        plotheight : 圖型的高度，一定要設，預設值300`
             },{
                 name: '參考',
                 value: 'http://echarts.baidu.com/examples/editor.html?c=bubble-gradient'

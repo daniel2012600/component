@@ -11,6 +11,9 @@
     -moz-box-sizing: content-box;
     box-sizing: content-box;
   }
+  .el-table .cell {
+        white-space: pre-line;
+    }
 
   .el-range-separator {
     /* 修正”至”樣式錯誤 */
@@ -61,14 +64,12 @@
             <h2 class="card__title">Source Code</h2>
             <h3><pre>
                 <code class="html">
-
                 &lt;v-echarts-paytype 
                     id="plot2"
                     :data="datalist"
                     :dkey="['pay_type', 'total']"
                     :show_currency="true"&gt;
                 &lt;/v-echarts-paytype&gt; 
-
             </code>
             </pre></h3>
         </el-card>
@@ -125,15 +126,11 @@
                 value: 'id:必填，元件id，要有唯一性'
             },{
                 name: '屬性',
-                value: `name : 組合成dataset所使用的名稱，預設為"product"`,
-            },{
-                value: `datalist :傳入的資料陣列`
-            },{
-                value: `dkey :從資料庫撈出時使用的alias名稱，傳入兩組String，Array[0]的String是顯示在pie的項目名稱; Array[1]的String是項目的數值`
-            },{
-                value: `charttype : 下列趨勢圖的顯示種類，預設為"line"，可更改為"bar"`
-            },{
-                value: `piecolor : pie的顏色值`
+                value: `name : 組合成dataset所使用的名稱，預設為"product"
+                        datalist :傳入的資料陣列
+                        dkey :從資料庫撈出時使用的alias名稱，傳入兩組String，Array[0]的String是顯示在pie的項目名稱; Array[1]的String是項目的數值
+                        charttype : 下列趨勢圖的顯示種類，預設為"line"，可更改為"bar"
+                        piecolor : pie的顏色值`,
             },{
                 name: '參考',
                 value: 'https://echarts.apache.org/examples/zh/editor.html?c=dataset-link'

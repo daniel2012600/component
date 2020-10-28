@@ -11,6 +11,9 @@
     -moz-box-sizing: content-box;
     box-sizing: content-box;
   }
+  .el-table .cell {
+        white-space: pre-line;
+    }
 
   .el-range-separator {
     /* 修正”至”樣式錯誤 */
@@ -130,18 +133,11 @@
                 value: 'id:必填，元件id，要有唯一性'
             },{
                 name: '屬性',
-                value: 'data : [{dt:"2020-10-01", 總銷售額:44},....]'
+                value: `data : [{dt:"2020-10-01", 總銷售額:44},....]
+                        predict_count : 可選擇想預測的次數(想預測的日期)  ex:  公式為 y = 18715.99x + -3023.27  x為預測數(日期判定)
+                        dt_interval : 日期間隔，預設為 day`
             },{
-                value: 'predict_count : 可選擇想預測的次數(想預測的日期)  ex:  公式為 y = 18715.99x + -3023.27  x為預測數(日期判定)'
-            },{
-                value: 'dt_interval : 日期間隔，預設為 day '
-            },{
-                name: '屬性',
-                value: 'data : [{dt:"2020-10-01", 總銷售額:44},....]'
-            },{
-                name: '參考',
-                value: "https://echarts.apache.org/examples/zh/editor.html?c=scatter-linear-regression"
-            },{
+
                 name: '參考',
                 value: 'https://github.com/ecomfe/echarts-stat/blob/master/dist/ecStat.js'
             }],

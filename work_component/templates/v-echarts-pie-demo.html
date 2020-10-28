@@ -11,6 +11,9 @@
     -moz-box-sizing: content-box;
     box-sizing: content-box;
   }
+  .el-table .cell {
+        white-space: pre-line;
+    }
 
   .el-range-separator {
     /* 修正”至”樣式錯誤 */
@@ -129,14 +132,10 @@
                 value: 'id:必填，元件id，要有唯一性'
             },{
                 name: '屬性',
-                value: `data : [{name:'abc', value:44},....]`,
-            },{
-                value: `colors : 色碼["#xxxxx","#xxxxx"]`
-            },{
-                value: `showlabel : 字串"true", 預設"false", 設true的話會顯示label`
-            },{
-                value: `hiddenarr : array，將要隱藏的name放在array內`
-
+                value: `data : [{name:'abc', value:44},....]
+                        colors : 色碼["#xxxxx","#xxxxx"]
+                        showlabel : 字串"true", 預設"false", 設true的話會顯示label
+                        hiddenarr : array，將要隱藏的name放在array內`,
             },{
                 name: '參考',
                 value: 'https://echarts.apache.org/examples/zh/editor.html?c=pie-legend'

@@ -11,6 +11,9 @@
     -moz-box-sizing: content-box;
     box-sizing: content-box;
   }
+  .el-table .cell {
+        white-space: pre-line;
+    }
 
   .el-range-separator {
     /* 修正”至”樣式錯誤 */
@@ -153,16 +156,13 @@
                 value: 'id:必填，元件id，要有唯一性'
             },{
                 name: '屬性',
-                value: `data :[ {dt:'yyyy-mm-dd', 量值１:22 },....], 注意，dt為保留字，限制為橫軸的鍵名，但方便編程，其他的都是量值`
-            },{
-                value: `type :  'line' ， 'bar'， 'tristate'， 'discrete'， 'bullet'， 'pie'， 'box'`
-            },{
-                value: `meskey:data可能有很多量值，這裏指定要用哪一個，沒指定的話就取第一個捉到的量值`
+                value: `data :[ {dt:'yyyy-mm-dd', 量值１:22 },....], 注意，dt為保留字，限制為橫軸的鍵名，但方便編程，其他的都是量值
+                        type :  'line' ， 'bar'， 'tristate'， 'discrete'， 'bullet'， 'pie'， 'box'
+                        meskey:data可能有很多量值，這裏指定要用哪一個，沒指定的話就取第一個捉到的量值`
             },{
                 name: '參考',
-                value: `https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js`
-            },{
-                value: `https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js`
+                value: `https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js
+                        https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js`
             }],
         },
     });

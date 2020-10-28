@@ -11,6 +11,9 @@
     -moz-box-sizing: content-box;
     box-sizing: content-box;
   }
+  .el-table .cell {
+        white-space: pre-line;
+    }
 
   .el-range-separator {
     /* 修正”至”樣式錯誤 */
@@ -123,15 +126,12 @@
                 value: 'id:必填，元件id，要有唯一性'
             },{
                 name: '屬性',
-                value: `comparison_text: 可選擇比較定義文字，若未設置則預設為"YOY"`
-            },{
-                value: `hidden_comparison: 是否顯示比較定義，若未設置則預設為不顯示`
-            },{
-                value: `dtrange_text1: 可選擇比較區間，若未設置則預設為"2019年12月"`
-            },{
-                value: `dtrange_text2: 可選擇比較區間，若未設置則預設為"2018年12月"`
-            },{
-                value: `custom_text1: 選擇比較方式，若未設置則預設為"與"`
+                value: `comparison_text: 可選擇比較定義文字，若未設置則預設為"YOY"
+                        hidden_comparison: 是否顯示比較定義，若未設置則預設為不顯示
+                        dtrange_text1: 可選擇比較區間，若未設置則預設為"2019年12月"
+                        dtrange_text2: 可選擇比較區間，若未設置則預設為"2018年12月"
+                        custom_text1: 選擇比較方式，若未設置則預設為"與"
+                        `
             }],
         },
     });

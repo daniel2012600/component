@@ -11,6 +11,9 @@
     -moz-box-sizing: content-box;
     box-sizing: content-box;
   }
+  .el-table .cell {
+        white-space: pre-line;
+    }
 
   .el-range-separator {
     /* 修正”至”樣式錯誤 */
@@ -122,15 +125,15 @@
                 value: 'id:必填，元件id，要有唯一性'
             },{
                 name: '屬性',
-                value: `data : [{"rfm":"M",         設定RFM類型\0
-                            "rank":6,           設定級距\0
-                            "cnt":1767,         級距內佔有數\0
-                            "label1":"9424",    級距內最小值\0
-                            "label2":"91332",   級距內最小值\0
-                            "unit":"元"         級距單位
-                    },`
-            },{
-                value: `ex : {"rfm":"F","rank":6,"cnt":19,"label1":"83","label2":"365","unit":"次"},{"rfm":"R","rank":6,"cnt":66031,"label1":"0","label2":"5","unit":"天"},..............]`
+                value: `data : [{
+                    "rfm":"M",         設定RFM類型
+                    "rank":6,           設定級距
+                    "cnt":1767,         級距內佔有數
+                    "label1":"9424",    級距內最小值
+                    "label2":"91332",   級距內最小值
+                    "unit":"元"         級距單位
+                    }],
+                    ex : [{"rfm":"F","rank":6,"cnt":19,"label1":"83","label2":"365","unit":"次"},{"rfm":"R","rank":6,"cnt":66031,"label1":"0","label2":"5","unit":"天"}],..............]`
             },{
                 name: '參考',
                 value: 'https://echarts.apache.org/examples/zh/editor.html?c=pie-legend'

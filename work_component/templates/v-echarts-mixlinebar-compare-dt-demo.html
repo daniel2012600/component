@@ -11,6 +11,9 @@
     -moz-box-sizing: content-box;
     box-sizing: content-box;
   }
+  .el-table .cell {
+        white-space: pre-line;
+    }
 
   .el-range-separator {
     /* 修正”至”樣式錯誤 */
@@ -121,11 +124,9 @@
                 value: 'id:必填，元件id，要有唯一性'
             },{
                 name: '屬性',
-                value: 'data1 :[ {dt:"yyyy-mm-dd", 量值:22 },....], 注意，dt為保留字, 一定要放在第一順位'
-            },{
-                value: 'data2 :[ {dt:"yyyy-mm-dd", 量值:22 },....], 注意，dt為保留字, 一定要放在第一順位'
-            },{
-                value: 'meskeys_type :傳入陣列["bar", "bar", "line"]，代表第一、二個量值是用bar, 第三用line這是預設值，可以改'
+                value: `data1 :[ {dt:"yyyy-mm-dd", 量值:22 },....], 注意，dt為保留字, 一定要放在第一順位
+                        data2 :[ {dt:"yyyy-mm-dd", 量值:22 },....], 注意，dt為保留字, 一定要放在第一順位
+                        meskeys_type :傳入陣列["bar", "bar", "line"]，代表第一、二個量值是用bar, 第三用line這是預設值，可以改`
             },{
                 name: '參考',
                 value: 'https://echarts.apache.org/examples/zh/editor.html?c=line-simple'

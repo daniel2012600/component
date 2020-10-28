@@ -11,6 +11,9 @@
     -moz-box-sizing: content-box;
     box-sizing: content-box;
   }
+  .el-table .cell {
+        white-space: pre-line;
+    }
 
   .el-range-separator {
     /* 修正”至”樣式錯誤 */
@@ -125,15 +128,12 @@
                 value: 'id:必填，元件id，要有唯一性'
             },{
                 name: '屬性',
-                value: `txt1 : 比較區間定義，預設為"同比"，ex:與前期`
-            },{
-                value: `val : 比較變數，預設為"1999"`
-            },{
-                value: `txt2 : val後的文字，預設為"相比"`
-            },{
-                value: `up : 大於則為 true 可用於顯示大小，若未設置則無上升下降符號`
-            },{
-                value: `perc : 上升(下降)百分比設置，預設為20`
+                value: `txt1 : 比較區間定義，預設為"同比"，ex:與前期
+                        val : 比較變數，預設為"1999"
+                        txt2 : val後的文字，預設為"相比"
+                        up : 大於則為 true 可用於顯示大小，若未設置則無上升下降符號
+                        perc : 上升(下降)百分比設置，預設為20
+                        `
             }],
         },
     });
