@@ -52,7 +52,7 @@ Vue.component("v-el-select-multi", {
         </div>
     `,
     props:[
-        "value",
+        "value", //v-model
         "placeholder", 
         "opts"
     ],

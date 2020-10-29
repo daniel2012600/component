@@ -1,9 +1,7 @@
 {% extends "layout_mini_daniel.html" %}
 {% block title %}標題 | 首頁 - EagleEye CDP 顧客數據雲{% endblock %}
-
 {% block head %}
 <link rel="stylesheet" href="/static/style/morris/0.5.1/morris.css" />
-
 <style type="text/css">
   /*修複sparkline tooltips樣式跑版*/
   .jqstooltip {
@@ -53,9 +51,6 @@
     </el-col>
 </el-row>
 
-
-
-
 <el-row :gutter="25" class="mb-4">
     <el-col :span="24">
         <div class="grid-content">
@@ -64,6 +59,7 @@
             <h3><pre>
                 <code class="html">
                 &lt;v-el-select-dr
+                    v-model="sel_value"
                     name ="paytype"
                     placeholder="付費方式"
                     value='sdsdsd'
@@ -74,10 +70,7 @@
         </el-card>
         </div>
     </el-col>
-
 </el-row>
-
- 
 
 <el-row :gutter="25" class="mb-4">
     <el-col :span="24">
@@ -85,34 +78,30 @@
             <el-card shadow="never" class="box-card wrap-card" >
             <h2 class="card__title">Example</h2>
             <v-el-select-multi
+                v-model="sel_value"
                 name ="paytype"
                 placeholder="付費方式"
-                value='sdsdsd'
-                :opts = '["demo","demo2","demo3"]'>
+                value='ddddd'
+                :opts = '["demo","demo2","demo3"]'
+                @onchange="mychange">
             </v-el-select-multi>
             </el-card>
         </div>
     </el-col>
 </el-row>
-
-<!-- 1欄 end -->
-
 {% endblock %} 
 
 {% block js %}
-
 <script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
 <script src="/static/style/lodash/4.16.0/lodash.js"></script>
 <script src="/static/js/v-el-select-multi.js"></script>
-
-
-
 <script>
     var obj = new Vue({
         el: '#app',
         mixins: [layoutVue],
         data:  {
             breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
+            sel_value: [],
             tableData:[{
                 name: '描述',
                 value: '多項式選單，資料有限制，只支援字串陣列，不支援json obj'
@@ -121,28 +110,21 @@
                 value: 'id:必填，元件id，要有唯一性'
             },{
                 name: '屬性',
-                value: 'placeholder :　空值的背景文字',
-                
-            },{
-                value: 'opts : ["初","始","選項"]'
-            
-            },{
-                value: 'name : 此下拉單的名稱，最好有唯一性'
-            
-            },{
-                value: 'valuelabelunit : 字串，預設空值。有設定時，會加在值的最後面'           
+                value: `placeholder :　空值的背景文字
+                        opts : ["初","始","選項"]
+                        name : 此下拉單的名稱，最好有唯一性
+                        value : 字串，預設空值。有設定時，會加在值的最後面`,
             },{
                 name: '事件',
                 value: 'onchange(name,val)　：　當回傳值發生改變時觸發，name :屬性name， val :目前選單的選擇'
             }]
         },
-
+        methods: {
+            mychange(param){
+            }
+        }
     });
-
-    
 </script>
-
-
 {% endblock %}
 
 

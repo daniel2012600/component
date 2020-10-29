@@ -5,10 +5,35 @@ import sys
 import datetime
 import pandas as pd
 import re
-
+from service.lookup_service import LookupService
 from flask import Flask
 from flask import render_template
 from flask import session
+
+import arrow
+import json
+import datetime as dt
+import requests
+import threading
+import base64
+import pandas as pd
+import numpy as np
+import time
+import decimal
+import functools
+import string
+import random
+import logging
+import datetime
+import pytz
+import google.cloud.logging
+import pydash as py_
+import re
+from io import BytesIO
+from dateutil import tz
+from functools import wraps
+from time import time, struct_time, mktime
+
 
 
 
@@ -140,6 +165,65 @@ def leaflet():
 @app.route('/morris-area')
 def morris_area():
     return render_template('v-morris-area-demo.html')
+# ==============================[篩選器相關]==============================
+@app.route('/lookup/area_store', methods=['POST'])
+def lookup_area_store():
+    ser = LookupService()
+    data = ser.get_lookup_area_store()
+
+    return json.dumps(data)
+
+
+@app.route('/lookup/area_store_by_role', methods=['POST'])
+def lookup_area_store_by_role():
+    print('111111111111111111111111111111111111')
+    ser = LookupService()
+
+    data = ser.get_lookup_area_store()
+    print('111111111111111111111111111111111111')
+    print(data)
+    return json.dumps(data)
+
+
+@app.route('/lookup/bhv', methods=['POST'])
+def lookup_bhv():
+    ser = LookupService()
+    data = ser.get_lookup_bhv()
+
+    return json.dumps(data)
+
+
+@app.route('/lookup/ord_type', methods=['POST'])
+def lookup_ord_type():
+    ser = LookupService()
+    data = ser.get_lookup_ord_type()
+
+    return json.dumps(data)
+
+
+@app.route('/lookup/ord_paytype', methods=['POST'])
+def lookup_ord_paytype():
+    ser = LookupService()
+    data = ser.get_lookup_ord_paytype()
+
+    return json.dumps(data)
+
+
+@app.route('/lookup/prd_cat', methods=['POST'])
+def lookup_prd_cat():
+    ser = LookupService()
+    data = ser.get_lookup_prd_cat()
+
+    return json.dumps(data)
+
+
+@app.route('/lookup/touch', methods=['POST'])
+def lookup_touch():
+    ser = LookupService()
+    data = ser.get_lookup_touch()
+
+    return json.dumps(data)
+
 
 @app.route('/orderfilter')
 def orderfilter():

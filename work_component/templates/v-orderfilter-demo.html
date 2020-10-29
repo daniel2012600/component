@@ -115,7 +115,9 @@
         mixins: [layoutVue],
         data:  {
             breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
-            filter_data: {"dr":["2020-10-13","2020-10-19"]},
+            datalist:[],
+            filter_data: {"area_store":[],"bhv_C":[],"bhv1":[],"bhv2":[],"ord_type":[],"ord_paytype":[],"prd_cat_C":[],"prd_cat1":[],"prd_cat2":[],"touch_C":[],"touch1":[],"touch2":[],"dr":["2020-10-21","2020-10-27"]},
+
             tableData:[{
                 name: '描述',
                 value: `包含「付費方式」、「購買方式」、「門店」、「日期區間」的複合元件
@@ -135,7 +137,11 @@
                 value: `onchange(val)當回傳值發生改變時觸發 , oncommit()使用者按下搜尋計算按鈕時觸發`
             },{
                 name: 'val',
-                value: `{ord_paytype:[]\0 付費類型 \0 , buytype:[]\0 購買方式\0,store:[]\0 門店 \0, dr:"" \0 區間}`
+                value: `{ord_paytype:[] 付費類型  
+                    buytype:[] , 購買方式 
+                    store:[] , 門店
+                    dr:""  區間}`
+
             },{
                 name: '參考',
                 value: `https://codertw.com/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/197439/`
@@ -144,6 +150,19 @@
                 value: `vue element ,vue materaial ,v-el-select-multi元件`
             }],
         },
+        mounted () {
+            
+        
+            
+            // $.post('lookup/area_store_by_role', { 
+            //     }, result => {
+            //         console.log(11111111111111111)
+            //         console.log(result)
+            //         this.datalist = result;
+                    
+            //     }, 'json');
+
+        }
     });
 
     
