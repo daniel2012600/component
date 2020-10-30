@@ -63,7 +63,8 @@
                     name ="paytype"
                     placeholder="付費方式"
                     value='sdsdsd'
-                    :opts = '["demo","demo2","demo3"]'&gt;
+                    :opts = '["未知", "APP外送結帳", "手機會員卡結帳", "晶片卡結帳", "會員卡加值"]'
+                    @onchange="mychange"&gt;
                 &lt;/v-el-select-dr&gt;
                 </code>
             </pre></h3>
@@ -81,8 +82,8 @@
                 v-model="sel_value"
                 name ="paytype"
                 placeholder="付費方式"
-                value='ddddd'
-                :opts = '["demo","demo2","demo3"]'
+                value='sdsdsd'
+                :opts = '["未知", "APP外送結帳", "手機會員卡結帳", "晶片卡結帳", "會員卡加值"]'
                 @onchange="mychange">
             </v-el-select-multi>
             </el-card>
@@ -92,6 +93,7 @@
 {% endblock %} 
 
 {% block js %}
+
 <script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
 <script src="/static/style/lodash/4.16.0/lodash.js"></script>
 <script src="/static/js/v-el-select-multi.js"></script>
@@ -125,7 +127,7 @@
         }
     });
 </script>
-{% endblock %}
 
+{% endblock %}
 
 
