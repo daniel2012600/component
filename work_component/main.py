@@ -170,18 +170,13 @@ def morris_area():
 def lookup_area_store():
     ser = LookupService()
     data = ser.get_lookup_area_store()
-
     return json.dumps(data)
 
 
 @app.route('/lookup/area_store_by_role', methods=['POST'])
 def lookup_area_store_by_role():
-    print('111111111111111111111111111111111111')
     ser = LookupService()
-
     data = ser.get_lookup_area_store()
-    print('111111111111111111111111111111111111')
-    print(data)
     return json.dumps(data)
 
 
@@ -189,7 +184,6 @@ def lookup_area_store_by_role():
 def lookup_bhv():
     ser = LookupService()
     data = ser.get_lookup_bhv()
-
     return json.dumps(data)
 
 
@@ -197,7 +191,6 @@ def lookup_bhv():
 def lookup_ord_type():
     ser = LookupService()
     data = ser.get_lookup_ord_type()
-
     return json.dumps(data)
 
 
@@ -205,7 +198,6 @@ def lookup_ord_type():
 def lookup_ord_paytype():
     ser = LookupService()
     data = ser.get_lookup_ord_paytype()
-
     return json.dumps(data)
 
 
@@ -213,7 +205,6 @@ def lookup_ord_paytype():
 def lookup_prd_cat():
     ser = LookupService()
     data = ser.get_lookup_prd_cat()
-
     return json.dumps(data)
 
 
@@ -221,7 +212,6 @@ def lookup_prd_cat():
 def lookup_touch():
     ser = LookupService()
     data = ser.get_lookup_touch()
-
     return json.dumps(data)
 
 
