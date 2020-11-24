@@ -9,7 +9,7 @@ from service.lookup_service import LookupService
 from flask import Flask
 from flask import render_template
 from flask import session
-
+from flask import request
 import arrow
 import json
 import datetime as dt
@@ -33,19 +33,84 @@ from io import BytesIO
 from dateutil import tz
 from functools import wraps
 from time import time, struct_time, mktime
-
+from config import Config as cfg
+import pymongo
 
 
 
 app = Flask(__name__, template_folder = './templates', static_folder = './static')
 app.secret_key = pd.util.testing.rands(24)  # 使用session必要初始值
+# =========================從mongoDB拿資料==============================
+def get_mongodb_data(db,coll,lim=10,skip=0):
+    mongo_connect = pymongo.MongoClient(cfg.MONGO_CONN)
+    find_data_num = mongo_connect[db][coll].count()
+    find_data = mongo_connect[db][coll].find({},{'_id': False}).limit(lim).skip(skip) if int(skip)<find_data_num else None
+    find_datas = [data for data in find_data] if find_data else None
+    return find_datas
 
 @app.before_request
 def before_request():
     session.permanent = True
     app.permanent_session_lifetime = datetime.timedelta(days=1)
+# ==============================[API]==============================
+# ========================[篩選器相關]========================
+@app.route('/lookup/area_store', methods=['POST'])
+def lookup_area_store():
+    ser = LookupService()
+    data = ser.get_lookup_area_store()
+    return json.dumps(data)
 
-# # ========== Component Demo頁 ==========
+
+@app.route('/lookup/area_store_by_role', methods=['POST'])
+def lookup_area_store_by_role():
+    ser = LookupService()
+    data = ser.get_lookup_area_store()
+    return json.dumps(data)
+
+
+@app.route('/lookup/bhv', methods=['POST'])
+def lookup_bhv():
+    ser = LookupService()
+    data = ser.get_lookup_bhv()
+    return json.dumps(data)
+
+
+@app.route('/lookup/ord_type', methods=['POST'])
+def lookup_ord_type():
+    ser = LookupService()
+    data = ser.get_lookup_ord_type()
+    return json.dumps(data)
+
+
+@app.route('/lookup/ord_paytype', methods=['POST'])
+def lookup_ord_paytype():
+    ser = LookupService()
+    data = ser.get_lookup_ord_paytype()
+    return json.dumps(data)
+
+
+@app.route('/lookup/prd_cat', methods=['POST'])
+def lookup_prd_cat():
+    ser = LookupService()
+    data = ser.get_lookup_prd_cat()
+    return json.dumps(data)
+
+
+@app.route('/lookup/touch', methods=['POST'])
+def lookup_touch():
+    ser = LookupService()
+    data = ser.get_lookup_touch()
+    return json.dumps(data)
+
+@app.route('/test', methods=['POST'])
+def test():
+    db = "cdpbackenddb"
+    coll = "log_owner"
+    lim = request.form.get('lim',10)
+    skip = request.form.get('skip',0)
+    result = get_mongodb_data(db=db,coll=coll,lim=int(lim),skip=int(skip))
+    return json.dumps(result)
+# ========================[Component Demo頁]========================
 @app.route('/')
 def layout():
     return render_template('component-layout.html')
@@ -165,54 +230,6 @@ def leaflet():
 @app.route('/morris-area')
 def morris_area():
     return render_template('v-morris-area-demo.html')
-# ==============================[篩選器相關]==============================
-@app.route('/lookup/area_store', methods=['POST'])
-def lookup_area_store():
-    ser = LookupService()
-    data = ser.get_lookup_area_store()
-    return json.dumps(data)
-
-
-@app.route('/lookup/area_store_by_role', methods=['POST'])
-def lookup_area_store_by_role():
-    ser = LookupService()
-    data = ser.get_lookup_area_store()
-    return json.dumps(data)
-
-
-@app.route('/lookup/bhv', methods=['POST'])
-def lookup_bhv():
-    ser = LookupService()
-    data = ser.get_lookup_bhv()
-    return json.dumps(data)
-
-
-@app.route('/lookup/ord_type', methods=['POST'])
-def lookup_ord_type():
-    ser = LookupService()
-    data = ser.get_lookup_ord_type()
-    return json.dumps(data)
-
-
-@app.route('/lookup/ord_paytype', methods=['POST'])
-def lookup_ord_paytype():
-    ser = LookupService()
-    data = ser.get_lookup_ord_paytype()
-    return json.dumps(data)
-
-
-@app.route('/lookup/prd_cat', methods=['POST'])
-def lookup_prd_cat():
-    ser = LookupService()
-    data = ser.get_lookup_prd_cat()
-    return json.dumps(data)
-
-
-@app.route('/lookup/touch', methods=['POST'])
-def lookup_touch():
-    ser = LookupService()
-    data = ser.get_lookup_touch()
-    return json.dumps(data)
 
 
 @app.route('/orderfilter')
@@ -243,7 +260,9 @@ def value_card_subtext():
 def value_card():
     return render_template('v-value-card-demo.html')
 
-
+@app.route('/mongo-infinitescroll')
+def mongo_infinitescroll():
+    return render_template('v-mongo-infinitescroll-demo.html')
 
 if __name__ == '__main__':
     app.jinja_env.auto_reload = True

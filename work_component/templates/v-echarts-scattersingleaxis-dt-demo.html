@@ -1,24 +1,24 @@
 {% extends "layout_mini_daniel.html" %}
-{% block title %}標題 | 首頁 - EagleEye CDP 顧客數據雲{% endblock %}
+{% block title %}CDP元件展覽網站{% endblock %}
 
 {% block head %}
 <link rel="stylesheet" href="/static/style/morris/0.5.1/morris.css" />
 
 <style type="text/css">
-  /*修複sparkline tooltips樣式跑版*/
-  .jqstooltip {
+    /*修複sparkline tooltips樣式跑版*/
+    .jqstooltip {
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
-  }
-  .el-table .cell {
+    }
+    .el-table .cell {
         white-space: pre-line;
     }
 
-  .el-range-separator {
+    .el-range-separator {
     /* 修正”至”樣式錯誤 */
     width: 27px !important;
-  }
+    }
 </style>
 {% endblock %}
 
@@ -31,6 +31,7 @@
     </div>
     </el-col>
 </el-row>
+
 <!-- 頁面標題-右側-無功能 end -->
 <!-- 1欄 start -->
 <el-row :gutter="25" class="mb-4">
@@ -56,8 +57,6 @@
     </el-col>
 </el-row>
 
-
-
 <el-row :gutter="25" class="mb-4">
     <el-col :span="24">
         <div class="grid-content">
@@ -76,10 +75,7 @@
         </el-card>
         </div>
     </el-col>
-
 </el-row>
-
- 
 
 <el-row :gutter="25" class="mb-4">
     <el-col :span="24">

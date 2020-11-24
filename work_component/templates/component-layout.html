@@ -1,5 +1,5 @@
 {% extends "layout_mini_daniel.html" %}
-{% block title %}標題 | 首頁 - EagleEye CDP 顧客數據雲{% endblock %}
+{% block title %}CDP元件展覽網站{% endblock %}
 
 {% block head %}
 <link rel="stylesheet" href="/static/style/morris/0.5.1/morris.css" />
@@ -31,28 +31,13 @@
 <el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
     <el-col :span="24">
     <div class="grid-content">
-        <h1>component 使用方式</h1>  
+        <h1>CDP元件展覽網站</h1>  
     </div>
     </el-col>
 </el-row>
 <!-- 頁面標題-右側-無功能 end -->
 <!-- 1欄 start -->
 
-<el-row :gutter="25" class="mb-4">
-  <el-col :span="24">
-        <div class="grid-content">
-            <el-card shadow="never" class="box-card wrap-card"  >
-<pre>
-<h3><font color="#4c769a" font-size="13px">
-描述:
-    component-demo
-
-</font></h3>
-</pre>
-            </el-card>
-        </div>
-    </el-col>
-</el-row>
 
 
 
@@ -75,7 +60,7 @@
         mixins: [layoutVue],
         data:  {
             breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
-            datalist: [{"rfm":"M","rank":6,"cnt":1767,"label1":"9424","label2":"91332","unit":"元"},{"rfm":"F","rank":6,"cnt":19,"label1":"83","label2":"365","unit":"次"},{"rfm":"R","rank":6,"cnt":66031,"label1":"0","label2":"5","unit":"天"},{"rfm":"M","rank":5,"cnt":2440,"label1":"6579","label2":"9424","unit":"元"},{"rfm":"F","rank":5,"cnt":41,"label1":"62","label2":"83","unit":"次"},{"rfm":"R","rank":5,"cnt":27537,"label1":"5","label2":"10","unit":"天"},{"rfm":"M","rank":4,"cnt":4225,"label1":"4773","label2":"6579","unit":"元"},{"rfm":"F","rank":4,"cnt":136,"label1":"47","label2":"62","unit":"次"},{"rfm":"R","rank":4,"cnt":27968,"label1":"10","label2":"15","unit":"天"},{"rfm":"M","rank":3,"cnt":9477,"label1":"3166","label2":"4773","unit":"元"},{"rfm":"F","rank":3,"cnt":662,"label1":"31","label2":"47","unit":"次"},{"rfm":"R","rank":3,"cnt":24041,"label1":"15","label2":"20","unit":"天"},{"rfm":"M","rank":2,"cnt":29141,"label1":"1577","label2":"3166","unit":"元"},{"rfm":"F","rank":2,"cnt":3939,"label1":"16","label2":"31","unit":"次"},{"rfm":"R","rank":2,"cnt":12080,"label1":"20","label2":"25","unit":"天"},{"rfm":"M","rank":1,"cnt":126244,"label1":"-3336","label2":"1577","unit":"元"},{"rfm":"F","rank":1,"cnt":168497,"label1":"1","label2":"16","unit":"次"},{"rfm":"R","rank":1,"cnt":15637,"label1":"25","label2":"30","unit":"天"}],
+            
         },
     });
 
