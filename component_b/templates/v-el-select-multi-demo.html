@@ -1,0 +1,133 @@
+{% extends "layout_mini_daniel.html" %}
+{% block title %}CDP元件展覽網站{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="/static/style/morris/0.5.1/morris.css" />
+<style type="text/css">
+  /*修複sparkline tooltips樣式跑版*/
+  .jqstooltip {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+  }
+  .el-table .cell {
+        white-space: pre-line;
+    }
+
+  .el-range-separator {
+    /* 修正”至”樣式錯誤 */
+    width: 27px !important;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- 頁面標題-右側-無功能 start -->
+<el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
+    <el-col :span="24">
+    <div class="grid-content">
+        <h1>v-el-select-multi.js 使用方式</h1>  
+    </div>
+    </el-col>
+</el-row>
+<!-- 頁面標題-右側-無功能 end -->
+<!-- 1欄 start -->
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <el-table
+            :data="tableData"
+            border
+            :show-header=false
+            style="width: 100%">
+                <el-table-column
+                prop="name"
+                width="180">
+                </el-table-column>
+                <el-table-column
+                prop="value"
+                >
+                </el-table-column>
+        </el-table>
+    </el-col>
+</el-row>
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+        <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Source Code</h2>
+            <h3><pre>
+                <code class="html">
+                &lt;v-el-select-multi
+                    v-model="sel_value"
+                    name ="paytype"
+                    placeholder="付費方式"
+                    value='sdsdsd'
+                    :opts = '["未知", "APP外送結帳", "手機會員卡結帳", "晶片卡結帳", "會員卡加值"]'
+                    @onchange="mychange"&gt;
+                &lt;/v-el-select-multi&gt;
+                </code>
+            </pre></h3>
+        </el-card>
+        </div>
+    </el-col>
+</el-row>
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+            <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Example</h2>
+            <v-el-select-multi
+                v-model="sel_value"
+                name ="paytype"
+                placeholder="付費方式"
+                value='sdsdsd'
+                :opts = '["未知", "APP外送結帳", "手機會員卡結帳", "晶片卡結帳", "會員卡加值"]'
+                @onchange="mychange">
+            </v-el-select-multi>
+            </el-card>
+        </div>
+    </el-col>
+</el-row>
+{% endblock %} 
+
+{% block js %}
+
+<script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
+<script src="/static/style/lodash/4.16.0/lodash.js"></script>
+<script src="/static/js/v-el-select-multi.js"></script>
+<script>
+    var obj = new Vue({
+        el: '#app',
+        mixins: [layoutVue],
+        data:  {
+            breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
+            sel_value: [],
+            tableData:[{
+                name: '描述',
+                value: '多項式選單，資料有限制，只支援字串陣列，不支援json obj'
+            },{
+                name: 'html',
+                value: 'id:必填，元件id，要有唯一性'
+            },{
+                name: '屬性',
+                value: `placeholder :　空值的背景文字
+                        opts : ["初","始","選項"]
+                        name : 此下拉單的名稱，最好有唯一性
+                        value : 字串，預設空值。有設定時，會加在值的最後面`,
+            },{
+                name: '事件',
+                value: 'onchange(name,val)　：　當回傳值發生改變時觸發，name :屬性name， val :目前選單的選擇'
+            }]
+        },
+        methods: {
+            mychange(param){
+            }
+        }
+    });
+</script>
+
+{% endblock %}
+
+

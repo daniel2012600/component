@@ -1,0 +1,153 @@
+{% extends "layout_mini_daniel.html" %}
+{% block title %}CDP元件展覽網站{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/style/morris/0.5.1/morris.css" />
+
+<style type="text/css">
+  /*修複sparkline tooltips樣式跑版*/
+  .jqstooltip {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+  }
+  .el-table .cell {
+        white-space: pre-line;
+    }
+
+  .el-range-separator {
+    /* 修正”至”樣式錯誤 */
+    width: 27px !important;
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+<!-- 頁面標題-右側-無功能 start -->
+<el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
+    <el-col :span="24">
+    <div class="grid-content">
+        <h1>v-linear-regression.js 使用方式</h1>  
+    </div>
+    </el-col>
+</el-row>
+<!-- 頁面標題-右側-無功能 end -->
+<!-- 1欄 start -->
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <el-table
+            :data="tableData"
+            border
+            :show-header=false
+            style="width: 100%">
+                <el-table-column
+                prop="name"
+                width="180">
+                </el-table-column>
+                <el-table-column
+                prop="value"
+                >
+                </el-table-column>
+        </el-table>
+    </el-col>
+</el-row>
+
+
+
+
+
+<div class="grid-content">
+    <el-card shadow="never" class="box-card wrap-card" >
+        <h2 class="card__title">Source Code</h2>
+        <h3><pre>
+            <code class="html">
+            &lt;v-linear-regression 
+                id="plot2"
+                :data='datalist'
+                :y_label_format="(val, key) => {
+                    if (key=='總銷售額') return '$' + val
+                    else return val
+                }"
+                :predict_count = 2
+                dt_interval = 'month'&gt;
+            &lt;/v-linear-regression&gt;
+        </code>
+        </pre></h3>
+    </el-card>
+    </div>
+
+ 
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content" style="height: 600px;">
+            <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Example</h2>
+            <v-linear-regression 
+                id="plot2"
+                :data='datalist'
+                :y_label_format="(val, key) => {
+                    if (key=='總銷售額') return '$' + val
+                    else return val
+                }"
+                :predict_count = 2
+                dt_interval = 'day'>
+            </v-linear-regression>
+            </el-card>
+        </div>
+    </el-col>
+</el-row>
+
+<!-- 1欄 end -->
+
+{% endblock %} 
+
+{% block js %}
+<script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
+<script src="/static/style/lodash/4.16.0/lodash.js"></script>
+<script src="/static/js/v-linear-regression.js"></script>
+<script src="/static/style/echarts/4.8.0/ecStat.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script> -->
+
+<script>
+
+    var obj = new Vue({
+        el: '#app',
+        mixins: [layoutVue],
+        data:  {
+            breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
+            // day
+            datalist: [{'dt':'2020-12-21', '總銷售額':33333},{'dt':'2020-12-22', '總銷售額':52947},{'dt':'2020-12-23', '總銷售額':59345},{'dt':'2020-12-24', '總銷售額':71712},{'dt':'2020-12-25', '總銷售額':89644},{'dt':'2020-12-26', '總銷售額':5},{'dt':'2020-12-27', '總銷售額':119625},{'dt':'2020-12-28', '總銷售額':149283},{'dt':'2020-12-29', '總銷售額':169092},{'dt':'2020-12-30', '總銷售額':185479},{'dt':'2020-12-31', '總銷售額':200}],
+            tableData:[{
+                name: '描述',
+                value: '線性迴歸分析圖'
+            },{
+                name: '維度量值',
+                value: '維度1個，量值1個'
+            },{
+                name: '限制',
+                value: 'data裏面一定要有dt'
+            },{
+                name: 'html',
+                value: 'id:必填，元件id，要有唯一性'
+            },{
+                name: '屬性',
+                value: `data : [{dt:"2020-10-01", 總銷售額:44},....]
+                        predict_count : 可選擇想預測的次數(想預測的日期)  ex:  公式為 y = 18715.99x + -3023.27  x為預測數(日期判定)
+                        dt_interval : 日期間隔，預設為 day`
+            },{
+
+                name: '參考',
+                value: 'https://github.com/ecomfe/echarts-stat/blob/master/dist/ecStat.js'
+            }],
+
+        },
+    });
+
+    
+</script>
+
+
+{% endblock %}
+

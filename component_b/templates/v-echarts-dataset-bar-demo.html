@@ -1,0 +1,144 @@
+{% extends "layout_mini_daniel.html" %}
+{% block title %}CDP元件展覽網站{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/style/morris/0.5.1/morris.css" />
+
+<style type="text/css">
+  /*修複sparkline tooltips樣式跑版*/
+  .jqstooltip {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+  }
+
+  .el-table .cell {
+        white-space: pre-line;
+    }
+
+  .el-range-separator {
+    /* 修正”至”樣式錯誤 */
+    width: 27px !important;
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+<!-- 頁面標題-右側-無功能 start -->
+<el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
+    <el-col :span="24">
+    <div class="grid-content">
+        <h1>v-echarts-dataset-bar.js 使用方式</h1>  
+    </div>
+    </el-col>
+</el-row>
+<!-- 頁面標題-右側-無功能 end -->
+<!-- 1欄 start -->
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <el-table
+            :data="tableData"
+            border
+            :show-header=false
+            style="width: 100%">
+                <el-table-column
+                prop="name"
+                width="180">
+                </el-table-column>
+                <el-table-column
+                prop="value"
+                >
+                </el-table-column>
+        </el-table>
+    </el-col>
+</el-row>
+
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+        <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Source Code</h2>
+            <h3><pre>
+                <code class="html">
+                &lt;v-echarts-dataset-bar   
+                    id="plot2" 
+                    :datalist="datalist" 
+                    :dkey="['key', 'dt', ['demo','demo1','demo2']]"&gt; 
+                &lt;/v-echarts-dataset-bar  &gt;
+            </code>
+            </pre></h3>
+        </el-card>
+        </div>
+    </el-col>
+</el-row>
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+            <v-echarts-dataset-bar
+            id="plot2" 
+            :datalist="datalist" 
+            :dkey="['key', 'dt', ['demo','demo1','demo2']]">
+            </v-echarts-dataset-bar>
+        </div>
+    </el-col>
+</el-row>
+
+<!-- 1欄 end -->
+
+{% endblock %} 
+
+{% block js %}
+<script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
+<script src="/static/style/lodash/4.16.0/lodash.js"></script>
+<script src="/static/js/v-echarts-dataset-bar.js"></script>
+<script>
+    var obj = new Vue({
+        el: '#app',
+        mixins: [layoutVue],
+        data:  {
+            breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
+            datalist: [{"dt":"2020","demo":32166999,'demo1':123123132,'demo2':66499789},{"dt":"2021","demo":505983898,'demo1':8888888,'demo2':36499789},{"dt":"2022","demo":505983898,'demo1':223123132,'demo2':96499789}],
+            tableData:[{
+                name: '描述',
+                value: '柱狀圖'
+            },{
+                name: '維度量值',
+                value: '維度1個，量值n個，資料一定是name, value'
+            },{
+                name: 'html',
+                value: 'id:必填，元件id，要有唯一性'
+            },{
+                name: '屬性',
+                value: `data : [{name:"abc", value:44},....]
+                        dkey : 需先設置["值的index","比較的維度",["x軸名稱"]] ex: ["key", "dt", ["demo","demo1","demo2"]]`
+            },{
+                name: '參考',
+                value: 'https://echarts.apache.org/examples/zh/editor.html?c=dataset-simple1'
+            }],
+        },
+    });
+
+
+
+
+</script>
+
+
+{% endblock %}
+
+
+
+
+描述:
+    柱狀圖
+限制:
+    
+html:
+    id:必填，元件id，要有唯一性
+屬性:
+    data : [{name:'abc', value:44},....]
+參考:
+    https://echarts.apache.org/examples/zh/editor.html?c=dataset-simple1

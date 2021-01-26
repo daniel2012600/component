@@ -1,0 +1,144 @@
+{% extends "layout_mini_daniel.html" %}
+{% block title %}CDP元件展覽網站{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="/static/style/morris/0.5.1/morris.css">
+<style type="text/css">
+    /*修複sparkline tooltips樣式跑版*/
+    .jqstooltip {
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+    }
+    .el-table .cell {
+        white-space: pre-line;
+    }
+    .el-range-separator {
+        /* 修正”至”樣式錯誤 */
+        width: 27px !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- 頁面標題-右側-無功能 start -->
+<el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
+    <el-col :span="24">
+    <div class="grid-content">
+        <h1>v-mongo-infinitescroll.js 使用方式</h1>  
+    </div>
+    </el-col>
+</el-row>
+<!-- 頁面標題-右側-無功能 end -->
+<!-- 1欄 start -->
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <el-table
+            :data="data.tableData"
+            border
+            :show-header=false
+            style="width: 100%">
+            <el-table-column
+                prop="name"
+                width="180">
+            </el-table-column>
+            
+            <el-table-column 
+                prop="value">
+
+            </el-table-column>
+
+        </el-table>
+    </el-col>
+</el-row>
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+        <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Source Code</h2>
+            <h3><pre>
+                <code class="html">
+                    &lt;v-mongo-infinitescroll 
+                        :data="data.mongo_data"
+                        :mongo_key=mongo_key 
+                        :lim=lim 
+                        :path=path &gt;
+                    &lt;/v-mongo-infinitescroll&gt;
+            </code>
+            </pre></h3>
+        </el-card>
+        </div>
+    </el-col>
+</el-row>
+
+
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content" >
+        <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Example</h2>
+            <v-mongo-infinitescroll 
+                :data="data.mongo_data"
+                :mongo_key=mongo_key 
+                :lim=lim 
+                :path=path >
+            </v-mongo-infinitescroll>
+        </el-card>
+    </div>
+</el-col>
+</el-row>
+{% endblock %}
+
+{% block js %}
+<script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
+<script src="/static/style/lodash/4.16.0/lodash.js"></script>
+<script src="/static/js/v-mongo-infinitescroll.js"></script>
+
+<script >
+    var obj = new Vue({
+        el: '#app',
+        delimiters: ['[[', ']]'],
+        mixins: [layoutVue],
+        data: {
+            breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
+            mongo_key:[{prop:"log_dt",label:"日期"},
+            {prop:"action",label:"動作"},
+            {prop:"charge",label:"信箱"}],
+            lim : 10,
+            path:"/test",
+            data:{
+                mongo_data:[],
+                tableData:[{
+                    name: '描述',
+                    value: `顯示mongo資料庫內的資料，每次讀出"lim"筆資料
+                            當使用者往下滾動至底部時，自動加載下"lim"筆新資料
+                            若搜索完畢將顯示"資料已全部顯示`
+                },{
+                    name: '維度量值',
+                    value: '維度1個，量值1個；dt維度是分顏色，量值決定大小'
+                },{
+                    name: 'html',
+                    value: 'id:必填，元件id，要有唯一性'
+                },{
+                    name: '屬性',
+                    value: `mongo_key : 設定要顯示的欄位
+                            prop : mongodb內的key名稱
+                            label為顯示在表格最上方的名稱
+                            \0\0ex :[ {"prop":"","label":""},{"prop":"","label":""} ]
+                            data : 資料庫回傳的資料
+                            \0\0ex : {   mongo_data:[]  }
+                            lim : 每次跟資料庫拿取多少筆資料
+                            path : 需要post的地方的位址 如"/test`
+                },{
+                    name: '參考',
+                    value: 'https://element.eleme.io/#/zh-CN/component/infiniteScroll'
+            }],
+            }
+        },
+        methods: {
+        },mounted(){
+        }
+    });
+</script>
+{% endblock %}

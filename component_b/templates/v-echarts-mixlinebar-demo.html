@@ -1,0 +1,174 @@
+{% extends "layout_mini_daniel.html" %}
+{% block title %}CDP元件展覽網站{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/style/morris/0.5.1/morris.css" />
+
+<style type="text/css">
+  /*修複sparkline tooltips樣式跑版*/
+  .jqstooltip {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+  }
+  .el-table .cell {
+        white-space: pre-line;
+    }
+
+  .el-range-separator {
+    /* 修正”至”樣式錯誤 */
+    width: 27px !important;
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+<!-- 頁面標題-右側-無功能 start -->
+<el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
+    <el-col :span="24">
+    <div class="grid-content">
+        <h1>v-echarts-mixlinebar.js 使用方式</h1>  
+    </div>
+    </el-col>
+</el-row>
+<!-- 頁面標題-右側-無功能 end -->
+<!-- 1欄 start -->
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <el-table
+            :data="tableData"
+            border
+            :show-header=false
+            style="width: 100%">
+            <el-table-column
+                prop="name"
+                width="180">
+            </el-table-column>
+            
+            <el-table-column
+                prop="value">
+            </el-table-column>
+
+        </el-table>
+    </el-col>
+</el-row>
+
+
+
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+        <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Source Code</h2>
+            <h3><pre>
+                <code class="html">
+                &lt;v-echarts-mixlinebar   
+                    id="c1"
+                    dt_interval='day'
+                    :grid_bottom='25'
+                    :data="datalist"
+                    :meskeys="table_name_data"
+                    :meskeys_types="['bar','line']"
+                    :y_label_key="['資料總筆數', '資料筆數增量']"&gt;
+                &lt;/v-echarts-mixlinebar  &gt; 
+            </code>
+            </pre></h3>
+        </el-card>
+        </div>
+    </el-col>
+
+</el-row>
+
+
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+        <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Example</h2>
+            <v-echarts-mixlinebar 
+            id="c1"
+            dt_interval="day" 
+            :grid_bottom='25'
+            :data="datalist" 
+            :meskeys= '["order_detail","order_pay","order_master","member"]'
+            :meskeys_types="['bar','line']"
+            :y_label_key="['資料總筆數', '資料筆數增量']">
+        </v-echarts-mixlinebar>
+        </el-card>
+    </div>
+</el-col>
+</el-row>
+
+
+           
+    
+<!-- 1欄 end -->
+
+{% endblock %} 
+
+{% block js %}
+<script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
+<script src="/static/style/lodash/4.16.0/lodash.js"></script>
+<script src="/static/js/v-echarts-mixlinebar.js"></script>
+
+
+
+<script>
+
+    var obj = new Vue({
+        el: '#app',
+        mixins: [layoutVue],
+        data:  {
+            breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
+            datalist: [{"dt":"2020-10-06","name":"member","資料總筆數":2221892,"資料筆數增量":0},{"dt":"2020-10-07","name":"member","資料總筆數":2261936,"資料筆數增量":40044},{"dt":"2020-10-08","name":"member","資料總筆數":2302004,"資料筆數增量":40068},{"dt":"2020-10-09","name":"member","資料總筆數":2342093,"資料筆數增量":40089},{"dt":"2020-10-10","name":"member","資料總筆數":2382208,"資料筆數增量":40115},{"dt":"2020-10-11","name":"member","資料總筆數":2422341,"資料筆數增量":40133},{"dt":"2020-10-12","name":"member","資料總筆數":2462497,"資料筆數增量":40156},{"dt":"2020-10-06","name":"order_master","資料總筆數":8510252,"資料筆數增量":0},{"dt":"2020-10-07","name":"order_master","資料總筆數":8534118,"資料筆數增量":23866},{"dt":"2020-10-08","name":"order_master","資料總筆數":8557013,"資料筆數增量":22895},{"dt":"2020-10-06","name":"order_pay","資料總筆數":8567624,"資料筆數增量":0},{"dt":"2020-10-09","name":"order_master","資料總筆數":8575986,"資料筆數增量":18973},{"dt":"2020-10-07","name":"order_pay","資料總筆數":8591571,"資料筆數增量":23947},{"dt":"2020-10-10","name":"order_master","資料總筆數":8593763,"資料筆數增量":17777},{"dt":"2020-10-11","name":"order_master","資料總筆數":8609528,"資料筆數增量":15765},{"dt":"2020-10-08","name":"order_pay","資料總筆數":8614730,"資料筆數增量":23159},{"dt":"2020-10-09","name":"order_pay","資料總筆數":8633884,"資料筆數增量":19154},{"dt":"2020-10-12","name":"order_master","資料總筆數":8634696,"資料筆數增量":25168},{"dt":"2020-10-10","name":"order_pay","資料總筆數":8651892,"資料筆數增量":18008},{"dt":"2020-10-11","name":"order_pay","資料總筆數":8667838,"資料筆數增量":15946},{"dt":"2020-10-12","name":"order_pay","資料總筆數":8693293,"資料筆數增量":25455},{"dt":"2020-10-06","name":"order_detail","資料總筆數":14757463,"資料筆數增量":0},{"dt":"2020-10-07","name":"order_detail","資料總筆數":14800059,"資料筆數增量":42596},{"dt":"2020-10-08","name":"order_detail","資料總筆數":14841677,"資料筆數增量":41618},{"dt":"2020-10-09","name":"order_detail","資料總筆數":14876932,"資料筆數增量":35255},{"dt":"2020-10-10","name":"order_detail","資料總筆數":14909572,"資料筆數增量":32640},{"dt":"2020-10-11","name":"order_detail","資料總筆數":14937881,"資料筆數增量":28309},{"dt":"2020-10-12","name":"order_detail","資料總筆數":14984136,"資料筆數增量":46255}],
+            tableData:[{
+                name: '描述',
+                value: '長條圖+折線圖(多)'
+            },{
+                name: '維度量值',
+                value: 'dt,  data裏面一定要有dt, dt格式一定"yyyy-mm-dd"'
+            },{
+                name: 'html',
+                value: 'id:必填，元件id，要有唯一性'
+            },{
+                name: '屬性',
+                value: `dt_interval : x軸顯示的時間，必須為以下字串:
+                        \0\0\0\0year : 代表只顯示年份, ex 2017
+                        \0\0\0\0month : 代表只顯示月份, ex 一月
+                        \0\0\0\0day : 代表只顯示日期, ex 2017-1-1
+                        data :[ {dt:'yyyy-mm-dd', 量值１:22, 量值2:44 },....], 注意，dt為保留字，限制為橫軸的鍵名，但方便編程，其他的都是量值
+                        meskeys_type :傳入陣列["bar", "bar", "line"]，代表第一、二個量值是用bar, 第三用line這是預設值，可以改`,
+            },{
+                name: '參考',
+                value: 'https://echarts.apache.org/examples/zh/editor.html?c=mix-line-bar'
+            }],
+        },
+    });
+
+</script>
+
+
+{% endblock %}
+
+
+
+
+<!-- 描述:
+    長條圖+折線圖
+限制:
+    data裏面一定要有dt, dt格式一定'yyyy-mm-dd'
+html:
+    id:必填，元件id，要有唯一性
+屬性:
+    dt_interval : x軸顯示的時間，必須為以下字串:
+        year :代表只顯示年份, ex 2017
+        month :代表只顯示月份, ex 一月
+        day:　代表只顯示日期, ex 2017-1-1
+    data :
+        data :[ {dt:'yyyy-mm-dd', 量值１:22, 量值2:44 },....], 注意，dt為保留字，限制為橫軸的鍵名，但方便編程，其他的都是量值
+        meskeys_type :傳入陣列["bar", "bar", "line"]，代表第一、二個量值是用bar, 第三用line這是預設值，可以改
+參考:
+    https://echarts.apache.org/examples/zh/editor.html?c=mix-line-bar -->

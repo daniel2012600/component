@@ -1,0 +1,150 @@
+{% extends "layout_mini_daniel.html" %}
+{% block title %}CDP元件展覽網站{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/style/morris/0.5.1/morris.css" />
+
+<style type="text/css">
+  /*修複sparkline tooltips樣式跑版*/
+  .jqstooltip {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+  }
+  .el-table .cell {
+        white-space: pre-line;
+    }
+
+  .el-range-separator {
+    /* 修正”至”樣式錯誤 */
+    width: 27px !important;
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+<!-- 頁面標題-右側-無功能 start -->
+<el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
+    <el-col :span="24">
+    <div class="grid-content">
+        <h1>v-echarts-paytype.js 使用方式</h1>  
+    </div>
+    </el-col>
+</el-row>
+<!-- 頁面標題-右側-無功能 end -->
+<!-- 1欄 start -->
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <el-table
+            :data="tableData"
+            border
+            :show-header=false
+            style="width: 100%">
+            <el-table-column
+                prop="name"
+                width="180">
+            </el-table-column>
+            
+            <el-table-column
+                prop="value">
+            </el-table-column>
+
+        </el-table>
+    </el-col>
+</el-row>
+
+
+
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+        <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Source Code</h2>
+            <h3><pre>
+                <code class="html">
+                &lt;v-echarts-paytype 
+                    id="plot2"
+                    :data="datalist"
+                    :dkey="['pay_type', 'total']"
+                    :show_currency="true"&gt;
+                &lt;/v-echarts-paytype&gt; 
+            </code>
+            </pre></h3>
+        </el-card>
+        </div>
+    </el-col>
+
+</el-row>
+
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content" >
+        <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Example</h2>
+            <v-echarts-paytype 
+            id="plot2" 
+            :datalist="datalist" 
+            :dkey="['pay_type', 'total']"
+            :show_currency="true">
+        </v-echarts-paytype>
+        </el-card>
+    </div>
+</el-col>
+</el-row>
+
+
+<!-- 1欄 end -->
+
+{% endblock %} 
+
+{% block js %}
+<script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
+<script src="/static/style/lodash/4.16.0/lodash.js"></script>
+<script src="/static/js/v-echarts-paytype.js"></script>
+
+
+
+<script>
+
+    var obj = new Vue({
+        el: '#app',
+        mixins: [layoutVue],
+        data:  {
+            breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
+            datalist: [{"dt":"2020-10-06","pay_type":"APP外送結帳","total":222508},{"dt":"2020-10-06","pay_type":"手機會員卡結帳","total":3556315},{"dt":"2020-10-06","pay_type":"晶片卡結帳","total":3272227},{"dt":"2020-10-06","pay_type":"會員卡加值","total":0},{"dt":"2020-10-06","pay_type":"未知","total":7256632},{"dt":"2020-10-07","pay_type":"APP外送結帳","total":175301},{"dt":"2020-10-07","pay_type":"手機會員卡結帳","total":3656666},{"dt":"2020-10-07","pay_type":"晶片卡結帳","total":2310207},{"dt":"2020-10-07","pay_type":"會員卡加值","total":0},{"dt":"2020-10-07","pay_type":"未知","total":5833692},{"dt":"2020-10-08","pay_type":"APP外送結帳","total":314297},{"dt":"2020-10-08","pay_type":"手機會員卡結帳","total":3210013},{"dt":"2020-10-08","pay_type":"晶片卡結帳","total":2716748},{"dt":"2020-10-08","pay_type":"會員卡加值","total":0},{"dt":"2020-10-08","pay_type":"未知","total":6214109},{"dt":"2020-10-09","pay_type":"APP外送結帳","total":303072},{"dt":"2020-10-09","pay_type":"手機會員卡結帳","total":2679799},{"dt":"2020-10-09","pay_type":"晶片卡結帳","total":2802980},{"dt":"2020-10-09","pay_type":"會員卡加值","total":0},{"dt":"2020-10-09","pay_type":"未知","total":6893955},{"dt":"2020-10-10","pay_type":"APP外送結帳","total":280090},{"dt":"2020-10-10","pay_type":"手機會員卡結帳","total":2715475},{"dt":"2020-10-10","pay_type":"晶片卡結帳","total":2612541},{"dt":"2020-10-10","pay_type":"會員卡加值","total":0},{"dt":"2020-10-10","pay_type":"未知","total":6857370},{"dt":"2020-10-11","pay_type":"APP外送結帳","total":306596},{"dt":"2020-10-11","pay_type":"手機會員卡結帳","total":2974036},{"dt":"2020-10-11","pay_type":"晶片卡結帳","total":2723948},{"dt":"2020-10-11","pay_type":"會員卡加值","total":0},{"dt":"2020-10-11","pay_type":"未知","total":7109909},{"dt":"2020-10-12","pay_type":"APP外送結帳","total":298009},{"dt":"2020-10-12","pay_type":"手機會員卡結帳","total":3666272},{"dt":"2020-10-12","pay_type":"晶片卡結帳","total":3424561},{"dt":"2020-10-12","pay_type":"會員卡加值","total":0},{"dt":"2020-10-12","pay_type":"未知","total":8298515}],
+            tableData:[{
+                name: '描述',
+                value: '圓餅圖+趨勢圖'
+            },{
+                name: '維度量值',
+                value: 'dt ,data裏面一定要有dt, dt格式一定"yyyy-mm-dd"'
+            },{
+                name: 'html',
+                value: 'id:必填，元件id，要有唯一性'
+            },{
+                name: '屬性',
+                value: `name : 組合成dataset所使用的名稱，預設為"product"
+                        datalist :傳入的資料陣列
+                        dkey :從資料庫撈出時使用的alias名稱，傳入兩組String，Array[0]的String是顯示在pie的項目名稱; Array[1]的String是項目的數值
+                        charttype : 下列趨勢圖的顯示種類，預設為"line"，可更改為"bar"
+                        piecolor : pie的顏色值`,
+            },{
+                name: '參考',
+                value: 'https://echarts.apache.org/examples/zh/editor.html?c=dataset-link'
+            }],
+
+
+        },
+
+    });
+
+</script>
+
+
+{% endblock %}
+
+
+

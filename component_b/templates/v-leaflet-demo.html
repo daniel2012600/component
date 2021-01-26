@@ -1,0 +1,257 @@
+{% extends "layout_mini_daniel.html" %}
+{% block title %}CDP元件展覽網站{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/style/morris/0.5.1/morris.css" />
+
+<style type="text/css">
+  /*修複sparkline tooltips樣式跑版*/
+  .jqstooltip {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+  }
+  .el-table .cell {
+        white-space: pre-line;
+    }
+
+  .el-range-separator {
+    /* 修正”至”樣式錯誤 */
+    width: 27px !important;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- 頁面標題-右側-無功能 start -->
+<el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
+    <el-col :span="24">
+    <div class="grid-content">
+        <h1>v-leaflet.js 使用方式</h1>  
+    </div>
+    </el-col>
+</el-row>
+<!-- 頁面標題-右側-無功能 end -->
+<!-- 1欄 start -->
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <el-table
+            :data="tableData"
+            border
+            :show-header=false
+            style="width: 100%">
+            <el-table-column
+                prop="name"
+                width="180">
+            </el-table-column>
+            
+            <el-table-column 
+                prop="value">
+                <!-- <template slot-scope="scope">
+
+                </template> -->
+            </el-table-column>
+
+        </el-table>
+    </el-col>
+</el-row>
+
+
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+        <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Source Code</h2>
+            <h3><pre>
+                <code class="html">
+                &lt;v-leaflet
+                    :data="datalist"
+                    :geo_data="geojson_data"
+                    :color="['#C5E4FA', '#085A9B'] "
+                    :size_scale="[]"
+                    :size="[4, 20]"
+                    :color_scale="[0, 0.002257266679305009]"
+                    :legend_key='{"size": "滲透圓點名稱", "color": "滲透率"}'&gt;
+                &lt;/v-leaflet&gt;
+                </code>
+            </pre></h3>
+        </el-card>
+        </div>
+    </el-col>
+
+</el-row>
+
+ 
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+            <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Example</h2>
+            <v-leaflet
+                :data="datalist"
+                :geo_data="geojson_data"
+                :color="['#C5E4FA', '#085A9B'] "
+                :size_scale="[]"
+                :size="[4, 20]"
+                :color_scale="[0, 0.002257266679305009]"
+                :legend_key='{"size": "滲透圓點名稱", "color": "滲透率"}'>
+            </v-leaflet>
+            </el-card>
+        </div>
+    </el-col>
+</el-row>
+
+<!-- 1欄 end -->
+
+{% endblock %} 
+
+{% block js %}
+
+<script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
+<script src="/static/style/lodash/4.16.0/lodash.js"></script>
+<script src="/static/js/v-leaflet.js"></script>
+<script src="/static/js/twCity.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin="anonymous"></script>
+<script src="/static/js/moment-with-locales.js"></script>
+<script src="/static/style/d3js/4.13.0/d3.v4.min.js"></script>
+
+<script>
+    var obj = new Vue({
+        el: '#app',
+        mixins: [layoutVue],
+        data:  {
+            breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
+            datalist: [{"area":"台北市","rev":25482,"dcnt_pid":120,"prev_rev":16557,"prev_dcnt_pid":85,"rev_updn_perc":53.904692879144775,"pid_updn_perc":41.17647058823529},{"area":"台南市","rev":31820,"dcnt_pid":111,"prev_rev":28245,"prev_dcnt_pid":93,"rev_updn_perc":12.657107452646486,"pid_updn_perc":19.35483870967742},{"area":"彰化縣","rev":11030,"dcnt_pid":35,"prev_rev":9405,"prev_dcnt_pid":31,"rev_updn_perc":17.27804359383307,"pid_updn_perc":12.903225806451612},{"area":"宜蘭縣","rev":393418,"dcnt_pid":1024,"prev_rev":320719,"prev_dcnt_pid":1014,"rev_updn_perc":22.667506446453125,"pid_updn_perc":0.9861932938856016},{"area":"高雄市","rev":16824,"dcnt_pid":76,"prev_rev":13729,"prev_dcnt_pid":51,"rev_updn_perc":22.54352101391216,"pid_updn_perc":49.01960784313725},{"area":"台中市","rev":16495,"dcnt_pid":66,"prev_rev":12805,"prev_dcnt_pid":57,"rev_updn_perc":28.81686841077704,"pid_updn_perc":15.789473684210526},{"area":"苗栗縣","rev":6550,"dcnt_pid":16,"prev_rev":2530,"prev_dcnt_pid":13,"rev_updn_perc":158.89328063241106,"pid_updn_perc":23.076923076923077},{"area":"雲林縣","rev":10090,"dcnt_pid":42,"prev_rev":9315,"prev_dcnt_pid":44,"rev_updn_perc":8.319914117015566,"pid_updn_perc":-4.545454545454546},{"area":"屏東縣","rev":7500,"dcnt_pid":7,"prev_rev":8885,"prev_dcnt_pid":8,"rev_updn_perc":-15.588069780528983,"pid_updn_perc":-12.5},{"area":"新北市","rev":17006,"dcnt_pid":66,"prev_rev":8786,"prev_dcnt_pid":42,"rev_updn_perc":93.55793307534714,"pid_updn_perc":57.14285714285714},{"area":"台東縣","rev":11378,"dcnt_pid":5,"prev_rev":12351,"prev_dcnt_pid":6,"rev_updn_perc":-7.87790462310744,"pid_updn_perc":-16.666666666666664},{"area":"桃園市","rev":1020,"dcnt_pid":4,"prev_rev":1245,"prev_dcnt_pid":5,"rev_updn_perc":-18.072289156626507,"pid_updn_perc":-20},{"area":"嘉義市","rev":4860,"dcnt_pid":11,"prev_rev":4155,"prev_dcnt_pid":12,"rev_updn_perc":16.967509025270758,"pid_updn_perc":-8.333333333333332},{"area":"花蓮縣","rev":21510,"dcnt_pid":16,"prev_rev":19465,"prev_dcnt_pid":10,"rev_updn_perc":10.506036475725661,"pid_updn_perc":60},{"area":"嘉義縣","rev":85,"dcnt_pid":1,"prev_rev":95,"prev_dcnt_pid":1,"rev_updn_perc":-10.526315789473683,"pid_updn_perc":0}],
+            twCity: twCity,
+            Population: [{"area":"新北市","population":4027481,"pid_penetrate_perc":0.000016387414366448906},{"area":"台北市","population":2620037,"pid_penetrate_perc":0.000045800879911237895},{"area":"桃園市","population":2260043,"pid_penetrate_perc":0.0000017698778297581063},{"area":"台中市","population":2816792,"pid_penetrate_perc":0.000023430910056546595},{"area":"台南市","population":1877294,"pid_penetrate_perc":0.00005912765927979315},{"area":"高雄市","population":2770654,"pid_penetrate_perc":0.00002743034677011276},{"area":"宜蘭縣","population":453760,"pid_penetrate_perc":0.002256699576868829},{"area":"新竹縣","population":567807,"pid_penetrate_perc":0},{"area":"苗栗縣","population":543803,"pid_penetrate_perc":0.000029422419515890865},{"area":"彰化縣","population":1269395,"pid_penetrate_perc":0.000027572189901488506},{"area":"南投縣","population":492410,"pid_penetrate_perc":0},{"area":"雲林縣","population":678896,"pid_penetrate_perc":0.00006186514576606726},{"area":"嘉義縣","population":500897,"pid_penetrate_perc":0.000001996418425344931},{"area":"屏東縣","population":815367,"pid_penetrate_perc":0.000008585091130742353},{"area":"台東縣","population":215768,"pid_penetrate_perc":0.000023173037707166958},{"area":"花蓮縣","population":325058,"pid_penetrate_perc":0.000049221984999600075},{"area":"澎湖縣","population":105174,"pid_penetrate_perc":0},{"area":"基隆市","population":368372,"pid_penetrate_perc":0},{"area":"新竹市","population":450113,"pid_penetrate_perc":0},{"area":"嘉義市","population":266833,"pid_penetrate_perc":0.000041224286351388324},{"area":"福建省","population":152751,"pid_penetrate_perc":0},{"area":"金門縣","population":139628,"pid_penetrate_perc":0},{"area":"連江縣","population":13123,"pid_penetrate_perc":0},{"area":"新北市","population":4026407,"pid_penetrate_perc":0.000016391785529878127},{"area":"台北市","population":2626385,"pid_penetrate_perc":0.00004569017870571146},{"area":"桃園市","population":2256665,"pid_penetrate_perc":0.0000017725271584395557},{"area":"台中市","population":2816494,"pid_penetrate_perc":0.000023433389171075812},{"area":"台南市","population":1878253,"pid_penetrate_perc":0.00005909746982967683},{"area":"高雄市","population":2772834,"pid_penetrate_perc":0.0000274087810521654},{"area":"宜蘭縣","population":453970,"pid_penetrate_perc":0.0022556556600656433},{"area":"新竹縣","population":566434,"pid_penetrate_perc":0},{"area":"苗栗縣","population":544339,"pid_penetrate_perc":0.000029393447833059913},{"area":"彰化縣","population":1269953,"pid_penetrate_perc":0.000027560075057895843},{"area":"南投縣","population":492877,"pid_penetrate_perc":0},{"area":"雲林縣","population":679468,"pid_penetrate_perc":0.00006181306551596249},{"area":"嘉義縣","population":501376,"pid_penetrate_perc":0.0000019945111054378352},{"area":"屏東縣","population":816173,"pid_penetrate_perc":0.00000857661304649872},{"area":"台東縣","population":216045,"pid_penetrate_perc":0.000023143326621768615},{"area":"花蓮縣","population":325453,"pid_penetrate_perc":0.000049162244625183975},{"area":"澎湖縣","population":105022,"pid_penetrate_perc":0},{"area":"基隆市","population":368686,"pid_penetrate_perc":0},{"area":"新竹市","population":449806,"pid_penetrate_perc":0},{"area":"嘉義市","population":267203,"pid_penetrate_perc":0.00004116720246404419},{"area":"福建省","population":152719,"pid_penetrate_perc":0},{"area":"金門縣","population":139683,"pid_penetrate_perc":0},{"area":"連江縣","population":13036,"pid_penetrate_perc":0},{"area":"新北市","population":4028324,"pid_penetrate_perc":0.000016383985002199426},{"area":"台北市","population":2615642,"pid_penetrate_perc":0.00004587783802217582},{"area":"桃園市","population":2262440,"pid_penetrate_perc":0.0000017680026873640848},{"area":"台中市","population":2816819,"pid_penetrate_perc":0.00002343068546470327},{"area":"台南市","population":1876829,"pid_penetrate_perc":0.000059142308649322874},{"area":"高雄市","population":2769434,"pid_penetrate_perc":0.000027442430474963475},{"area":"宜蘭縣","population":453646,"pid_penetrate_perc":0.002257266679305009},{"area":"新竹縣","population":568516,"pid_penetrate_perc":0},{"area":"苗栗縣","population":543711,"pid_penetrate_perc":0.00002942739801107574},{"area":"彰化縣","population":1268766,"pid_penetrate_perc":0.000027585859015768078},{"area":"南投縣","population":492168,"pid_penetrate_perc":0},{"area":"雲林縣","population":678589,"pid_penetrate_perc":0.00006189313413568449},{"area":"嘉義縣","population":500654,"pid_penetrate_perc":0.000001997387417258226},{"area":"屏東縣","population":814895,"pid_penetrate_perc":0.00000859006375054455},{"area":"台東縣","population":215674,"pid_penetrate_perc":0.00002318313751309847},{"area":"花蓮縣","population":325018,"pid_penetrate_perc":0.000049228042754555135},{"area":"澎湖縣","population":105277,"pid_penetrate_perc":0},{"area":"基隆市","population":368184,"pid_penetrate_perc":0},{"area":"新竹市","population":450288,"pid_penetrate_perc":0},{"area":"嘉義市","population":266668,"pid_penetrate_perc":0.00004124979375103124},{"area":"福建省","population":152792,"pid_penetrate_perc":0},{"area":"金門縣","population":139703,"pid_penetrate_perc":0},{"area":"連江縣","population":13089,"pid_penetrate_perc":0}],
+
+            tableData:[{
+                name: '描述',
+                value: '地圖icon元件，自動顯示cnt'
+            },{
+                name: '維度量值',
+                value: 'g, x, y'
+            },{
+                name: 'html',
+                value: 'id:必填，元件id，要有唯一性'
+            },{
+                name: '屬性',
+                value: `iconurl :可以到這裏https://loading.io/icon/, 選download，在右邊取預覽圖的svg下載來用
+                        data:陣列 每個元件為 {name:'xyz', let: 25.04, lng:121.57, sz: 'xs', cnt : 1200 }  上面的iconsize是字串，由大到小依序為  - xl, l , m, s, xs, xxs
+                        onrenderpop:傳入method
+                        item: 為的某一個item，回傳html字串
+                        isTop : true or undefind，是否為第一名
+                        color:設定比例尺由低至高顏色，格式為array ex: "['rgba(181,230,29,1)', 'rgba(6,200,300,1)'] "
+                        geo_data:可透過https://github.com/g0v/twgeojson/tree/master/json 獲得台灣地圖的GeoJSON檔案製作台灣地區的tooltip
+                        legend_key:右下方比例尺顯示名稱，格式為object ex:"{"size": "222", "color": "123"}" , size 為滲透圓點名稱，若為空字串則不顯示  color為比例尺名稱
+                        `
+            },{
+                name: '依賴',
+                value: `https://unpkg.com/leaflet@1.3.4/dist/leaflet.css
+                        https://unpkg.com/leaflet@1.3.4/dist/leaflet.js        
+                        https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js
+                        `
+            }],
+
+
+            filter_data: {
+                dt: [],
+                prev_dt: [],
+            },
+            loading: false,
+        },
+        computed: {
+            color(){
+                return  (this.color_array.length == 1 && this.color_array[0] == 0) 
+                    ? ['rgba(84,138,178,1)', 'rgba(84,138,178,1)'] 
+                    : (_.max(this.color_array) <= 0)
+                    ? ['rgba(15, 219, 183, 1)', 'rgba(199, 199, 199, 1)']
+                    : (_.min(this.color_array) >= 0)
+                    ? ['rgba(199, 199, 199, 1)', '#085A9B']
+                    : ['#C5E4FA', '#085A9B']
+            },
+            legend_key(){
+                return {"size": "", "color": "滲透率"};
+            },
+            color_array() {
+                var perc_data = _.map(this.Population,item =>{
+                    var findData = _.find(this.datalist,{area:item.area});
+                    item.pid_penetrate_perc = findData ? findData.dcnt_pid / item.population : 0;
+                    return item  
+                })
+                min = _.minBy(perc_data, "pid_penetrate_perc")["pid_penetrate_perc"];
+                max = _.maxBy(perc_data, "pid_penetrate_perc")["pid_penetrate_perc"];
+                return  (min >=0) ? _.union([0, max]) : _.union([min, 0, max])
+            },
+            geojson_data(){
+                // 先與內政部各地區人口做結合
+                var perc_data = _.map(this.Population,item =>{
+                    var findData = _.find(this.datalist,{area:item.area});
+                    if(findData){
+                        item = {
+                            'area': item.area,
+                            'rev': findData.rev,
+                            'prev_rev': findData.prev_rev,
+                            'rev_updn_perc': findData.rev_updn_perc,
+                            'dcnt_pid': findData.dcnt_pid,
+                            'prev_dcnt_pid': findData.prev_dcnt_pid,
+                            'pid_updn_perc': findData.pid_updn_perc,
+                            'pid_penetrate_perc': findData.dcnt_pid / item.population,
+                            'pid_penetrate_perc_format': (findData.dcnt_pid / item.population).toLocaleString('en-US', {style: 'percent', maximumSignificantDigits: 2}),
+                            'population': item.population
+                        }
+                    } else {
+                        item = {
+                            'area': item.area,
+                            'rev': 0,
+                            'prev_rev': 0,
+                            'rev_updn_perc': 0,
+                            'dcnt_pid': 0,
+                            'prev_dcnt_pid': 0,
+                            'pid_updn_perc': 0,
+                            'pid_penetrate_perc': 0,
+                            'pid_penetrate_perc_format': "0%",
+                            'population': item.population
+                        }
+                    }
+                    return item  
+                })
+                // 與劃分經緯度的地圖做各地區結合
+                var City_data = this.twCity;
+                var finalData = 
+                _.forEach(City_data.features, d=>{
+                    _.forEach(d, (item,key)=>{
+                        if (key == 'properties'){
+                            var findData = _.find(perc_data, {area: item.name});
+                            if(findData){
+                                item.population = findData.population.toLocaleString();
+                                item.population_num = findData.population
+                                item.rev = findData.rev,
+                                item.prev_rev = findData.prev_rev,
+                                item.rev_updn_perc = findData.rev_updn_perc,
+                                item.dcnt_pid = findData.dcnt_pid;
+                                item.prev_dcnt_pid = findData.prev_dcnt_pid;
+                                item.pid_updn_perc = findData.pid_updn_perc;
+                                item.pid_penetrate_perc = findData.pid_penetrate_perc;
+                                item.pid_penetrate_perc_format = findData.pid_penetrate_perc_format;
+                            }
+                        }
+                    })
+                })
+                return _.orderBy(finalData, 'properties.pid_penetrate_perc', ['desc'])
+            },
+        }
+    });
+
+    
+</script>
+
+{% endblock %}
+
+
+

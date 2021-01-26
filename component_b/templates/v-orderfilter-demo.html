@@ -1,0 +1,174 @@
+{% extends "layout_mini_daniel.html" %}
+{% block title %}CDP元件展覽網站{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/style/morris/0.5.1/morris.css" />
+
+<style type="text/css">
+  /*修複sparkline tooltips樣式跑版*/
+  .jqstooltip {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+  }
+  .el-table .cell {
+        white-space: pre-line;
+    }
+
+  .el-range-separator {
+    /* 修正”至”樣式錯誤 */
+    width: 27px !important;
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+<!-- 頁面標題-右側-無功能 start -->
+<el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
+    <el-col :span="24">
+    <div class="grid-content">
+        <h1>v-orderfilter.js 使用方式</h1>  
+    </div>
+    </el-col>
+</el-row>
+<!-- 頁面標題-右側-無功能 end -->
+<!-- 1欄 start -->
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <el-table
+            :data="tableData"
+            border
+            :show-header=false
+            style="width: 100%">
+            <el-table-column
+                prop="name"
+                width="180">
+            </el-table-column>
+            
+            <el-table-column 
+                prop="value">
+                <!-- <template slot-scope="scope">
+
+                </template> -->
+            </el-table-column>
+
+        </el-table>
+    </el-col>
+</el-row>
+
+
+
+
+
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+        <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Source Code</h2>
+            <h3><pre>
+                <code class="html">
+                &lt;v-orderfilter  
+                    v-model="filter_data"
+                    :init_filter='{"bhv1":"購買項目","bhv2":"自用或外帶","ord_paytype":"付費方式","area_store":"門店"}'&gt;
+                &lt;/v-orderfilter &gt;
+            </code>
+            </pre></h3>
+        </el-card>
+        </div>
+    </el-col>
+
+</el-row>
+
+ 
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+            <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Example</h2>
+            <v-orderfilter 
+                v-model="filter_data"
+                :init_filter='{"bhv1":"購買項目","bhv2":"自用或外帶","ord_paytype":"付費方式","area_store":"門店"}'>
+            </v-orderfilter>
+            </el-card>
+        </div>
+    </el-col>
+</el-row>
+
+<!-- 1欄 end -->
+
+{% endblock %} 
+
+{% block js %}
+<script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
+<script src="/static/style/lodash/4.16.0/lodash.js"></script>
+<script src="/static/js/v-orderfilter.js"></script>
+
+
+
+<script>
+
+    var obj = new Vue({
+        el: '#app',
+        mixins: [layoutVue],
+        data:  {
+            breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
+            datalist:[],
+            filter_data: {"area_store":[],"bhv_C":[],"bhv1":[],"bhv2":[],"ord_type":[],"ord_paytype":[],"prd_cat_C":[],"prd_cat1":[],"prd_cat2":[],"touch_C":[],"touch1":[],"touch2":[],"dr":["2020-10-21","2020-10-27"]},
+
+            tableData:[{
+                name: '描述',
+                value: `包含「付費方式」、「購買方式」、「門店」、「日期區間」的複合元件
+                        會自動儲存「付費方式」、「購買方式」、「門店」的值
+                        「日期區間」自動選擇過去七天`
+            },{
+                name: '維度量值',
+                value: '維度1個，量值1個'
+            },{
+                name: 'html',
+                value: 'id:必填，元件id，要有唯一性'
+            },{
+                name: '屬性',
+                value: `opts : 預設下拉單的內容, {ord_paytype:[]\0, buytype:[]\0,store:[]}`
+            },{
+                name: '事件',
+                value: `onchange(val)當回傳值發生改變時觸發 , oncommit()使用者按下搜尋計算按鈕時觸發`
+            },{
+                name: 'val',
+                value: `{ord_paytype:[] 付費類型  
+                    buytype:[] , 購買方式 
+                    store:[] , 門店
+                    dr:""  區間}`
+
+            },{
+                name: '參考',
+                value: `https://codertw.com/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/197439/`
+            },{
+                name: '依賴',
+                value: `vue element ,vue materaial ,v-el-select-multi元件`
+            }],
+        },
+        mounted () {
+            
+        
+            
+            // $.post('lookup/area_store_by_role', { 
+            //     }, result => {
+            //         console.log(11111111111111111)
+            //         console.log(result)
+            //         this.datalist = result;
+                    
+            //     }, 'json');
+
+        }
+    });
+
+    
+</script>
+
+
+{% endblock %}
+
+

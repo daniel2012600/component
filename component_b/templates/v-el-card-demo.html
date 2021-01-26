@@ -1,0 +1,167 @@
+{% extends "layout_mini_daniel.html" %}
+{% block title %}CDP元件展覽網站{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/style/morris/0.5.1/morris.css" />
+
+<style type="text/css">
+  /*修複sparkline tooltips樣式跑版*/
+  .jqstooltip {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+  }
+  .el-table .cell {
+        white-space: pre-line;
+    }
+
+  .el-range-separator {
+    /* 修正”至”樣式錯誤 */
+    width: 27px !important;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- 頁面標題-右側-無功能 start -->
+<el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
+    <el-col :span="24">
+    <div class="grid-content">
+        <h1>v-el-card.js 使用方式</h1>  
+    </div>
+    </el-col>
+</el-row>
+<!-- 頁面標題-右側-無功能 end -->
+<!-- 1欄 start -->
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <el-table
+            :data="tableData"
+            border
+            :show-header=false
+            style="width: 100%">
+            <el-table-column
+                prop="name"
+                width="180">
+            </el-table-column>
+            
+            <el-table-column 
+                prop="value">
+                <!-- <template slot-scope="scope">
+
+                </template> -->
+            </el-table-column>
+
+        </el-table>
+    </el-col>
+</el-row>
+
+
+
+
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+        <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Source Code</h2>
+            <h3><pre>
+                <code class="html">
+                &lt;v-el-card
+                    title="Example"
+                    tooltip="若未設置會顯示這是提醒"
+                    :show_tooltip="true"
+                    :isempty="true"&gt;
+                &lt;/v-el-card&gt;
+                </code>
+            </pre></h3>
+        </el-card>
+        </div>
+    </el-col>
+
+</el-row>
+
+ 
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+            <el-card shadow="never" class="box-card wrap-card" >
+            <v-el-card
+            title="Example"
+            tooltip="若未設置會顯示這是提醒"
+            :show_tooltip="true"
+            :isempty="true">
+            </v-el-card>
+            </el-card>
+        </div>
+    </el-col>
+</el-row>
+
+<!-- 1欄 end -->
+
+{% endblock %} 
+
+{% block js %}
+<script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
+<script src="/static/style/lodash/4.16.0/lodash.js"></script>
+<script src="/static/js/v-el-card.js"></script>
+
+
+<script>
+
+    var obj = new Vue({
+        el: '#app',
+        mixins: [layoutVue],
+        data:  {
+            breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
+            datalist: [{"品名":"功能慢跑踝襪","銷售額":13463130},{"品名":"運動背心-男版","銷售額":6537058},{"品名":"五趾功能慢跑襪","銷售額":4115183},{"品名":"自行車襪 Race","銷售額":3860098},{"品名":"專業籃球襪-Light","銷售額":3352643},{"品名":"專業運動酵素洗衣精","銷售額":3167003},{"品名":"其他","銷售額":2950947},{"品名":"壓力小腿套","銷售額":2579673},{"品名":"球類襪款，任選3雙790元","銷售額":2549502},{"品名":"全方位球類運動襪","銷售額":2102797},{"品名":"側向運動襪-Elite","銷售額":1683654}],
+            tableData:[{
+                name: '描述',
+                value: '卡片'
+            },{
+                name: 'html',
+                value: 'id:必填，元件id，要有唯一性'
+            },{
+                name: '屬性',
+                value: `title:這是標題
+                        tooltip:這是提醒
+                        isempty：是否顯示沒有資料，若true, body就不顯示
+                        height:card高度
+                        loading：載入中`
+            },{
+                name: '插槽',
+                value: `body:內容`
+            },{
+                value: `right:右上`
+            },{
+                name: '參考',
+                value: 'http://echarts.baidu.com/examples/editor.html?c=bubble-gradient'
+            }],
+        },
+    });
+
+    
+</script>
+
+
+{% endblock %}
+
+
+
+<!-- 描述：
+    卡片
+html:
+    id : 注意，不是屬性，元性的id，同一個頁面要有唯一性，裏面會用到，一定要設
+屬性：
+    title:這是標題
+    tooltip:這是提醒
+    isempty：是否顯示沒有資料，若true, body就不顯示
+    height:card高度
+    loading：載入中
+插槽:
+    body:內容
+    right:右上
+參考:
+    http://echarts.baidu.com/examples/editor.html?c=bubble-gradient -->
+

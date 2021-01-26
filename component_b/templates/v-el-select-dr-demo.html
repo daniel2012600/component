@@ -1,0 +1,144 @@
+{% extends "layout_mini_daniel.html" %}
+{% block title %}CDP元件展覽網站{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/style/morris/0.5.1/morris.css" />
+
+<style type="text/css">
+  /*修複sparkline tooltips樣式跑版*/
+  .jqstooltip {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+  }
+  .el-table .cell {
+        white-space: pre-line;
+    }
+
+  .el-range-separator {
+    /* 修正”至”樣式錯誤 */
+    width: 27px !important;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- 頁面標題-右側-無功能 start -->
+<el-row type="flex" justify="space-between" :gutter="25" class="mb-4">
+    <el-col :span="24">
+    <div class="grid-content">
+        <h1>v-el-select-dr.js 使用方式</h1>  
+    </div>
+    </el-col>
+</el-row>
+<!-- 頁面標題-右側-無功能 end -->
+<!-- 1欄 start -->
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <el-table
+            :data="tableData"
+            border
+            :show-header=false
+            style="width: 100%">
+                <el-table-column
+                prop="name"
+                width="180">
+                </el-table-column>
+                <el-table-column
+                prop="value"
+                >
+                </el-table-column>
+        </el-table>
+    </el-col>
+</el-row>
+
+
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+        <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Source Code</h2>
+            <h3><pre>
+                <code class="html">
+                &lt;v-el-select-dr&gt;
+                &lt;/v-el-select-dr&gt;
+                </code>
+            </pre></h3>
+        </el-card>
+        </div>
+    </el-col>
+
+</el-row>
+
+ 
+
+<el-row :gutter="25" class="mb-4">
+    <el-col :span="24">
+        <div class="grid-content">
+            <el-card shadow="never" class="box-card wrap-card" >
+            <h2 class="card__title">Example</h2>
+            <v-el-select-dr 
+                default_dr='昨天'
+                format='YYYY-MM-DD'
+                >
+            </v-el-select-dr>
+            </el-card>
+        </div>
+    </el-col>
+</el-row>
+
+<!-- 1欄 end -->
+
+{% endblock %} 
+
+{% block js %}
+<script src="/static/style/dayjs/1.8.16/dayjs.min.js"
+    integrity="sha256-4ZAJq9kaOQU0baQImJ8cE4swV+cAOrx/NL11yOL+VvY=" crossorigin="anonymous"></script>
+<script src="/static/style/dayjs/1.8.16/local/zh-tw.js"
+    integrity="sha256-p45gZDxFYIOFlQn5QjBSSdjQmqwVckF3cQBE8c9UbgU=" crossorigin="anonymous"></script>
+
+<script src="/static/style/echarts/4.8.0/echarts.min.js"></script>
+<script src="/static/style/lodash/4.16.0/lodash.js"></script>
+<script src="/static/js/v-el-select-dr.js"></script>
+
+
+<script>
+    var obj = new Vue({
+        el: '#app',
+        mixins: [layoutVue],
+        data:  {
+            breadpath: [{key: '首頁', path: '/'},{key: '標題', path: ''}],
+            tableData:[{
+                name: '描述',
+                value: '日期區間選單'
+            },{
+                name: '維度量值',
+                value: '維度1個，量值n個；維度是x軸，量值分顏色'
+            },{
+                name: 'html',
+                value: 'id:必填，元件id，要有唯一性'
+            },{
+                name: '屬性',
+                value: `default_dr:選單當下日期，預設為上週
+                        format:選單內日期格式，預設為 "MM-DD"
+                        `
+            },{
+                name:'依賴',
+                value: `/static/style/dayjs/1.8.16/dayjs.min.js" 
+                        /static/style/dayjs/1.8.16/local/zh-tw.js"
+                        `
+            },
+        ]},
+    });
+
+    
+</script>
+
+
+{% endblock %}
+
+
+
+
+
